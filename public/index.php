@@ -57,7 +57,6 @@ try {
     $front->batchSetControllerDirectories(Zeed_Config::loadGroup('bootstrap'));
     $front->dispatch();
 } catch (Zeed_Exception $e) {
-    
     if (ini_get('display_errors')) {
         Zeed_Benchmark::print_r($e->toString());
     }
