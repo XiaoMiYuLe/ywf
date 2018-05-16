@@ -1,0 +1,212 @@
+html{
+	font-size: 62.5%;
+	font-family: "Microsoft YaHei";
+	overflow-x: hidden;
+	-webkit-text-size-adjust:none;  
+}
+
+header {
+	width: 100%;
+	height: 4.0rem;
+	font-size: 1.6rem;
+	overflow: hidden;
+	line-height: 4rem;
+	color: #832120;
+	position: relative;
+	text-align: center;
+	border: 1px solid #ccc
+}
+header .back{
+	position: absolute;
+	width: 2.5rem;
+	height:4.0rem;
+	background: url(../images/iconfont-yfback.png) no-repeat center;
+	background-size: contain;
+	vertical-align: middle;
+	top: 0;
+	left: 1rem
+}
+header .find{
+	position: absolute;
+	right: 1rem;
+	top: 0;
+	text-decoration: none;;
+	color: #832120
+}
+.item {
+	width: 100%;
+	text-align: center;
+	margin-top: 1.0rem
+}
+.item img{
+	width: 100%;
+}
+.item h1{
+	font-size: 1.6rem;
+	font-weight: normal;
+}
+.item h1 span{
+	font-size: 1.4rem;
+	padding-left: 1.0rem;
+}
+.bigImg{
+	width: 100%;
+}
+.bigImg img{
+	width: 100%
+}
+.menu{
+	width: 100%;
+	height: 7rem;
+	margin-top: 1.0rem;
+	border-bottom: 1px solid #ccc
+}
+.menu a{
+	width: 47%
+}
+.menu a img{
+	width: 100%
+}
+#menu1{
+	float: left;
+	margin-left: 0.5rem;
+}
+#menu2{
+	float: right;
+	margin-right: 0.5rem;
+}
+.list {
+	padding:2rem 0;
+}
+.left,.right{
+	width: 44%;
+	position: relative;
+}
+.list img{
+	width: 100%
+}
+.left{
+	float: left;
+	margin-left: 1.0rem;
+}
+.right{
+	float: right;
+	margin-right: 1.0rem;
+}
+.list h2,h3{
+	font-weight: normal;
+}
+.list h2{
+	color: #666
+}
+.list .price{
+	color: #A95667
+}
+.list .oldprice{
+	color: #A8A8A8;
+	margin-left:2rem;
+}
+.cart{
+	position: absolute;
+	width: 2.5rem;
+	height: 3.5rem;
+	right: 0;
+	bottom: 0;
+	background: url(../images/iconfont-cart.png) no-repeat center;
+	background-size: contain
+}
+.navlist{
+	text-align: center;
+	padding: 1rem 1.5rem; overflow: hidden;
+}
+.navlist .n{
+	width: 33.3%;
+	height:33.3%;
+	position: relative; float: left; margin:1rem 0.03% 0 0;
+}
+.navlist .n:nth-child(3n){margin-right: 0;}
+.navlist img{
+	width: 85%;
+	border: 0.5rem solid #F93545;
+	border-radius: 50%;
+	position: relative; float: left;
+
+}
+.navlist .n span{
+	background: url(../images/t.png) no-repeat;
+	background-size: contain;
+	display: inline-block;
+	width: 7.4rem;
+	color: #fff;
+	font-size: 0.8rem; height: 1.5rem;
+    overflow: hidden;
+	text-align: center; margin-top: 0.5rem;
+}
+.navlist .mid{
+	display: inline-block;
+}
+.fr{
+	float: right;
+}
+.fl{
+	float: left;
+}
+.shoplist h1{
+	height: 4rem;
+	line-height: 4rem;
+	border-top: 1px solid #ccc;
+	padding:0 2.0rem;
+	font-weight: normal;
+	font-size: 1.6rem
+}
+.danmo{
+	display: inline-block;
+	width: 2.3rem;
+	height: 2.5rem;
+	vertical-align: middle;
+	background: url(../images/damon.png) no-repeat;
+	background-size: contain;
+	margin-right: 1.0rem
+}
+.detail {
+	display: inline-block;
+	width: 1.5rem;
+	height: 4rem;
+	background: url(../images/next.png) no-repeat center;
+	background-size:contain;
+	vertical-align: middle;
+	float: right;
+}
+.list{
+	overflow: hidden;
+}
+.shoplist{
+	width: 94%;
+	margin: 0 auto;
+	
+}
+.shoplist .shop{
+	width: 30%;
+	height:30%;
+	position: relative;
+}
+.shoplist .shop img{
+	width: 100%
+}
+.middle{
+	margin: 0 5%
+}
+.caption span,.caption del{
+	display: block;
+	font-size: 1.6rem
+}
+.caption .good_name{
+	color: #333;
+}
+.caption .price{
+	color:#ED3737;
+	
+}
+.caption .oldprice{
+	color: #6C6C6C
+}

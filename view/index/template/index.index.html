@@ -1,0 +1,177 @@
+{$wrapper_prefix_front|default}
+<script src="{$_STATIC_CDN}/ywf/js/index.js" type="text/javascript"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/gotop.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/goods.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/tableft.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/jquery.SuperSlide.2.1.1.js"></script>
+<script>$("head>title").html("亿万福");</script>
+<div class="h350_banner" style="position: relative;">
+<div class="banner">
+    <ul>
+        {if $advert}
+        {foreach $advert as $v}
+        <li class="h350_min_w980" style="background: url('{$v.image}') no-repeat center center;">
+            <a target="_blank" href="{$v.link_url}"></a></li>
+        {/foreach}
+        {/if}
+    </ul>
+    </div>	
+    <div class="banner_dian hd">
+
+        <ul></ul>
+
+    </div>
+
+</div>
+<div class="banner_bottom_bg">
+    <div class="banner_bottom">
+        <div class="banner_list">
+            <span class="icon icon_1"></span>
+            <h3>雄厚背景</h3>
+        </div>
+        <div class="banner_list">
+            <span class="icon icon_2"></span>
+            <h3>严格风控</h3>
+        </div>
+        <div class="banner_list">
+            <span class="icon icon_3"></span>
+            <h3>安全兑付</h3>
+        </div>
+    </div>
+</div>
+<div class="body_content_bg">
+    <div class="body_content w1200">
+        <div class="first">
+            <p class="f1">共有 <strong> 12400 </strong>位注册用户，总销售 <strong> 2.9 </strong>亿+，已兑付<strong>  2.5 </strong> 亿+</p>
+            <p>数据截止日期：2016年10月</p>
+        </div>
+        <div class="second">
+            
+            {if $newgoods}
+            {foreach $newgoods as $nv}
+            <div class="left">
+                <h1>新手福利</h1>
+                <p class="xin">新手专享产品</p>
+                <div class="rate fl">
+                    <span class="shuzi">{$nv.yield}</span>
+                    <span>%</span>
+                    <p>预期年化收益</p>
+                </div>
+                <div class="time fr">
+                    <p class="tian">{$nv.financial_period}天</p>
+                    <p class="sy">期限</p>
+                </div>
+                <a href="/goods/goods/detail?goods_id={$nv.goods_id}" class="btn">立即投资</a>
+                <span class="icon"></span>
+            </div>
+            {/foreach}
+            {/if}
+            
+            <div class="right">
+                <h1>精选项目</h1>
+                {if $goods}
+                {foreach $goods as $v}
+                <div class="left  rl">
+                    <p class="xin">{$v.goods_name}</p>
+                        <div class="rate fl">
+                            <span class="shuzi">{$v.yield}</span>
+                            <span>%</span>
+                            <p>预期年化收益</p>
+                        </div>
+                        <div class="time fr">
+                            <p class="tian">{$v.financial_period}天</p>
+                            <p class="sy">期限</p>
+                        </div>
+                    <a href="/goods/goods/detail?goods_id={$v.goods_id}" class="btn">立即投资</a> 
+                </div>
+                {/foreach}
+                {/if}
+            </div>
+        </div>
+        
+        <div class="third">
+            <div class=" third_box third_l">
+                <div class="title">财富动态
+                    <a href="javascript:;" onclick="location.href='/page/wealth/index'" style="float:right;margin-right:38px;color:#9d9d9d;font-size: 14px;">更多>></a>
+                </div>
+                <ul class="artile">
+                    {if $article_9}
+                    {foreach $article_9 as $v}
+                    <li> 
+                        <a href="{$v.link}"><img width="270" height="150" src="{$v.image}" alt=""></a>
+                        <p><a href="{$v.link}">{$v.title}</a></p>
+                    </li>
+                    {/foreach}
+                    {/if}
+                </ul>
+            </div>
+            
+            <div class=" third_box third_r">
+                <div class="title">精选活动</div>
+                <ul class="artile">
+                    {if $article_12}
+                    {foreach $article_12 as $v}
+                    <li> 
+                        <a href=""><img title="{$v['title']}" width="270" height="210" src="{$v.image}" alt=""></a>
+                    </li>
+                    {/foreach}
+                    {/if}
+                </ul>
+            </div>
+        </div>
+        
+        <div class=" four">
+            <div class="four_box  four_l " >
+                <div class="title">媒体报道
+                    <a href="javascript:;" onclick="location.href='/page/media/index'" style="float:right;margin-right:38px;color:#9d9d9d;font-size: 14px;">更多>></a>
+                    
+                </div>
+                <ul class="artile four_artile">
+                    {if $article_11}
+                    {foreach $article_11 as $v}
+                    <li> 
+                        <a href="/page/media/detail?id={$v['content_id']}"><img width="220" height="70" src="{$v.image}" alt=""></a>
+                        <a style="color: #333333" href="/page/media/detail?id={$v['content_id']}"><p class="mtitle">{$v.title}</p></a>
+                        <div class="text">
+                            <span>{$v.alias}</span>
+                        </div>
+                    </li>
+                    {/foreach}
+                    {/if}
+                </ul>
+            </div>
+            <div class=" four_box   four_tab">
+                <ul class="four_tab_title">
+                    <li class="current"><a href="javascript:;">理财公告</a></li>
+                    <li><a href="javascript:;">常见问题</a></li>
+                </ul>
+                <ol class="four_tab_content">
+                    {if  !empty($article_13)}
+                    {foreach $article_13 as $v}
+                       <li><a href="/page/platform/detail?id={$v['news_id']}">{$v['news_title']}</a></li>
+                    {/foreach}
+                    {/if}
+                    <a href="javascript:;" onclick="location.href='/page/platform/index'" style="float:right;margin-right:20px;margin-bottom:9px;color:#9d9d9d;">查看更多>></a>
+                </ol>
+                <ol class="four_tab_content" style="display:none;">
+                    {if  !empty($article_14)}
+                    {foreach $article_14 as $v}
+                       <li><a href="/page/help/detail?id={$v['content_id']}">{$v['title']}</a></li>
+                    {/foreach}
+                    {/if}
+                    <a href="javascript:;" onclick="location.href='/page/help/index'" style="float:right;margin-right:20px;margin-bottom:9px;color:#9d9d9d;">查看更多>></a>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sidebar_nav">
+    <a href="" class="gotop"><span>回顶部</span></a>
+    <a href="" class="kefu"><span>客服</span></a>
+    <a href="" class="app"><span>手机APP</span></a>
+</div>
+
+
+
+{$wrapper_suffix_front|default}

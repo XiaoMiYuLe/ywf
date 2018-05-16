@@ -1,0 +1,95 @@
+{$wrapper_prefix|default}
+
+<script src="{$_STATIC_URL}/admin/setting/js/orm.index.js" type="text/javascript"></script>
+
+<section class="hbox stretch">
+    <aside class="aside-md bg-white b-r" id="subNav">
+        <section class="vbox">
+            <header class="b-b header"><p class="h4">生成方式</p></header>
+            <section class="scrollable w-f">
+                <ul class="nav nav-pills nav-stacked no-radius">
+                    <li class="b-b m-t-none-reset nav-map active" id="nav_app">
+                        <a href="javascript:;">
+                            <i class="fa fa-chevron-right pull-right m-t-xs text-xs icon-muted"></i>
+                            <i class="fa fa-fw fa-ellipsis-v"></i>
+                            按模块生成
+                        </a>
+                    </li>
+                    <li class="b-b m-t-none-reset nav-map" id="nav_table">
+                        <a href="javascript:;">
+                            <i class="fa fa-chevron-right pull-right m-t-xs text-xs icon-muted"></i>
+                            <i class="fa fa-fw fa-ellipsis-v"></i>
+                            按数据表生成
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </section>
+    </aside>
+    
+    <aside class="bg-white b-r">
+        <section class="vbox">
+            <header class="header b-b b-t bg-white-only">
+                <div class="m-t-sm">
+                    <a href="#subNav" data-toggle="class:hide" class="btn btn-sm btn-default active btn-nav-quick" btn_nav_quick_index="0">
+                        <i class="fa fa-caret-right text fa-lg"></i>
+                        <i class="fa fa-caret-left text-active fa-lg"></i>
+                    </a>
+                    <button type="button" data_submit_type="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存</button>
+                    <button type="button" data_submit_type="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">保存并继续添加</button>
+                </div>
+            </header>
+            
+            <section class="scrollable wrapper panel w-f">
+                <form class="form-horizontal" id="edit_form" action="/setting/orm/build" method="post">
+                    
+                    <!-- 按模块生成 @start -->
+                    <section class="edit-map" id="edit_app">
+	                    <section class="panel panel-default">
+                            <header class="panel-heading">选择要生成的模块</header>
+                            <div class="panel-body">
+                                {foreach from=$apps item=v}
+                                <label class="checkbox-inline col-sm-2 m-l-none-reset">
+                                    <input type="checkbox" name="apps[]" class="build-from-apps" value="{$v.appkey}" />&nbsp;{$v.name}
+                                </label>
+                                {/foreach}
+                            </div>
+                        </section>
+                    </section>
+                    <!-- 按模块生成 @end -->
+                    
+                    <!-- 按数据表生成 @start -->
+                    <section class="edit-map default-hidden" id="edit_table">
+                        <section class="panel panel-default">
+                            <header class="panel-heading">选择要生成的数据表</header>
+                            <div class="panel-body">
+                                {foreach from=$tables item=v}
+                                <label class="checkbox-inline col-sm-4 m-l-none-reset">
+                                    <input type="checkbox" name="tables[]" class="build-from-tables" value="{$v}" />&nbsp;{$v}
+                                </label>
+                                {/foreach}
+                            </div>
+                        </section>
+                    </section>
+                    <!-- 按数据表生成 @end -->
+                    
+                    <input type="hidden" name="build_type" value="app" />
+                </form>
+            </section>
+            
+            <footer class="footer b-t bg-white-only">
+                <div class="m-t-sm">
+                    <a href="#subNav" data-toggle="class:hide" class="btn btn-sm btn-default active btn-nav-quick" btn_nav_quick_index="1">
+                        <i class="fa fa-caret-right text fa-lg"></i>
+                        <i class="fa fa-caret-left text-active fa-lg"></i>
+                    </a>
+                    <button type="button" data_submit_type="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">生成</button>
+                    <button type="button" data_submit_type="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">一键生成所有</button>
+                    <span id="edit_notice"></span>
+                </div>
+            </footer>
+        </section>
+    </aside>
+</section>
+
+{$wrapper_suffix|default}

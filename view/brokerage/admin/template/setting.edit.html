@@ -1,0 +1,77 @@
+{$wrapper_prefix|default}
+<script src="{$_STATIC_URL}/brokerage/admin/js/setting.edit.js"></script>
+<section class="hbox stretch">
+    <aside>
+        <section class="vbox">
+            <section class="scrollable wrapper">
+                <section class="panel panel-default">
+                    <div class="table-responsive">
+                        <!-- <table class="table table-striped m-b-none datagrid " > -->
+	                        </div>
+	                            <form  class="form-horizontal" id="edit_form" action="/brokeragemadmin/index/settingadd" method="post" enctype="multipart/form-data">
+                    				<div class="form-group">
+                        				<label for="first_brokerage" class="col-sm-2 control-label"><font class="red">* </font>第一级佣金</label>
+                        				<div class="col-sm-4">
+                            				<input type="text" class="form-control" id="first_brokerage" name="first_brokerage" value="{$content.first_brokerage}" placeholder="请输入一级佣金" />
+                        				</div>
+                        				<label class="col-sm-1 control-label">(单位%)</label>
+                    				</div>
+                    				<div class="line line-dashed line pull-in"></div>
+                    				<div class="form-group">
+                        				<label for="second_brokerage" class="col-sm-2 control-label"><font class="red">* </font>第二级佣金</label>
+                        				<div class="col-sm-4">
+                            				<input type="text" class="form-control" id="second_brokerage" name="second_brokerage" value="{$content.second_brokerage}" placeholder="请输入二级佣金" />
+                        				</div>
+                        				<label class="col-sm-1 control-label">(单位%)</label>
+                    				</div>
+                    				<div class="line line-dashed line pull-in"></div>
+                    				<div class="form-group">
+                        				<label for="third_brokerage" class="col-sm-2 control-label"><font class="red">* </font>第三级佣金</label>
+                        				<div class="col-sm-4">
+                            				<input type="text" class="form-control" id="third_brokerage" name="third_brokerage" value="{$content.third_brokerage}" placeholder="请输入三级佣金" />
+                        				</div>
+                        				<label class="col-sm-1 control-label">(单位%)</label>
+                    				</div>
+                    				<div class="col-sm-4 control-label">
+                    					<input type="button" id="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit" value="提交"></input>
+                    					<input type="button" id="cancel" class="btn btn-s-md btn-primary btn-sm input-submit" value="取消"></input>
+                    				</div>
+                    				
+									<span id="edit_notice"></span>
+								</form>
+							<div>
+							</br>
+	                            </br>
+	                            </br>
+	                            </br>
+	                            </br>
+	                            </br>
+	                            </br>
+	                            </br>
+	                            </br>
+	                        </div>
+                        <!-- </table> -->
+                    </div>
+                </section>
+            </section>
+        </section>
+    </aside>
+</section>
+<script type="text/javascript">
+    var ckeditor1;
+    
+    var config = {
+            extraPlugins: 'codesnippet',
+            codeSnippet_theme: 'monokai_sublime',
+            height: 500
+        };
+    
+    if (typeof CKEDITOR == 'object') {
+        if (CKEDITOR.instances['editor1']) {
+            CKEDITOR.remove(CKEDITOR.instances['editor1']);
+        }
+        ckeditor1 = CKEDITOR.replace('editor1', config);
+    }
+    
+</script>  
+{$wrapper_suffix|default}

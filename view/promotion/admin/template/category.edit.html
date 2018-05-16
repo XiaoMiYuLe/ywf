@@ -1,0 +1,50 @@
+{$wrapper_prefix|default}
+
+<script src="{$_STATIC_URL}/promotion/admin/js/category.edit.js"></script>
+
+<section class="hbox stretch">
+    <aside class="bg-white b-r">
+        <section class="vbox">
+            <header class="b-b header">
+                <p class="h4">{if $category}编辑分类{else}添加分类{/if}</p>
+            </header>
+            
+            <section class="scrollable wrapper w-f">
+                <form class="form-horizontal h-100" id="edit_form" action="/promotionadmin/category/add" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+	                    <label for="title" class="col-sm-2 control-label"><font class="red">* </font>分类名称</label>
+	                    <div class="col-sm-4">
+	                        <input type="text" class="form-control" id="title" name="title" value="{$category.title}" placeholder="请输入分类名称" />
+	                    </div>
+	                </div>
+                    <div class="line line-dashed line pull-in"></div>
+                        
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><font class="red">* </font>关联模板</label>
+                        <div class="col-sm-4">
+                            <select id="template_id" name="template_id" class="form-control">
+                                <option value="0">请选择</option>
+                                {foreach from=$templates item=v}
+                                <option value="{$v.template_id}" {if $v.template_id == $category.template_id}selected{/if}>{$v.title}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <input type="hidden" name="category_id" id="category_id" value="{$category_id}" />
+                </form>
+            </section>
+            
+            <footer class="footer b-t bg-white-only">
+                <div class="m-t-sm">
+                    <button type="button" data_submit_type="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存</button>
+                    {if ! $category}<button type="button" data_submit_type="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">保存并继续添加</button>{/if}
+                    <button type="button" data_submit_type="submit_cancel" class="btn btn-danger btn-sm input-submit">取消</button>
+                    <span id="edit_notice"></span>
+                </div>
+            </footer>
+        </section>
+    </aside>
+</section>
+
+{$wrapper_suffix|default}

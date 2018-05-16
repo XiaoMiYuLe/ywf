@@ -1,0 +1,93 @@
+{$wrapper_prefix_center|default}
+
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/tab.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/go_top.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/alert.js"></script>
+<!--分页插件-->
+<link type="text/css" rel="stylesheet" href="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination.css"/>
+<script type="text/javascript" src="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination-1.2.7.min.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/cas/user.coupon.js"></script>
+
+<script>$("head>title").html("优惠券");</script>
+
+<!--中间：内容-->
+<div class="container_content" >
+    <!--我的账户-->
+    <div class="top" style="min-height:622px">
+        <div class="one">
+            <div class="blue-line"></div>
+            <span class="title">优惠券</span>
+        </div>
+        <div class="two_money">
+            <div class="tab">
+                <label>状态：</label>
+                <button class="tab-btn" id="weishiyong1">未使用</button>
+                <button id="yishiyong1">已使用</button>
+                <button id="yiguoqi1">已过期</button>
+            </div>
+        </div>
+        <div class="three" id="three">
+            <table class="yhq" id=""  style="white-space: nowrap;" >
+                <thead>
+                    <tr>
+                        <th>分类</th>
+                        <th>金额</th>
+                        <th>开始时间</th>
+                        <th>截止时间</th>
+                        <th>使用条件</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="weishiyong">
+                    
+                </tbody>
+            </table>
+            
+            <table class="yhq" id=""  style="white-space: nowrap;display:none" >
+                <thead>
+                    <tr>
+                        <th>分类</th>
+                        <th>金额</th>
+                        <th>开始时间</th>
+                        <th>截止时间</th>
+                        <th>使用条件</th>
+                    </tr>
+                </thead>
+                <tbody id="yishiyong">
+                    
+                </tbody>
+
+            </table>
+            
+            <table class="yhq" id=""  style="white-space: nowrap;display:none" >
+                <thead>
+                    <tr>
+                        <th>分类</th>
+                        <th>金额</th>
+                        <th>开始时间</th>
+                        <th>截止时间</th>
+                        <th>使用条件</th>
+                    </tr>
+                </thead>
+                <tbody id="yiguoqi">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="page_count"></div>
+    <div id="paging"></div>
+    <div id="page"></div>
+    <div id="page1"></div>
+</div>
+</div>
+
+<!--回到顶部开始-->
+<div class="sidebar_nav">
+    <a href="" class="gotop"><span>回顶部</span></a>
+    <a href="" class="kefu"><span>客服</span></a>
+    <a href="" class="app"><span>手机APP</span></a>
+</div>
+<!--回到顶部结束-->
+{$wrapper_suffix_center|default}

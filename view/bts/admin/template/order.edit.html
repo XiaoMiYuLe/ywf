@@ -1,0 +1,81 @@
+{$wrapper_prefix|default}
+
+<script src="{$_STATIC_URL}/bts/admin/js/order.edit.js"></script>
+
+<!-- modal - 编辑汇率 -->
+<div class="modal-dialog" id="modal_content">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="modal_title">编辑订单状态</h4>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" action="/btsadmin/order/edit/" method="post" id="edit_form">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><font class="red">* </font>订单状态</label>
+                    <div class="col-sm-6">
+                        <select name="status" id="status" class="form-control">
+                             {if $data.status == 0}<option value="0" {if $data.status == 0}selected{/if}>待处理</option>{/if}
+                             <option value="1" {if $data.status == 1}selected{/if}>已签收 </option>
+                             {if $data.status <= 2&&$data.status != 1}<option value="2" {if $data.status == 2}selected{/if}>待付款</option>{/if}
+                             {if $data.status <= 3&&$data.status != 1}<option value="3" {if $data.status == 3}selected{/if}>付款成功</option>{/if}
+                             {if $data.status <= 4&&$data.status != 1}<option value="4" {if $data.status == 4}selected{/if}>待发货</option>{/if}
+                             {if $data.status <= 5&&$data.status != 1}<option value="5" {if $data.status == 5}selected{/if}>已发货</option>{/if}
+                             {if $data.status != 1}<option value="99" {if $data.status == 99}selected{/if}>货到付款</option>{/if}
+                        </select>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="col-sm-3 control-label"><font class="red">* </font>支付状态</label>
+                    <div class="col-sm-6">
+                        <select name="pay_status" id="pay_status" class="form-control">
+                             <option value="0" {if $data.pay_status == 0}selected{/if}>未支付</option>
+                             <option value="1" {if $data.pay_status == 1}selected{/if}>已支付</option>
+                        </select>
+                    </div>
+                </div> 
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><font class="red">* </font>支付类型</label>
+                    <div class="col-sm-6">
+                        			{$data.pay_type}
+                    </div>
+                </div> 
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">物流公司</label>
+                    <div class="col-sm-6">
+                        <select name="logistics_id" id="logistics_id" class="form-control">
+                        	{foreach from=$logistics key=k item=v}
+                             <option value="{$v.logistics_id}" {if $v.logistics_id == $data.logistics_id}selected{/if}>{$v.name}</option>
+                             {/foreach}
+                        </select>
+                    </div>
+                </div>  
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">运单号</label>
+                    <div class="col-sm-6">
+                       <input type="text" class="form-control" id="logistics_number" name="logistics_number" value="{$data.logistics_number}" placeholder="请输入运单号码" >
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fromdecrement" class="col-sm-3 control-label">订单备注</label>
+                    <div class="col-sm-6">
+                         <textarea name="remark" id="remark" rows="2" class="form-control">{$data.remark}</textarea>
+                    </div>
+                </div>
+                <input type="hidden" name="order_id" id="child_order_id" value="{$data.order_id}" />
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存并返回列表管理</button>
+            <button type="button" id="submit_cancel" class="btn btn-danger btn-sm input-submit" data-dismiss="modal">取消</button>
+            <span id="edit_notice"></span>
+        </div>
+    </div>
+</div>
+<!-- / modal - 编辑汇率 -->
+
+{$wrapper_suffix|default}

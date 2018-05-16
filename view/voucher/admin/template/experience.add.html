@@ -1,0 +1,75 @@
+{$wrapper_prefix|default}
+
+<!-- Datepicker -->
+<link href="{$_STATIC_URL}/scripts/datepicker/css/datepicker3.css" rel="stylesheet" type="text/css"/>
+<script src="{$_STATIC_URL}/scripts/datepicker/js/bootstrap-datepicker.js"></script>
+<script src="{$_STATIC_URL}/scripts/datepicker/js/locales/bootstrap-datepicker.zh-CN.time.js" charset="UTF-8"></script>
+
+<script src="{$_STATIC_URL}/voucher/admin/js/experience.edit.js"></script>
+
+<section class="hbox stretch">
+    <aside class="aside-md bg-white b-r">
+        <section class="vbox">
+            <header class="b-b header">
+                <p class="h4">{if $content}编辑体验金{else}添加项目经理体验金{/if}</p>
+            </header>
+                
+            <section class="scrollable wrapper w-f">
+                <form class="form-horizontal" id="edit_form" action="/voucheradmin/index/add" method="post" enctype="multipart/form-data">
+                    
+                     <div class="line line-dashed line pull-in"></div>
+                    <div class="form-group typethree">
+                        <label for="increase_interest" class="col-sm-2 control-label"><font class="red">* </font>手机号</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="phone" name="phone" value="{$content.phone}" placeholder="请输入手机号" />
+                        </div>
+                    </div>
+                    <div class="form-group voucher_money">
+                        <label for="voucher_money" class="col-sm-2 control-label"><font class="red">* </font>金额</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="voucher_money" name="voucher_money" value="{$content.voucher_money}" placeholder="请输入体验金金额" />
+                        </div>
+                    </div>
+                    <div class="line line-dashed line pull-in"></div>
+                    <div class="form-group">
+                        <label for="use_money" class="col-sm-2 control-label"><font class="red">* </font>每次使用金额</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="use_money" name="use_money" value="{$content.use_money}" placeholder="请输入每次使用金额" />
+                        </div>
+                    </div>
+                      <div class="line line-dashed line-lg pull-in"></div>
+                           <div class="form-group">
+	                   			<label class="col-sm-2 control-label">生效时间</label>
+	                   			<div class="col-sm-4">
+	                       			<input id="start_time" name="start_time" class="input-sm input-s datepicker-input form-control" type="text" 
+	                               	data-date-format="yyyy-mm-dd" value="{$contents.start_time|truncate:10:'':true}" placeholder="点击选择生效时间" />
+	                   			</div>
+               				</div>
+               			<div class="line line-dashed line-lg pull-in"></div>
+                               <div class="form-group">
+                       			<label class="col-sm-2 control-label">结束时间</label>
+                       			<div class="col-sm-4">
+                           			<input id="end_time" name="end_time" class="input-sm input-s datepicker-input form-control" type="text" 
+                           	        data-date-format="yyyy-mm-dd" value="{$contents.end_time|truncate:10:'':true}" placeholder="点击选择结束时间" />
+                       			</div>
+                   			</div>
+                        <div class="line line-dashed line-lg pull-in"></div>
+                    <input type="hidden" name="voucher_id" id="voucher_id" value="{$content.voucher_id}" />
+                </form>
+            </section>
+            
+            <footer class="footer b-t bg-white-only">
+                <div class="m-t-sm">
+                    <button type="button" id="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存</button>
+                    {if ! $voucher_id}<button type="button" id="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">保存并继续添加</button>{/if}
+                    <button type="button" id="submit_cancel" class="btn btn-danger btn-sm input-submit">取消</button>
+                    <span id="edit_notice"></span>
+                </div>
+            </footer>
+        </section>
+    </aside>
+</section>
+
+<script src="{$_STATIC_CDN}/scripts/file-input/bootstrap-filestyle.min.js"></script>
+
+{$wrapper_suffix|default}

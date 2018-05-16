@@ -1,0 +1,211 @@
+{$wrapper_prefix_front|default}
+
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/gotop.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/rightnow_buy.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/order/order.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/order/yuer.js"></script>
+<script>$("head>title").html("支付验证");</script>
+<div class="buy_content remaining_buy">
+    <div class="box_content">
+        <div class="buy_first">
+            <div class="buy_first_l">
+                <h2>{$goods_name}
+                    <a href="">
+                        （订单号：<strong>{$order_no}</strong>）
+                    </a>
+                    <span>{if $type}{$real_money}{else}{$buy_money}{/if}元</span>
+                </h2>
+                <p>
+                    <span>年化收益：</span>
+                    <em>{$yield}%</em>
+                </p>
+                <p>
+                    <span>兑付日期：</span>
+                    <em>{$cash_time}</em>
+                </p>
+            </div>
+            <div class="buy_first_r">
+                <p class="mt">支付遇到任何问题，请致电</p>
+                <p>400-1369-998</p>
+            </div>	  	 
+        </div>
+        <div class="buy_icon"> 	  	  	  
+  	 	  </div>
+        <div class="top" style="min-height:786px">   	  	 
+            <div class="two_recharge buy_two_recharge " style="border-bottom: none;margin-right: 30px;">            
+                <div class="pay">
+                    <label>支付方式：</label>
+                    <span class="cur">
+                        <img src="/static/ywf/img/pic/pay2.png" alt=""/>
+                        <i></i>
+                    </span>
+                    <span>
+                        <img src="/static/ywf/img/pic/pay3.png" alt="" />
+                    </span>
+                </div>
+                <!-- 改的结构 -->
+                <div class="buy_box"  style="">
+                    <div class="money_input" style="height:50px;padding-top: 20px;">
+                        <label style="float:left;margin-top:10px;">投资账户：</label>
+                        <div class="yinghang" style="float:left;">
+			              	<ul>
+			              		<li>
+			              		    <i style="padding-left: 0px;"><img src="{$card.link}" alt=""/></i>
+			              		    <span>{$card.bank_name}</span>
+			              			<strong style="color:#333;">尾号{$card.bank_no}</strong> 
+			              		</li>
+			              		<li >
+			              			|   <strong>{$card.quota}</strong>
+			              		</li>
+			              	</ul>
+					    </div>
+                    </div>
+                    {if $type}
+                    {else}
+                       {if {$voucher_count}>0}
+                      <div class="money_input">
+                        <label style="float: left;margin-top: 10px;">使用优惠券：</label>
+                        <div class="out-discount">
+                            <span  id="discount" >{$voucher_count}</span>
+                            <input type="hidden"  id="voucher_k" value="">
+                            <i></i>
+                            <ul class="discount">
+	                            <li>
+	                                 <span>{$voucher_count}</span>
+	                            </li>
+                            {if $voucher}
+                            	{foreach $voucher as $v}
+	                                <li>
+	                                    <input type="radio"  name="danxuan" value="{$v.id}">
+	                                    <input type="hidden"  name="voucher_type_kj" value="{$v.type}">
+	                                    <input type="hidden"  name="voucher_money" value="{$v.voucher_money}">
+	                                    <input type="hidden"  name="use_money" value="{$v.use_money}">
+	                                    <span class="pp">{$v.right_title}<b>{$v.content_money}</b></span>
+	                                    <span>{$v.remarks}
+	                                </li>
+                                {/foreach}
+                             {/if}
+                            </ul>
+                        </div>	
+                    </div>
+                    {/if}
+                    {/if}
+                    <div class="buy_content_line" style="height: 2px;border-bottom: 1px solid #ccc;margin-top: 18px;"></div>
+                    <!-- 改的结构 -->
+                    <div class="money_input" style="">
+                        <label>支付金额：</label>
+                        <span><em style="color:#ff7003;font-size: 18px;">{if $type}{$real_money}{else}{$buy_money}{/if}</em>元</span>
+                    	</span><span id="voucher_tishi" style="color:red;"></span>
+                    </div>	
+                    <div class="money_input">
+                        <label>手机号码：</label>
+                        <span>{$phone}</span>
+                    </div>
+                    <div class="yzm yzm1" style="padding-left: 26px;">
+                        <label >短信验证：</label>
+                        <input type="text" vlaue="" id="check_code" class=""/>
+                        <button class="getyzm_btn getyzm_btn1" id="code">获取验证码</button>
+                    </div>                            
+                    <button class="cz_btn cz_btn1" id="button1" style="margin-left: 123px;">确认支付</button>  
+                    <div class="text ytext1">
+                        <b class="choose" id="choose"></b>
+                        <em>已阅读并同意<a target="_blank" href="/cas/word/agreement">《借款协议》</a>充分了解相关权利和义务，并愿意承担相关风险</em>
+                    </div>
+                </div>
+                <input type="hidden" id="order" value="{$order_no}">
+                <input type="hidden" id="money" value="{$buy_money}">
+                <!-- 改的结构 -->
+                <div class="buy_box"  style="display:none;">
+                    <div class="money_input">
+                        <label>可用余额：</label>
+                        <div class="yu">
+                            <span>{$asset}元</span>
+                            <!-- <em>余额不足</em> -->
+                            <em>    </em>
+                            <a href="/cas/recharge/index">充值</a>
+                        </div>
+                    </div>
+                    {if $type}
+                    {else}
+                    {if {$voucher_count}>0}
+                    <div class="money_input" style="padding-top: 20px;">
+                        <label style="float: left;margin-top: 10px;">使用优惠券：</label>
+                        <div class="out-discount">
+                            <span  id="discount" class="ydiscount">{$voucher_count}</span>
+                            <input type="hidden"  id="voucher_y" value="">
+                            <i></i>
+                            <ul class="discount  yydiscount">
+                                <li>
+                                    <span>{$voucher_count}</span>
+                                </li>
+                               {if $voucher}
+                            	{foreach $voucher as $v}
+	                                <li>
+	                                    <input type="radio"  name="danxuan" value="{$v.id}">
+	                                    <input type="hidden"  name="voucher_type_yr" value="{$v.type}">
+	                                    <input type="hidden"  name="voucher_money_yr" value="{$v.voucher_money}">
+	                                    <input type="hidden"  name="use_money_yr" value="{$v.use_money}">
+	                                    <span class="pp">{$v.right_title}<b>{$v.content_money}</b></span>
+	                                    <span>{$v.remarks}</span>
+	                                </li>
+                                {/foreach}
+                             {/if}
+                            </ul>
+                        </div>	
+                    </div>
+                    {/if}
+                    {/if}
+                    <div class="buy_content_line" style="height: 2px;border-bottom: 1px solid #ccc;margin-top: 18px;"></div>					  <div class="money_input">
+                        <label>支付金额：</label>
+                        <span><em style="color:#ff7003;font-size: 18px;">{if $type}{$real_money}{else}{$buy_money}{/if}</em>元</span>
+                        <span id="voucher_tishi_yr" style="color:red;"></span>
+                    </div>	
+                    <div class="money_input">
+                        <label>交易密码：</label>
+                        <input type="password" minlength="6" maxlength="6" id="pay_pwd" vlaue="" placeholder="请输入交易密码"/>
+                    </div> 
+                    <div class="val_group">	
+                        <p class="fgtpwd"><a href="/cas/resetpassword/forgotPaypwd" style="color:#2197d7;font-size:14px;margin-left:298px;">忘记密码?</a></p>					
+                    </div>                                     
+                    <button class="cz_btn cz_btn1" id="button2">确认支付</button>   
+                    <div class="text ytext1" style="line-height:0px;padding-top:20px;">
+                        <b class="choose" id="choose1"></b>
+                        <em>已阅读并同意<a target="_blank" href="/cas/word/agreement">《借款协议》</a>充分了解相关权利和义务，并愿意承担相关风险</em>
+                    </div>      
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+ <input type="hidden"  name="buy_money_voucher" value="{$buy_money}">
+
+
+<!-- 尾部结构结束  -->
+<div class="sidebar_nav">
+    <a href="" class="gotop"><span>回顶部</span></a>
+    <a href="" class="kefu"><span>客服</span></a>
+    <a href="" class="app"><span>手机APP</span></a>
+</div>
+
+{literal}
+<script type="text/javascript">
+    $(function () {
+        var iHtml = "<i></i>";
+        $('.bank').delegate('span', 'click', function (event) {
+            $(this).append(iHtml).siblings('span').children('i').remove();
+            $(this).css({
+                border: '1px solid #2197d7',
+                height: 44,
+                width: 148
+            }).siblings('span').css({
+                border: 0,
+                height: 46,
+                width: 150
+            });
+            ;
+        });
+    });
+</script>
+{/literal}
+
+{$wrapper_suffix_front|default}

@@ -1,0 +1,154 @@
+/* base - reset */
+.navbar-brand img {max-height: 30px;}
+.file-reset div label {margin-bottom: 4px;}
+.m-t-none-reset {margin-top: 0!important;}
+
+.switch-sm {
+  cursor: pointer;
+  position: relative;
+}
+.switch-sm input {
+  position: absolute;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.switch-sm input:checked + span {
+  background-color: #8ec165;
+}
+.switch-sm input:checked + span:after {
+  left: 22px;
+}
+.switch-sm span {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  border-radius: 30px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-color: rgba(0,0,0,0.1);
+  display: inline-block;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+.switch-sm span:after {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  width: 16px;
+  top: 1px;
+  bottom: 1px;
+  border-radius: 30px;
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.25);
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.25);
+  -webkit-transition: left 0.2s;
+  transition: left 0.2s;
+}
+
+.pp_social {display: none;} /* 去除 pretty photo 的 twitter 和 facebook 广告 */
+
+/* base */
+.error, .red {color: #FF0000;}
+.default-hidden {display: none;}
+.cursor-pointer {cursor: pointer;}
+.disabled {background: #f0f0f0;}
+.strong {font-weight: bold;}
+
+.p-top-0 {padding-top: 0 !important;}
+.p-right-0 {padding-right: 0 !important;}
+.p-bottom-0 {padding-bottom: 0 !important;}
+.p-left-0 {padding-left: 0 !important;}
+
+.wrapper-xs {padding: 5px;}
+
+.padder-t-xs {padding-top: 5px;}
+.padder-t-sm {padding-top: 10px;}
+.padder-t {padding-top: 15px;}
+.padder-t-md {padding-top: 20px;}
+.padder-t-lg {padding-top: 30px;}
+.padder-t-xl {padding-top: 40px;}
+.padder-r-xs {padding-right: 5px;}
+.padder-r-sm {padding-right: 10px;}
+.padder-r {padding-right: 15px;}
+.padder-r-md {padding-right: 20px;}
+.padder-r-lg {padding-right: 30px;}
+.padder-r-xl {padding-right: 40px;}
+.padder-b-xs {padding-bottom: 5px;}
+.padder-b-sm {padding-bottom: 10px;}
+.padder-b {padding-bottom: 15px;}
+.padder-b-md {padding-bottom: 20px;}
+.padder-b-lg {padding-bottom: 30px;}
+.padder-b-xl {padding-bottom: 40px;}
+.padder-l-xs {padding-left: 5px;}
+.padder-l-sm {padding-left: 10px;}
+.padder-l {padding-left: 15px;}
+.padder-l-md {padding-left: 20px;}
+.padder-l-lg {padding-left: 30px;}
+.padder-l-xl {padding-left: 40px;}
+
+.text-center {text-align: center;}
+.text-left {text-align: left;}
+.text-right {text-align: right;}
+
+.text-nm {font-size: 14px;}
+.text-lg {font-size: 18px;}
+.text-xl {font-size: 24px;}
+.text-xxl {font-size: 32px;}
+.text-xxxl {font-size: 36px;}
+
+.text-c-dark {color: #000;}
+.text-c-light {color: #ddd;}
+.text-c-white {color: #fff;}
+
+.bg-blue-light {
+    background-color: #00c7f7;
+}
+
+.reset-combo {
+    width: 240px;
+    padding: 7px 0;
+    line-height: 18px;
+}
+
+/* grid - 重新定义宽度 */
+.col-def-12 {
+    width: 100%;
+}
+.col-def-11 {
+    width: 91.66666666666666%;
+}
+.col-def-10 {
+    width: 83.33333333333334%;
+}
+.col-def-9 {
+    width: 75%;
+}
+.col-def-8 {
+    width: 66.66666666666666%;
+}
+.col-def-7 {
+    width: 58.333333333333336%;
+}
+.col-def-6 {
+    width: 50%;
+}
+.col-def-5 {
+    width: 41.66666666666667%;
+}
+.col-def-4 {
+    width: 33.33333333333333%;
+}
+.col-def-3 {
+    width: 25%;
+}
+.col-def-2 {
+    width: 16.666666666666664%;
+}
+.col-def-1 {
+    width: 8.333333333333332%;
+}
+
+.h-100 {
+	height: 100%;
+}
+
+.line-sm {margin-top: 5px; margin-bottom: 5px;}

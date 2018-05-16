@@ -1,0 +1,10 @@
+/* base - reset */
+.thumbnail {width:160px !important; height:160px !important;}
+.img-thumbnail {width:150px; height:150px !important; background-color:#C8BB9B !important;}
+
+/* main */
+.img-thumbnail-single {width:140px; height:140px !important;}
+.img-thumbnail-multiple {width:140px; height:140px !important;}
+
+.img-thumbnail-new {margin:0 20px 20px 0;}
+    .img-thumbnail-new .delete-new {top:-155px; left:135px; font-size:20px; color:#FF0000;}

@@ -1,0 +1,162 @@
+{$wrapper_prefix|default}
+
+<link href="{$_STATIC_URL}/scripts/datepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
+<script src="{$_STATIC_URL}/scripts/datepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="{$_STATIC_URL}/scripts/datepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+
+<script src="{$_STATIC_URL}/coupon/admin/js/index.index.js"></script>
+
+<section class="hbox stretch">
+    <aside class="aside-md bg-white b-r" id="subNav">
+        <section class="vbox">
+            <header class="b-b header"><p class="h4">优惠券管理</p></header>
+            <section class="scrollable w-f">
+                <ul class="nav nav-pills nav-stacked no-radius">
+                    <li class="b-b m-t-none-reset nav-map {if ( ! $smarty.get.coupon_type) || ($smarty.get.coupon_type eq '1')}active{/if}" id="nav_base">
+                        <a href="/couponadmin?coupon_type=1">
+                            <i class="fa fa-chevron-right pull-right m-t-xs text-xs icon-muted"></i>
+                            <i class="fa fa-fw fa-ellipsis-v"></i>
+                                全场券
+                        </a>
+                    </li>
+                    <li class="b-b m-t-none-reset nav-map {if $smarty.get.coupon_type eq '2'}active{/if}" id="nav_content">
+                        <a href="/couponadmin?coupon_type=2">
+                            <i class="fa fa-chevron-right pull-right m-t-xs text-xs icon-muted"></i>
+                            <i class="fa fa-fw fa-ellipsis-v"></i>
+                                 满减券
+                        </a>
+                    </li>
+                </ul>
+                <input type="hidden" name="coupon_type" value="{$smarty.get.coupon_type}">
+            </section>
+        </section>
+    </aside>
+
+    <aside>
+        <section class="vbox">
+            
+            <header class="header bg-white b-b clearfix">
+                <div class="row m-t-sm">
+                    
+                     <div class="col-sm-2 m-b-xs">
+                                <a href="#subNav" data-toggle="class:hide" class="btn btn-sm btn-default active">
+                                    <i class="fa fa-caret-right text fa-lg"></i>
+                                    <i class="fa fa-caret-left text-active fa-lg"></i>
+                                </a>
+                                <a href="/couponadmin/index/add?coupon_type={$smarty.get.coupon_type}" class="btn btn-sm btn-default"><i class="fa fa-plus"></i> 添加</a>
+                     </div>
+                     
+                    <div class="col-sm-6 m-b-xs">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <input  name="valid_stime" style="width:120px" class="input-sm input-s datetimepicker-input form-control" type="text" data-date-format="yyyy-mm-dd hh:ii:ss"  placeholder="有效开始时间" />
+                                -
+                                <input  name="valid_etime" style="width:120px" class="input-sm input-s datetimepicker-input form-control" type="text" data-date-format="yyyy-mm-dd hh:ii:ss"   placeholder="有效结束时间" />
+                                <input  name="grant_stime" style="width:120px" class="input-sm input-s datetimepicker-input form-control" type="text" data-date-format="yyyy-mm-dd hh:ii:ss"  placeholder="发放开始时间" />
+                                -
+                                <input  name="grant_etime" style="width:120px" class="input-sm input-s datetimepicker-input form-control" type="text" data-date-format="yyyy-mm-dd hh:ii:ss"   placeholder="发放结束时间" />
+                            </div>
+                            <div class="form-group">
+                                <select name="status" class="form-control input-sm">
+                                    <option value="2">是否启用</option>
+                                    <option value="1">已启用</option>
+                                    <option value="0">未启用</option>
+                                    <option value="-1">已关闭</option>
+                                </select>
+                            </div>
+                            
+                            {if $smarty.get.coupon_type eq '2'}
+                            <div class="form-group">
+                                <select name="relation_type" class="form-control input-sm">
+                                    <option value="0">满减类别</option>
+                                    <option value="1">全场满减</option>
+                                    <option value="2">分类满减</option>
+                                    <option value="3">商户满减</option>
+                                </select>
+                            </div>
+                            {/if}
+                        </form>
+                   </div>
+                   
+                    <div class="col-sm-4 m-b-xs">
+                        <div class="input-group">
+                            <input type="text" name="keywords" class="input-sm form-control" placeholder="优惠券关键字" />
+                            <span class="input-group-btn">
+                                        <button class="btn btn-sm btn-default action-refresh" type="button">搜索</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="scrollable wrapper">
+                <section class="panel panel-default">
+                    <div class="table-responsive">
+                        <table class="table table-striped m-b-none datagrid" id="content_listing">
+                            <thead>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th class="row">
+                                        <div class="datagrid-footer-left col-sm-6 text-center-xs m-l-n"
+                                             style="display:none;">
+                                            <div class="grid-controls m-t-sm">
+                                                    <span>
+                                                        <span class="grid-start"></span> -
+                                                        <span class="grid-end"></span> （共
+                                                        <span class="grid-count"></span>）
+                                                    </span>
+
+                                                <div class="select grid-pagesize dropup" data-resize="auto">
+                                                    <button data-toggle="dropdown"
+                                                            class="btn btn-sm btn-default dropdown-toggle">
+                                                        <span class="dropdown-label"></span>
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li data-value="5"><a href="#">5</a></li>
+                                                        <li data-value="15" data-selected="true"><a href="#">15</a></li>
+                                                        <li data-value="20"><a href="#">20</a></li>
+                                                        <li data-value="50"><a href="#">50</a></li>
+                                                        <li data-value="100"><a href="#">100</a></li>
+                                                    </ul>
+                                                </div>
+                                                <span>/页</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="datagrid-footer-right col-sm-6 text-right text-center-xs"
+                                             style="display:none;">
+                                            <div class="grid-pager m-r-n">
+                                                <button type="button" class="btn btn-sm btn-default grid-prevpage"><i
+                                                        class="fa fa-chevron-left"></i></button>
+                                                <!--<span>页</span>-->
+
+                                                <div class="inline">
+                                                    <div class="input-group dropdown combobox">
+                                                        <input class="input-sm form-control" type="text">
+
+                                                        <div class="input-group-btn dropup">
+                                                            <button class="btn btn-sm btn-default" data-toggle="dropdown"><i
+                                                                    class="caret"></i></button>
+                                                            <ul class="dropdown-menu pull-right"></ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span>/ <span class="grid-pages"></span></span>
+                                                <button type="button" class="btn btn-sm btn-default grid-nextpage"><i
+                                                        class="fa fa-chevron-right"></i></button>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </section>
+            </section>
+        </section>
+    </aside>
+</section>
+
+{$wrapper_suffix|default}

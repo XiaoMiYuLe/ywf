@@ -1,0 +1,62 @@
+<script src="{$_STATIC_URL}/goods/admin/js/brand.edit.js"></script>
+
+<!-- modal - 编辑品牌 -->
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="modal_title">{if $brand}编辑品牌{else}添加品牌{/if}</h4>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" action="/goodsadmin/brand/add" method="post" id="edit_form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="brand_name" class="col-sm-3 control-label"><font class="red">* </font>品牌名称</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="brand_name" name="brand_name" value="{$brand.brand_name}" placeholder="请输入品牌名称" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="brand_name_en" class="col-sm-3 control-label">品牌英文名称</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="brand_name_en" name="brand_name_en" value="{$brand.brand_name_en}" placeholder="请输入品牌英文名称" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="brand_url" class="col-sm-3 control-label">官方网址</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="brand_url" name="brand_url" value="{if $brand}{$brand.brand_url}{else}http://{/if}" />
+                    </div>
+                </div>
+                
+                <div class="form-group file-reset">
+                    <label class="col-sm-3 control-label">品牌 Logo</label>
+                    <div class="col-sm-9">
+                        <input type="file" name="brand_logo" id="brand_logo" class="filestyle" data-icon="false" data-classbutton="btn btn-default" data-classinput="form-control inline input-s" />
+                        {if $brand.brand_logo}
+                            <a href="/upload{$brand.brand_logo}" class="thumb-sm" target="_blank"><img src="/upload{$brand.brand_logo}" /></a>
+                        {/if}  
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="brand_desc" class="col-sm-3 control-label">品牌介绍</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" id="brand_desc" name="brand_desc" rows="1">{$brand.brand_desc}</textarea>
+                    </div>
+                </div>
+                
+                <input type="hidden" name="brand_id" value="{$brand.brand_id}" />
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存并返回列表管理</button>
+            {if ! $brand}<button type="button" id="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">保存并继续添加</button>{/if}
+            <button type="button" class="btn btn-danger btn-sm input-submit" data-dismiss="modal">取消</button>
+        </div>
+    </div>
+</div>
+<!-- / modal - 编辑品牌 -->
+
+<script src="{$_STATIC_CDN}/scripts/file-input/bootstrap-filestyle.min.js"></script>            

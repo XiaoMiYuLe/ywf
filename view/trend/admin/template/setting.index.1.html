@@ -1,0 +1,70 @@
+<section class="edit-map" id="edit_setting_1">
+
+    {foreach from=$settings item=v}
+    {if $v.group_id == 1}
+    <div class="form-group {if $v.val_inputtype == 'file'}file-reset{/if}">
+        <label class="col-sm-2 control-label">{$v.label_name}</label>
+        {if $v.val_inputtype == 'text'}
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="{$v.name}" name="{$v.name}" value="{$v.val}" placeholder="{$v.placeholder}" setting_id="{$v.setting_id}" group_id="1" setting_name="{$v.name}" setting_note="{$v.note}" />
+            <span class="help-block m-b-none">{$v.note}</span>
+        </div>
+        {else if $v.val_inputtype == 'select'}
+        <div class="col-sm-6">
+            <select id="{$v.name}" name="{$v.name}" class="input-sm form-control inline" setting_id="{$v.setting_id}" group_id="1" setting_name="{$v.name}" setting_note="{$v.note}">
+                {foreach from=$v.val_options_arr item=vv}
+                <option value="{$vv.option_value}" {if $v.val == $vv.option_value}selected{/if}>{$vv.option_title}</option>
+                {/foreach}
+            </select>
+            <span class="help-block m-b-none">{$v.note}</span>
+        </div>
+        {else if $v.val_inputtype == 'checkbox'}
+        <div class="col-sm-8">
+            {foreach from=$v.val_options_arr item=vv}
+            <label class="checkbox-inline">
+                <input type="checkbox" name="{$v.name}" value="{$vv.option_value}" setting_id="{$v.setting_id}" group_id="1" setting_name="{$v.name}" setting_note="{$v.note}" {if $vv.option_value|in_array:$v.val}checked="checked"{/if} />{$vv.option_title}
+            </label>
+            {/foreach}
+            <span class="help-block m-b-none">{$v.note}</span>
+        </div>
+        {else if $v.val_inputtype == 'radio'}
+        <div class="col-sm-8">
+            {foreach from=$v.val_options_arr item=vv}
+            <label class="checkbox-inline p-left-0">
+                <input type="radio" name="{$v.name}" value="{$vv.option_value}" setting_id="{$v.setting_id}" group_id="1" setting_name="{$v.name}" setting_note="{$v.note}" {if $v.val == $vv.option_value}checked="checked"{/if} />&nbsp;{$vv.option_title}
+            </label>
+            {/foreach}
+            <span class="help-block m-b-none">{$v.note}</span>
+        </div>
+        {else if $v.val_inputtype == 'textarea'}
+        <div class="col-sm-6">
+            <textarea id="{$v.name}" name="{$v.name}" rows="2" class="form-control" placeholder="{$v.placeholder}" group_id="1" setting_name="{$v.name}" setting_note="{$v.note}" setting_id="{$v.setting_id}">{$v.val}</textarea>
+            <span class="help-block m-b-none">{$v.note}</span>
+        </div>
+        {else if $v.val_inputtype == 'file'}
+        <div class="col-sm-3">
+            <a href="javascript:;" class="img-thumbnail pull-left">
+                <img id="gallery_add_single_{$v.setting_id}" class="img-thumbnail-single" src="{if $v.val}/uploads{$v.val}{else}...{/if}" alt="..." />
+            </a>
+            <div class="col-md-4">
+                <p>
+                    <span class="btn btn-success fileinput-button">
+                        <i class="icon-plus icon-white"></i>
+                        <span>上传</span>
+                        <input type="file" name="{$v.name}" setting_id="{$v.setting_id}" group_id="1" setting_name="{$v.name}" setting_note="{$v.note}" />
+                    </span>
+                </p>
+                <br /><br />
+                <p><button type="button" id="gallery_delete_single_{$v.setting_id}" class="btn btn-danger gallery-delete-single" 
+                        setting_id="{if $v.val}{$v.setting_id}{/if}">删除</button></p>
+            </div>
+            <br />
+            <span class="help-block m-b-none padder-t-xs" style="clear: both;">{$v.note}</span>
+        </div>
+        {/if}
+    </div>
+    <div class="line line-dashed line pull-in"></div>
+    {/if}
+    {/foreach}
+    
+</section>

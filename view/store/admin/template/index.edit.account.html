@@ -1,0 +1,39 @@
+
+<section class="edit-map wrapper default-hidden" id="edit_account">
+
+    <div class="form-group m-b-xs">
+        <label for="username" class="col-sm-2 control-label">{if ! $user_info}<font class="red">* </font>{/if}管理员账号</label>
+        <div class="col-sm-4">
+            {if $user_info}
+            <p class="form-control-static">{$user_info.username}</p>
+            <input type="hidden" name="username_edit" id="username_edit" value="{$store.username}" />
+            <input type="hidden" name="userid_edit" id="userid_edit" value="{$store.userid}" />
+            {else}
+            <input type="text" class="form-control" id="username" name="username" value="" placeholder="请输入管理员账号" maxlength="14" />
+            <p class="help-block m-b-none">账号由半角字符的字母、数字和下划线“_”组成。以字母开头，长度为6～14位</p>
+            {/if}
+        </div>
+    </div>
+    <div class="line line-dashed line-sm pull-in"></div>
+
+    <div class="form-group m-b-xs">
+        <label for="password" class="col-sm-2 control-label">{if ! $user_info}<font class="red">* </font>{/if}{if $user_info}重置{else}设置{/if}密码</label>
+        <div class="col-sm-4">
+            <input type="password" class="form-control" id="password" name="password" value="" placeholder="请输入{if $user_info}重置{else}管理员{/if}密码" maxlength="20" />
+            <p class="help-block m-b-none">密码由半角字符的字母、数字和下划线“_”组成{if $user_info}，不重置请不要填写{/if}</p>
+        </div>
+    </div>
+    <div class="line line-dashed line-sm pull-in"></div>
+    
+    {if ! $user_info}
+    <div class="form-group m-b-xs">
+        <label for="repassword" class="col-sm-2 control-label"><font class="red">* </font>确认密码</label>
+        <div class="col-sm-4">
+            <input type="password" class="form-control" id="repassword" name="repassword" value="" placeholder="请再次输入管理员密码" maxlength="20" />
+        </div>
+    </div>
+    <div class="line line-dashed line-sm pull-in"></div>
+    {/if}
+    
+</section>
+            

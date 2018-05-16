@@ -1,0 +1,171 @@
+
+<section class="edit-map wrapper" id="edit_base">
+    <section class="panel panel-default">
+        <header class="panel-heading font-bold">基本信息</header>
+        <div class="panel-body">
+            <div class="form-group m-b-xs">
+                <label class="col-sm-2 control-label"><font class="red">* </font>产品名称</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="goods_name" name="goods_name" value="{$content.goods_name}" placeholder="请输入产品名称" />
+                </div>
+                <label class="col-sm-1 control-label"><font class="red">* </font>产品编号</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="" name="" value="{$content.goods_id}" placeholder="请输入产品编号" readonly/>
+                </div>
+            </div>
+            <div class="form-group m-b-xs">
+                <label class="col-sm-2 control-label">产品模式</label>
+                <div class="col-sm-2 control-label">
+                    新手类
+                </div>
+                <label for="name" class="col-sm-2 control-label"><font class="red">* </font>产品状态</label>
+                <div class="col-sm-2">
+                    <select name="goods_status" id="goods_status" class="form-control">
+                        {if !$content}
+                        <option value="1">销售中</option>
+                        <option value="2">已售罄</option>
+                        <option value="3">已下架</option>
+                        {else}
+                        <option value="1" {if $content.goods_status eq 1}selected{/if}>销售中</option>
+                        <option value="2" {if $content.goods_status eq 2}selected{/if}>已售罄</option>
+                        <option value="3" {if $content.goods_status eq 3}selected{/if}>已下架</option>
+                        {/if}
+                    </select>
+                </div>
+            </div>
+            <div class="line line-dashed line-sm pull-in"></div>
+            <div class="form-group m-b-xs">
+                <label class="col-sm-2 control-label"><font class="red">* </font>年化收益率(%)</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="yield" name="yield" value="{$content.yield}"/>
+                </div>
+                <label for="name" class="col-sm-1 control-label"><font class="red">* </font>购买上限(元)</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="high_pay" name="high_pay" value="{$content.high_pay}" />
+                </div>
+                <label for="name" class="col-sm-1 control-label"><font class="red">* </font>递增金额(元)</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="increasing_pay" name="increasing_pay" value="{$content.increasing_pay}"/>
+                </div>
+            </div>
+            <div class="form-group m-b-xs">
+                <label class="col-sm-2 control-label"><font class="red">* </font>期限(天)</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="financial_period" name="financial_period" value="{$content.financial_period}" />
+                </div>
+                <label for="name" class="col-sm-1 control-label"><font class="red">* </font>起售金额(元)</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="low_pay" name="low_pay" value="{$content.low_pay}" />
+                </div>
+                <label for="name" class="col-sm-1 control-label"><font class="red">* </font>总额度(元)</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="all_fee" name="all_fee" value="{$content.all_fee}" />
+                </div> 
+            </div>
+            <div class="line line-dashed line-sm pull-in"></div>
+            
+            <!--    
+            <div class="form-group m-b-xs">
+                <label for="bn" class="col-sm-2 control-label">商品编号</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="bn" name="bn" value="{$content.bn}" placeholder="请输入商品编号" />
+                </div>
+            </div>
+            <div class="line line-dashed line-sm pull-in"></div>
+             -->
+            
+            <div class="form-group m-b-xs">
+                <label for="memo" class="col-sm-2 control-label"><font class="red">* </font>产品备注</label>
+                <div class="col-sm-6">
+                    <textarea name="comment" id="comment" rows="2" class="form-control" placeholder="请输入产品备注">{$content.comment}</textarea>
+                </div>
+            </div>
+            <div class="form-group m-b-xs">
+                    <label class="col-sm-2 control-label">借款方名称</label>
+                    <div class="col-sm-6">
+                    <input type="text" class="form-control" id="debtor_name" name="debtor_name" value="{$content.debtor_name}" placeholder="请输入借款方名称" />
+                </div>
+                </div>
+                <div class="form-group m-b-xs">
+                    <label class="col-sm-2 control-label">借款方证件号</label>
+                    <div class="col-sm-6">
+                    <input type="text" class="form-control" id="debtor_card" name="debtor_card" value="{$content.debtor_card}" placeholder="请输入借款方证件号" />
+                </div>
+                </div>
+            <div class="line line-dashed line-sm pull-in"></div>
+                    
+            <div id="property_base">
+                <div class="form-group m-b-xs">
+                    <label class="col-sm-2 control-label"><font class="red">* </font>兑付方式</label>
+                    <div class="col-sm-6">
+                    <input type="text" class="form-control" id="deal_way" name="deal_way" value="{$content.deal_way}" placeholder="请输入兑付方式" />
+                </div>
+                </div>
+                <div class="form-group m-b-xs">
+                    <label for="price" class="col-sm-2 control-label"><font class="red">* </font>提前赎回</label>
+                    <div class="col-sm-6">
+                        {if !$content}
+                        <label class="checkbox-inline p-left-0">
+                            <input type="radio" name="redeem_status" value="1" /> 允许
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="radio" name="redeem_status" value="2" checked/> 不允许
+                        </label>
+                        {else}
+                        <label class="checkbox-inline p-left-0">
+                            <input type="radio" name="redeem_status" value="1" {if $content.redeem_status eq 1}checked{/if}/> 允许
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="radio" name="redeem_status" value="2" {if $content.redeem_status eq 2}checked{/if} /> 不允许
+                        </label>
+                        {/if}
+                    </div>
+                    </div>
+                    <div class="form-group m-b-xs">
+                    <label for="price_market" class="col-sm-2 control-label"><font class="red">* </font>兑付本金</label>
+                    <div class="col-sm-6">
+                         {if !$content}
+                        <label class="checkbox-inline p-left-0">
+                            <input type="radio" name="principal_status" value="1" checked/> 是
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="radio" name="principal_status" value="2"  /> 否
+                        </label>
+                        {else}
+                        <label class="checkbox-inline p-left-0">
+                            <input type="radio" name="principal_status" value="1" {if $content.principal_status eq 1}checked{/if}/> 是
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="radio" name="principal_status" value="2"  {if $content.principal_status eq 2}checked{/if}/> 否
+                        </label>
+                        {/if}
+                    </div>
+                    </div>
+                    <div class="form-group m-b-xs">
+                    <label for="price_cost" class="col-sm-2 control-label"><font class="red">* </font>是否结息</label>
+                    <div class="col-sm-6">
+                    {if !$content}
+                        <label class="checkbox-inline p-left-0">
+                            <input type="radio" name="deal_status" value="1" checked/> 是
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="radio" name="deal_status" value="2" /> 否
+                        </label>
+                        {else}
+                        <label class="checkbox-inline p-left-0">
+                            <input type="radio" name="deal_status" value="1" {if $content.deal_status eq 1}checked{/if} /> 是
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="radio" name="deal_status" value="2" {if $content.deal_status eq 2}checked{/if}/> 否
+                        </label>
+                        {/if}
+                    </div>
+                </div>
+                <input type="hidden" name="goods_id" value="{$goods_id}" />
+                <div class="line line-dashed line-sm pull-in"></div>
+                
+            
+        </section>
+        
+    </section>
+

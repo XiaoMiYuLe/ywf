@@ -1,0 +1,57 @@
+{$wrapper_prefix|default}
+
+<script src="{$_STATIC_URL}/promotion/admin/js/template.edit.js"></script>
+
+<section class="hbox stretch">
+    <aside class="aside-md bg-white b-r">
+        <section class="vbox">
+            <header class="b-b header">
+                <p class="h4">{if $template}编辑模板{else}添加模板{/if}</p>
+            </header>
+                
+            <section class="scrollable wrapper w-f">
+                <form class="form-horizontal" id="edit_form" action="/promotionadmin/template/add" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label"><font class="red">* </font>模板标题</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="title" name="title" value="{$template.title}" placeholder="请输入模板标题" />
+                        </div>
+                    </div>
+                    <div class="line line-dashed line pull-in"></div>
+                    
+                    <div class="form-group">
+                        <label for="content" class="col-sm-2 control-label">模板说明</label>
+                        <div class="col-sm-4">
+                            <textarea id="content" name="content" class="form-control" placeholder="请输入模板说明">{$template.content}</textarea>
+                        </div>
+                    </div>
+                    <div class="line line-dashed line pull-in"></div>
+                    
+                    <div class="form-group m-b-xs file-reset">
+                        <label class="col-sm-2 control-label">模板文件</label>
+                        <div class="col-sm-4">
+                            <input type="file" name="filepath" id="filepath" class="filestyle" data-icon="false" data-buttonText="上传文件" data-classbutton="btn btn-default" data-classinput="form-control inline input-s" />
+                            {if $template.filepath}<img src="/static/panel/img/icons/html.gif" />{/if}
+                            <p class="help-block m-b-none">上传的必须是以 .html 结尾的模板文件</p>
+                        </div>
+                    </div>
+                    
+                    <input type="hidden" name="template_id" value="{$template.template_id}" />
+                </form>
+            </section>
+            
+            <footer class="footer b-t bg-white-only">
+                <div class="m-t-sm">
+                    <button type="button" data_submit_type="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存</button>
+                    {if ! $template}<button type="button" data_submit_type="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">保存并继续添加</button>{/if}
+                    <button type="button" data_submit_type="submit_cancel" class="btn btn-danger btn-sm input-submit">取消</button>
+                    <span id="edit_notice"></span>
+                </div>
+            </footer>
+        </section>
+    </aside>
+</section>
+
+<script src="{$_STATIC_CDN}/scripts/file-input/bootstrap-filestyle.min.js"></script>
+
+{$wrapper_suffix|default}

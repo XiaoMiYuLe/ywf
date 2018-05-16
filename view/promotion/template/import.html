@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Expires" CONTENT="-1">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <link rel="stylesheet" href="{$_STATIC_URL}/promotion/css/reset.css">
+    <link rel="stylesheet" href="{$_STATIC_URL}/promotion/css/style.css">
+    <title>进口食品</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="back"></a>
+        <span>进口食品</span>
+    </header>
+    <div class="bigImg">
+        <img src="{$category_data[0]['category_logo']}" alt="">
+    </div>
+    <div class="navlist">
+        <div class="nav">
+        {foreach from=$contents_top item=v}
+            <a href="#{$v.content_id}">
+            <div class="n">
+                <img src="{$v.image_default}" alt="">
+                <span>{$v.name}</span>
+            </div>
+            </a>
+        {/foreach}
+        </div>
+    </div>
+    <div class="shoplist">
+        <h1 class="title"><span class="danmo"></span>精品推荐<a href="#" class="detail"></a></h1>
+        <div class="shoplist">
+            {foreach from=$contents_bottom item=v}
+            <div class="fl shop">
+                <img src="{$v.image_default}" alt="">
+                <div class="caption">
+                    <span class="good_name">{$v.name}</span>
+                    <span class="price">￥{$v.app_price}</span>
+                    <del class="oldprice">￥{$v.erp_price}</del>
+                </div>
+                <a class="cart" href="#{$v.content_id}"></a>
+            </div>
+            {/foreach}
+        </div>
+    </div>
+    
+</body>
+
+</html>

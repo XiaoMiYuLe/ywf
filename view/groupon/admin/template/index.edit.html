@@ -1,0 +1,138 @@
+{$wrapper_prefix|default}
+<script src="{$_STATIC_CDN}/scripts/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/scripts/datepicker/js/bootstrap-datepicker.js"></script>
+
+<script src="{$_STATIC_URL}/groupon/admin/js/index.edit.js"></script>
+
+<section class="hbox stretch">
+
+    <aside class="bg-white">
+        <section class="vbox">
+            <header class="header b-b b-t bg-white-only">
+                <div class="m-t-sm">
+                    <a href="#subNav" data-toggle="class:hide" class="btn btn-sm btn-default active btn-nav-goods" btn_nav_goods_index="0">
+                        <i class="fa fa-caret-right text fa-lg"></i>
+                        <i class="fa fa-caret-left text-active fa-lg"></i>
+                    </a>
+                    
+                    <button type="button" data_submit_type="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存</button>
+                    {if ! $bulk_id}<button type="button" data_submit_type="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">保存并继续添加</button>{/if}
+                    <button type="button" data_submit_type="submit_cancel" class="btn btn-danger btn-sm input-submit">取消</button>
+                </div>
+            </header>
+            
+            <section class="scrollable w-f">
+                <form class="form-horizontal h-100" id="edit_form" action="/grouponadmin/index/add" method="post" enctype="multipart/form-data">
+                    
+                    <!-- 基本信息 @start -->
+					
+					<section class="edit-map wrapper" id="edit_base">
+						<section class="panel panel-default">
+						    <header class="panel-heading font-bold">基本信息</header>
+						    <div class="panel-body">
+								
+								<div class="form-group m-b-xs">
+								    <label for="sku" class="col-sm-2 control-label"><font class="red">* </font>团购名称</label>
+								    <div class="col-sm-6">
+								        <input type="text" class="form-control" id="title" name="title" value="{$bulk.title}" placeholder="请输入团购名称" />
+								    </div>
+								</div>
+								<div class="line line-dashed line-sm pull-in"></div>
+								
+								<div class="form-group m-b-xs">
+								    <label for="sku" class="col-sm-2 control-label"><font class="red">* </font>SKU</label>
+								    <div class="col-sm-6">
+								        <input type="text" class="form-control" id="sku" name="sku" value="{$bulk.sku}" placeholder="请输入SKU" />
+								    </div>
+								</div>
+								<div class="line line-dashed line-sm pull-in"></div>
+								
+								<div class="form-group m-b-xs">
+								    <label class="col-sm-2 control-label"><font class="red">* </font>N件起团</label>
+								    <div class="col-sm-6">
+								       <input type="text" class="form-control" id="number" name="number" value="{$bulk.number}" placeholder="请输入N件起团" />
+								    </div>
+								</div>
+								<div class="line line-dashed line-sm pull-in"></div>
+								   
+								<div class="form-group m-b-xs">
+								    <label for="inventory" class="col-sm-2 control-label"><font class="red">* </font>库存</label>
+								    <div class="col-sm-6">
+								        <input type="text" class="form-control" id="inventory" name="inventory" value="{$bulk.inventory}" placeholder="请输入库存" />
+								    </div>
+								</div>
+								<div class="line line-dashed line-sm pull-in"></div>
+								
+								<div class="form-group m-b-xs">
+								    <label for="price" class="col-sm-2 control-label"><font class="red">* </font>团购价格</label>
+								    <div class="col-sm-6">
+								        <input type="text" class="form-control" id="price" name="price" value="{$bulk.price}" placeholder="请输入库存" />
+								    </div>
+								</div>
+								<div class="line line-dashed line-sm pull-in"></div>
+								
+								<div class="form-group m-b-xs">
+								    <label for="start_time" class="col-sm-2 control-label"><font class="red">* </font>开始时间</label>
+								    <div class="col-sm-6">
+								     	<input type="text" class="form-control wdatepicker" id="start_time" name="start_time" value="{$bulk.start_time}"  />
+								    </div>
+								</div>
+								<div class="line line-dashed line-sm pull-in"></div>
+								   
+								<div class="form-group m-b-xs">
+								    <label for="end_time" class="col-sm-2 control-label"><font class="red">* </font>结束时间</label>
+								    <div class="col-sm-6">
+								    	<input type="text" class="form-control wdatepicker" id="end_time" name="end_time" value="{$bulk.end_time}"  />
+								    </div>
+								</div>
+								<div class="line line-dashed line-sm pull-in"></div>
+								
+								<div class="form-group m-b-xs">
+								    <label for="integral" class="col-sm-2 control-label">积分</label>
+								    <div class="col-sm-6">
+								        <input type="text" class="form-control" id="integral" name="integral" value="{$bulk.integral}" placeholder="请输入积分,0代表不使用，数字代表最高使用积分数" />
+								    </div>
+								</div>
+								<div class="line line-dashed line-sm pull-in"></div>
+								
+								<div class="form-group m-b-xs">
+								    <label class="col-sm-2 control-label"><font class="red">* </font>标签</label>
+								    <div class="col-sm-6">
+								    {foreach $categorys as $k => $v}
+								        <label class="checkbox-inline p-left-1">
+								            <input type="checkbox" name="category_id[]" value="{$v.category_id}" {if $v.type}checked{/if} /> {$v.title}
+								        </label>
+								    {/foreach}
+								    </div>
+								</div>
+								<div class="line line-dashed line-sm pull-in"></div>
+								
+							</div>
+						</section>
+						
+					</section>
+					
+                    <!-- 基本信息 @end -->
+                    <input type="hidden" name="bulk_id" id="bulk_id" value="{$bulk.bulk_id}" />
+                    <input type="hidden" name="skutype" id="skutype" value="{$bulk.sku}" />
+                    
+                </form>
+            </section>
+            
+            <footer class="footer b-t bg-white-only">
+                <div class="m-t-sm">
+                    <a href="#subNav" data-toggle="class:hide" class="btn btn-sm btn-default active btn-nav-goods" btn_nav_goods_index="1">
+                        <i class="fa fa-caret-right text fa-lg"></i>
+                        <i class="fa fa-caret-left text-active fa-lg"></i>
+                    </a>
+                    <button type="button" id="submit_save_back" data_submit_type="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存</button>
+                    {if ! $content_id}<button type="button" id="submit_save_continue" data_submit_type="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">保存并继续添加</button>{/if}
+                    <button type="button" data_submit_type="submit_cancel" class="btn btn-danger btn-sm input-submit">取消</button>
+                    <span id="edit_notice"></span>
+                </div>
+            </footer>
+        </section>
+    </aside>
+</section>
+
+{$wrapper_suffix|default}

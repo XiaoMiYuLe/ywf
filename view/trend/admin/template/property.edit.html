@@ -1,0 +1,159 @@
+{$wrapper_prefix|default}
+
+<script src="{$_STATIC_URL}/trend/admin/js/property.edit.js"></script>
+
+<section class="hbox stretch">
+    <aside class="aside-md bg-white b-r">
+        <section class="vbox">
+            <header class="b-b header">
+                <p class="h4">{if $property}编辑属性{else}添加属性{/if}</p>
+            </header>
+            
+            <section class="scrollable wrapper panel w-f">
+                <form class="form-horizontal" action="/trendadmin/property/add" method="post" id="edit_form" enctype="multipart/form-data">
+	                <div class="form-group">
+	                    <label for="label_name" class="col-sm-2 control-label"><font class="red">* </font>属性名称</label>
+	                    <div class="col-sm-4">
+	                        <input type="text" class="form-control" id="label_name" name="label_name" value="{$property.label_name}" placeholder="请输入属性名称" />
+	                    </div>
+	                </div>
+	                
+	                <div class="form-group">
+	                    <label for="note" class="col-sm-2 control-label">备注</label>
+	                    <div class="col-sm-4">
+	                        <input type="text" class="form-control" id="note" name="note" value="{$property.note}" placeholder="请输入备注信息" />
+	                    </div>
+	                </div>
+	                
+	                <div class="form-group">
+	                    <label for="sort_order" class="col-sm-2 control-label">序号</label>
+	                    <div class="col-sm-4">
+	                        <input type="text" class="form-control" id="sort_order" name="sort_order" value="{$property.sort_order}" />
+	                    </div>
+	                </div>
+	                
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">开启规格</label>
+	                    <div class="col-sm-4">
+	                        <label class="checkbox-inline p-left-0">
+	                            <input type="radio" name="is_spec" value="1" {if $property.is_spec == 1}checked="checked"{/if} />&nbsp;是
+	                        </label>
+	                        <label class="checkbox-inline">
+	                            <input type="radio" name="is_spec" value="0" {if $property.is_spec === '0' || ! $property.is_spec}checked="checked"{/if} />&nbsp;否
+	                        </label>
+	                    </div>
+	                    <div class="col-sm-6">
+	                        <p class="form-control-static">若开启规格，则该属性将和商品价格、库存、重量等相关联</p>
+	                    </div>
+	                </div>
+	                
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">状态</label>
+	                    <div class="col-sm-4">
+	                        <label class="checkbox-inline p-left-0">
+	                            <input type="radio" name="status" value="1" {if $property.status == 1 || ! $property.status}checked="checked"{/if} />&nbsp;启用
+	                        </label>
+	                        <label class="checkbox-inline">
+	                            <input type="radio" name="status" value="0" {if $property.status === '0'}checked="checked"{/if} />&nbsp;不启用
+	                        </label>
+	                    </div>
+	                </div>
+	                <div class="line line-dashed line-lg pull-in"></div>
+	                
+	                <div class="form-group">
+                        <label for="sort_order" class="col-sm-2 control-label hide">属性值</label>
+                        <div class="col-sm-12">
+                            <section class="panel panel-default">
+                                <header class="panel-heading">
+			                        编辑属性值
+			                        <a id="btn_add_property_value" class="btn btn-xs btn-primary pull-right">
+		                                <i class="fa fa-plus text"></i>
+		                                <span class="text">添加</span>
+		                            </a>
+			                    </header>
+                                <table class="table table-striped m-b-none text-sm" id="table_property_value">
+                                    <thead>
+                                        <tr>
+                                            <th>属性值</th>
+                                            <th class="set-property-image default-hidden">规格图片</th>
+                                            <th>序号</th>                    
+                                            <th>默认值</th>                    
+                                            <th width="70">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {if $property_values}
+                                        {foreach from=$property_values item=v key=k}
+                                        <tr>                    
+                                            <td>
+                                                <input type="text" class="form-control input-sm" name="p_val[]" value="{$v.property_value}" placeholder="请输入属性值" />
+                                            </td>
+                                            <td class="set-property-image default-hidden">
+                                                <input type="file" name="p_property_image_{$k}" class="filestyle p-property-image" data-icon="false" data-buttonText="上传图片" data-classbutton="btn btn-default btn-sm" data-classinput="form-control inline input-s input-sm" />
+                                                {if $v.property_image}
+                                                <a href="/upload{$v.property_image}" class="thumb-sm" target="_blank"><img src="/upload{$v.property_image}" /></a>
+                                                {/if}
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control input-sm" name="p_sort_order[]" value="{$v.sort_order}" placeholder="请输入序号" />
+                                            </td>
+                                            <td>
+                                                <label class="switch-sm m-b-none m-t-xs">
+						                            <input type="checkbox" class="set-pv-default" name="p_is_default[]" value="{$k}" {if $v.is_default == 1}checked="checked"{/if} />
+						                            <span></span>
+						                        </label>
+                                            </td>
+                                            <td class="text-right v-middle">
+                                                <a href="javascript:;" class="operate-delete {if $property_values|@count <= 1}hide{/if}" property_value_id="{$v.property_value_id}" title="删除"><i class="fa fa-trash-o"></i></a>
+                                                <input type="hidden" class="property_value_id_hidden" name="p_property_value_id[]" value="{$v.property_value_id}" />
+                                            </td>
+                                        </tr>
+                                        {/foreach}
+                                        {else}
+                                        <tr>                    
+                                            <td>
+                                                <input type="text" class="form-control input-sm" name="p_val[]" value="" placeholder="请输入属性值" />
+                                            </td>
+                                            <td class="set-property-image default-hidden">
+                                                <input type="file" name="p_property_image_0" class="filestyle p-property-image" data-icon="false" data-buttonText="上传图片" data-classbutton="btn btn-default btn-sm" data-classinput="form-control inline input-s input-sm" />
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control input-sm" name="p_sort_order[]" value="" placeholder="请输入序号" />
+                                            </td>
+                                            <td>
+                                                <label class="switch-sm m-b-none m-t-xs">
+                                                    <input type="checkbox" class="set-pv-default" name="p_is_default[]" value="0" />
+                                                    <span></span>
+                                                </label>
+                                            </td>
+                                            <td class="text-right v-middle">
+                                                <a href="javascript:;" class="operate-delete hide" property_value_id="0" title="删除"><i class="fa fa-trash-o"></i></a>
+                                                <input type="hidden" class="property_value_id_hidden" name="property_value_id[]" value="0" />
+                                            </td>
+                                        </tr>
+                                        {/if}
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+                    
+	                <input type="hidden" name="property_id" value="{$property.property_id}" />
+	            </form>
+            </section>
+            
+            <footer class="footer b-t bg-white-only">
+                <div class="m-t-sm">
+                    <button type="button" id="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存</button>
+                    {if ! $property}<button type="button" id="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">保存并继续添加</button>{/if}
+                    <button type="button" id="submit_cancel" class="btn btn-danger btn-sm input-submit">取消</button>
+                    <span id="edit_notice"></span>
+                </div>
+            </footer>
+        </section>
+    </aside>
+</section>
+
+<script src="{$_STATIC_CDN}/scripts/file-input/bootstrap-filestyle.min.js"></script>
+
+{$wrapper_suffix|default}

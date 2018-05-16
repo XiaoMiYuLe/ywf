@@ -1,0 +1,105 @@
+{$wrapper_prefix|default}
+
+<script src="{$_STATIC_URL}/withdraw/admin/js/index.detail.js" type="text/javascript"></script>
+
+<section class="hbox stretch">
+    <aside class="bg-white">
+        <section class="vbox">
+            <header class="header bg-white b-b clearfix">
+                <div class="m-t-sm">
+                    <a href="#subNav" data-toggle="class:hide" class="btn btn-sm btn-default active btn-nav-goods" btn_nav_goods_index="0">
+                        <i class="fa fa-caret-right text fa-lg"></i>
+                        <i class="fa fa-caret-left text-active fa-lg"></i>
+                    </a>
+                        <a href="javascript:;" class="btn btn-sm btn-default" id="button_cancel"><i class="fa fa-reply"></i> 返回</a>
+                </div>
+            </header>
+              
+            <section class="scrollable wrapper">
+                <section class="panel panel-default portlet-item">
+	                <header class="panel-heading">提现详情</header>
+		            <table class="table table-striped2 m-b-none text-sm">
+                        <tbody>
+                        	<tr>                    
+                                <td class="col-sm-2">业务id:</td>
+                                <td class="col-sm-4">{$withdraw.withdraw_id}</td>
+                            </tr>
+                            <tr>                    
+                                <td class="col-sm-2">用户姓名:</td>
+                                <td class="col-sm-4">{$withdraw.username}</td>
+                                <td class="col-sm-2">手机号码:</td>
+                                <td class="col-sm-4">{$withdraw.phone}</td>
+                            </tr>
+                            <tr>                    
+								<td class="col-sm-2">身份证号码：</td>
+                                <td class="col-sm-4">{$withdraw.idcard}</td>
+                                <td class="col-sm-2">账户可用余额：</td>
+                                <td class="col-sm-4">￥{$withdraw.asset}</td>
+                            </tr>
+                            <tr>                    
+                                <td class="col-sm-2">注册时间:</td>
+                                <td class="col-sm-4">{$withdraw.userctime}</td>
+                                <td class="col-sm-2">是否为经纪人:</td>
+                                <td class="col-sm-4">{$withdraw.is_ecoman}</td>
+                            </tr>
+                            <tr>                    
+                                <td class="col-sm-2">银行卡信息:</td>
+                                <td class="col-sm-4">{$withdraw.card}</td>
+                            </tr>
+                            <tr>                    
+                                <td class="col-sm-2">本次提现金额:</td>
+                                <td class="col-sm-4">￥<font class="red" style = "font-size:20px">{$withdraw.withdraw_money}</font></td>
+                            </tr>
+                        <input type="hidden" id="withdraw_id" value="{$withdraw.withdraw_id}">
+                        </tbody>
+                    </table>
+                </section>
+                <section class="panel panel-default portlet-item">
+	                <header class="panel-heading">操作</header>
+		            <table class="table table-striped2 m-b-none text-sm">
+                        <tbody>
+                            <tr>                    
+								<td class="col-sm-2">操作结果：</td>
+                                <td class="col-sm-4">
+	                                <label class="checkbox-inline p-left-0">
+	                                	<input type="radio" name="withdraw_status" id="withdraw_status" value="1" {if $withdraw.withdraw_status == '1'}checked="checked"{else}checked="checked" {/if}/>&nbsp;未处理
+	                            	</label>
+	                            	<label class="checkbox-inline">
+	                                	<input type="radio" name="withdraw_status" id="withdraw_status" value="2" {if $withdraw.withdraw_status == '2'}checked="checked"{/if} />&nbsp;提现成功
+	                            	</label>
+	                            	<label class="checkbox-inline">
+	                                	<input type="radio" name="withdraw_status" id="withdraw_status" value="3" {if $withdraw.withdraw_status == '3'}checked="checked"{/if} />&nbsp;提现失败
+	                            	</label>
+                                </td>
+                            
+                        </div>
+                    </div>
+                            </tr>
+                            <tr>                    
+                                <td class="col-sm-2">平台流水号:</td>
+                                <td class="col-sm-4"><input type="text" id="platform_number" name="platform_number"  {if $withdraw.platform_number}value="{$withdraw.platform_number}"{else}value=""{/if} /></td>
+                            </tr>
+                            <tr>                    
+                                <td class="col-sm-2">备注:</td>
+                                <td class="col-sm-5"> {if $withdraw.remark}{$withdraw.remark}{else}<textarea type="text" id="remark" value="">{/if}</textarea></td>
+                            </tr>
+                            
+                        	<tr>      
+                        		{if $withdraw.withdraw_status == '1'}              
+                                <td class="col-sm-2"><button id="put_in" >提交</button></td>
+                            	{/if}
+                                <td class="col-sm-4"><button id="cancel">取消</button></td>
+                            </tr>
+                            
+                            
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+            
+
+        </section>
+    </aside>
+</section>
+
+{$wrapper_suffix|default}

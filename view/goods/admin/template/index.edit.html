@@ -1,0 +1,88 @@
+{$wrapper_prefix|default}
+
+<section class="hbox stretch">
+    <aside class="aside-md bg-white b-r" id="subNav">
+        <section class="vbox">
+            <header class="b-b header"><p class="h4">{if $goods_id}编辑其他产品{else}添加其他产品{/if}</p></header>
+            <section class="scrollable w-f">
+                <ul class="nav nav-pills nav-stacked no-radius">
+                    <li class="b-b m-t-none-reset nav-map active" id="nav_base">
+                        <a href="javascript:;">
+                            <i class="fa fa-chevron-right pull-right m-t-xs text-xs icon-muted"></i>
+                            <i class="fa fa-fw fa-ellipsis-v"></i>
+                            基本信息
+                        </a>
+                    </li>
+                    <li class="b-b m-t-none-reset nav-map" id="nav_content">
+                        <a href="javascript:;">
+                            <i class="fa fa-chevron-right pull-right m-t-xs text-xs icon-muted"></i>
+                            <i class="fa fa-fw fa-ellipsis-v"></i>
+                            产品介绍
+                        </a>
+                    </li>
+                    <li class="b-b m-t-none-reset nav-map" id="nav_image">
+                        <a href="javascript:;">
+                            <i class="fa fa-chevron-right pull-right m-t-xs text-xs icon-muted"></i>
+                            <i class="fa fa-fw fa-ellipsis-v"></i>
+                            安全保障
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </section>
+    </aside>
+    
+    <aside class="bg-white">
+        <section class="vbox">
+            <header class="header b-b b-t bg-white-only">
+                <div class="m-t-sm">
+                    <a href="#subNav" data-toggle="class:hide" class="btn btn-sm btn-default active btn-nav-goods" btn_nav_goods_index="0">
+                        <i class="fa fa-caret-right text fa-lg"></i>
+                        <i class="fa fa-caret-left text-active fa-lg"></i>
+                    </a>
+                    <button type="button" data_submit_type="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存</button>
+                    {if ! $goods_id}<button type="button" data_submit_type="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">保存并继续添加</button>{/if}
+                    <button type="button" data_submit_type="submit_cancel" class="btn btn-danger btn-sm input-submit">取消</button>
+                </div>
+            </header>
+            
+            <section class="scrollable w-f">
+                <form class="form-horizontal h-100" id="edit_form" action="/goodsadmin/index/add" method="post" enctype="multipart/form-data">
+                    
+                    <!-- 基本信息 @start -->
+                    {include file="goods/admin/template/index.edit.base.html"}
+                    <!-- 基本信息 @end -->
+                    
+                    <!-- 产品介绍 @start -->
+                    {include file="goods/admin/template/index.edit.content.html"}
+                    <!-- 产品介绍 @end -->
+                    
+                    <!-- 安全保障 @start -->
+                    {include file="goods/admin/template/index.edit.image.html"}
+                    <!-- 安全保障 @end -->
+                    
+                    <input type="hidden" name="goods_id" id="goods_id" value="{$goods_id}" />
+                    <!-- <input type="submit" value="保存 test" class="btn btn-s-md btn-primary btn-sm" /> -->
+                </form>
+            </section>
+            
+            <footer class="footer b-t bg-white-only">
+                <div class="m-t-sm">
+                    <a href="#subNav" data-toggle="class:hide" class="btn btn-sm btn-default active btn-nav-goods" btn_nav_goods_index="1">
+                        <i class="fa fa-caret-right text fa-lg"></i>
+                        <i class="fa fa-caret-left text-active fa-lg"></i>
+                    </a>
+                    <button type="button" data_submit_type="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存</button>
+                    {if ! $goods_id}<button type="button" data_submit_type="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">保存并继续添加</button>{/if}
+                    <button type="button" data_submit_type="submit_cancel" class="btn btn-danger btn-sm input-submit">取消</button>
+                    <span id="edit_notice"></span>
+                </div>
+            </footer>
+        </section>
+    </aside>
+</section>
+
+<script src="{$_STATIC_CDN}/scripts/file-input/bootstrap-filestyle.min.js"></script>
+<script src="{$_STATIC_URL}/goods/admin/js/index.edit.js" type="text/javascript"></script>
+
+{$wrapper_suffix|default}

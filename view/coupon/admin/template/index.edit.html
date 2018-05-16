@@ -1,0 +1,196 @@
+{$wrapper_prefix|default}
+<link href="{$_STATIC_URL}/scripts/datepicker/css/datepicker3.css" rel="stylesheet" type="text/css"/>
+<link href="{$_STATIC_URL}/scripts/datepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
+<section class="hbox stretch">
+
+    <aside class="bg-white">
+        <section class="vbox">
+            <header class="header b-b b-t bg-white-only">
+                <div class="m-t-sm">
+                    <p class="h4">{if $coupon.coupon_id}编辑{else}添加{/if}优惠券 - {if $coupon.coupon_type eq 1} 全场券 {/if} {if $coupon.coupon_type eq 2}满减券{/if}</p>
+                </div>
+            </header>
+            
+            <section class="scrollable w-f">
+                <form class="form-horizontal h-100" id="edit_form" action="/goodsadmin/index/add" method="post" enctype="multipart/form-data">
+					<section class="edit-map wrapper" id="edit_base">
+						<section class="panel panel-default">
+						    <header class="panel-heading font-bold">基本信息</header>
+						    <div class="panel-body">
+						    
+								<div class="form-group m-b-xs">
+						            <label for="coupon_name" class="col-sm-2 control-label"><font class="red">* </font>优惠券名称</label>			            
+						            <div class="col-sm-3">
+						                <input type="text"  {if $coupon.coupon_id} disabled="true" {/if} class="form-control"  name="coupon_name" value="{$coupon.coupon_name}" placeholder="请输入优惠券名称" />
+						            </div>
+						        </div>
+						        <div class="line line-dashed line-sm pull-in"></div>
+						
+								<div class="form-group m-b-xs">
+								    <label for="face_value" class="col-sm-2 control-label"><font class="red">* </font>面额</label>
+								    <div class="col-sm-2">
+								    	<div class="input-group">
+									        <input type="text" {if $coupon.coupon_id} disabled="true" {/if} class="form-control" name="face_value" value="{$coupon.face_value}" />
+									   		<span class="input-group-addon">元</span>
+									    </div>
+								    </div>
+								</div>
+								<div class="line line-dashed line-sm pull-in"></div>
+								
+						        <div class="form-group m-b-xs">
+						            <label for="valid_time" class="col-sm-2 control-label"><font class="red">* </font>有效期</label>
+						            <div class="col-sm-2">
+						                <div class="input-group">
+						                   <input  name="valid_stime" {if $coupon.coupon_id} disabled="true" {/if} class="input-sm input-s datetimepicker-input form-control" type="text" value="{$coupon.valid_stime}" data-date-format="yyyy-mm-dd hh:ii:ss"  placeholder="有效开始时间" />
+						                </div>
+						            </div>
+						            <div class="col-sm-2">
+						                <div class="input-group">
+						                   <input  name="valid_etime" {if $coupon.coupon_id} disabled="true" {/if} class="input-sm input-s datetimepicker-input form-control" type="text" value="{$coupon.valid_etime}" data-date-format="yyyy-mm-dd hh:ii:ss"  placeholder="有效结束时间" />
+						                </div>
+						            </div>
+						        </div>
+						        <div class="line line-dashed line-sm pull-in"></div>
+								
+								<div class="form-group m-b-xs">
+						             <label for="grant_time" class="col-sm-2 control-label"><font class="red">* </font>发放时间</label>
+						             <div class="col-sm-2">
+						                 <div class="input-group">
+						                    <input  name="grant_stime" {if $coupon.coupon_id} disabled="true" {/if} class="input-sm input-s datetimepicker-input form-control" type="text" value="{$coupon.grant_stime}" data-date-format="yyyy-mm-dd hh:ii:ss"  placeholder="发放开始时间" />
+						                 </div>
+						             </div>
+						             <div class="col-sm-2">
+						                 <div class="input-group">
+						                    <input  name="grant_etime" {if $coupon.coupon_id} disabled="true" {/if} class="input-sm input-s datetimepicker-input form-control" type="text" value="{$coupon.grant_etime}" data-date-format="yyyy-mm-dd hh:ii:ss"  placeholder="发放结束时间" />
+						                 </div>
+						             </div>
+						        </div>
+							    <div class="line line-dashed line-sm pull-in"></div>
+						
+								<div class="form-group m-b-xs">
+						            <label for="total" class="col-sm-2 control-label"><font class="red">* </font>发放量</label>
+						            <div class="col-sm-2">
+						                <div class="input-group">
+						                    <input type="text" {if $coupon.coupon_id} disabled="true" {/if} class="form-control total"  name="total" value="{$coupon.total}" />
+						                </div>
+						            </div>
+						        </div>
+						        <div class="line line-dashed line-sm pull-in"></div>
+						        
+						       <div class="form-group m-b-xs">
+                                    <label for="total" class="col-sm-2 control-label">兑换所需积分</label>
+                                    <div class="col-sm-2">
+                                        <div class="input-group">
+                                            <input type="text"  {if $coupon.coupon_id} disabled="true" {/if} class="form-control"  name="coupon_point" placeholder="留空表示不可兑换" value="{$coupon.coupon_point}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line line-dashed line-sm pull-in"></div>
+						        
+						        <div class="form-group m-b-xs">
+                                    <label for="body" class="col-sm-2 control-label">使用详情</label>
+                                    <div class="col-sm-6">
+                                        <textarea name="body" id="body" rows="3" class="form-control" placeholder="请输入使用详情">{$coupon.body}</textarea>
+                                    </div>
+                                </div>
+                                <div class="line line-dashed line-sm pull-in"></div>
+                                
+                                <div class="form-group m-b-xs">
+                                    <label for="rule" class="col-sm-2 control-label">使用规则</label>
+                                    <div class="col-sm-6">
+                                        <textarea name="rule" id="rule" rows="3" class="form-control" placeholder="请输入使用规则">{$coupon.rule}</textarea>
+                                    </div>
+                                </div>
+					          </div>
+					          <div class="line line-dashed line-sm pull-in"></div>
+						   </section>
+						  
+						   {if $coupon.coupon_id}
+                           <section class="panel panel-default" id="edit_base_platform">
+						       <header class="panel-heading font-bold">优惠券状态</header>
+						       <div class="panel-body">
+						       <div class="form-group m-b-xs">
+					                <label for="memo" class="col-sm-2 control-label"><font class="red">* </font>优惠券状态</label>
+                                    <div class="input-group col-sm-3 ">
+                                    <label class="checkbox-inline p-left-0">
+                                         <input type="radio"  name="status" value="1" {if $coupon.status eq 1} checked="checked" {/if} />&nbsp;&nbsp;启用
+                                    </label>
+                                    <label class="checkbox-inline p-left-0">
+                                         <input type="radio"  name="status" value="0" {if $coupon.status eq 0} checked="checked" {/if} />&nbsp;&nbsp;不启用
+                                    </label>
+                                    <label class="checkbox-inline p-left-0">
+                                        <input type="radio"  name="status" value="-1" {if $coupon.status eq -1} checked="checked" {/if} />&nbsp;&nbsp;关闭
+                                    </label>    
+                                    </div>
+					            </div>
+					            <div class="line line-dashed line-sm pull-in"></div>
+						        </div>
+						    </section>
+                           {/if}
+                           
+                           {if $coupon.coupon_type == 2}
+                           <section class="panel panel-default" id="edit_base_platform">
+                               <header class="panel-heading font-bold">使用条件</header>
+                               <div class="panel-body">
+                               <div class="form-group m-b-xs">
+                                    <label for="memo" class="col-sm-2 control-label"><font class="red">* </font>使用规则</label>
+                                    <div class="input-group col-sm-3">
+                                        <span class="input-group-addon">满</span>
+                                        <input type="text" {if $coupon.coupon_id} disabled="true" {/if} class="form-control" name="basic_price" value="{$coupon.basic_price}" />
+                                        <span class="input-group-addon">元可以使用</span>
+                                    </div>
+                                </div>
+                                <div class="line line-dashed line-sm pull-in"></div>
+                                </div>
+                            </section>
+                           
+                           <section class="panel panel-default" id="edit_base_platform">
+                               <header class="panel-heading font-bold">满减券信息</header>
+                               <div class="panel-body">
+                                <div class="form-group m-b-xs">
+                                    <label for="body" class="col-sm-2 control-label">满减券类型</label>
+                                    <div class="col-sm-2">
+                                        <select {if $coupon.coupon_id} disabled="true" {/if} class="form-control trig" name="relation_type">
+                                            <option  value ="1">全场满减</option>
+                                            <option {if $coupon.relation_type == 2}selected="selected"{/if} } value ="2">分类满减</option>
+                                            <!-- 店铺满减 -->
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+										<select {if $coupon.coupon_id} disabled="true"
+											{/if} class="form-control area" name="relation_content" style="width:200px;">
+											<option>{if $coupon.relation_content_txt}{$coupon.relation_content_txt}{else}全场满减{/if}</option>
+										</select>
+									</div>
+                                </div>
+                                <div class="line line-dashed line-sm pull-in"></div>
+                                </div>
+                            </section>
+                           {/if}
+                    </section>
+                    <!-- 添加和编辑优惠券的类型 -->
+                    <input type="hidden" name="coupon_type" id="coupon_type" value="{$coupon.coupon_type}" />
+                    <!-- 编辑优惠券时优惠券的ID -->
+                    <input type="hidden" name="coupon_id" id="coupon_id" value="{$coupon.coupon_id}" />
+                </form>
+            </section>
+
+            <footer class="footer b-t bg-white-only">
+                <div class="m-t-sm">
+                    <button type="button" data_submit_type="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存</button>
+                    <button type="button" data_submit_type="submit_cancel" class="btn btn-danger btn-sm input-submit">取消</button>
+                    <span id="edit_notice"></span>
+                </div>
+            </footer>
+        </section>
+    </aside>
+</section>
+<script src="{$_STATIC_URL}/scripts/datepicker/js/bootstrap-datepicker.js"></script>
+<script src="{$_STATIC_URL}/scripts/datepicker/js/locales/bootstrap-datepicker.zh-CN.time.js" charset="UTF-8"></script>
+<script src="{$_STATIC_URL}/scripts/datepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="{$_STATIC_URL}/scripts/datepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+
+<script src="{$_STATIC_CDN}/scripts/file-input/bootstrap-filestyle.min.js"></script>
+<script src="{$_STATIC_URL}/coupon/admin/js/index.edit.js" type="text/javascript"></script>
+
+{$wrapper_suffix|default}

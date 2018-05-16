@@ -1,0 +1,6 @@
+/* base */
+
+/* main */
+.main-content {bottom:0;}
+
+#content .appkey a.block, #content .appsecret a.block, #content .name a.block {cursor:auto;}

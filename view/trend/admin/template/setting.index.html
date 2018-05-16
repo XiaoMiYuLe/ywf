@@ -1,0 +1,131 @@
+{$wrapper_prefix|default}
+
+<link rel="stylesheet" href="{$_STATIC_CDN}/scripts/jquery-fileupload/5.8.1/css/bootstrap-responsive.min.css" type="text/css" />
+<link rel="stylesheet" href="{$_STATIC_CDN}/scripts/jquery-fileupload/5.8.1/css/jquery.fileupload-ui.css" type="text/css" />
+<link href="{$_STATIC_URL}/trend/admin/css/setting.index.css" rel="stylesheet" type="text/css" />
+<script src="{$_STATIC_CDN}/scripts/jquery-fileupload/5.8.1/js/vendor/jquery.ui.widget.js" type="text/javascript"></script>
+<script src="{$_STATIC_CDN}/scripts/jquery-fileupload/5.8.1/js/jquery.iframe-transport.js" type="text/javascript"></script>
+<script src="{$_STATIC_CDN}/scripts/jquery-fileupload/5.8.1/js/jquery.fileupload.js" type="text/javascript"></script>
+<script src="{$_STATIC_URL}/trend/admin/js/setting.index.js"></script>
+
+<section class="hbox stretch">
+	<aside class="aside-md bg-white b-r" id="subNav">
+        <section class="vbox">
+            <header class="b-b header"><p class="h4">系统配置</p></header>
+            <section class="scrollable w-f">
+                <ul class="nav nav-pills nav-stacked no-radius">
+                    {foreach from=$setting_group item=v key=k}
+                    <li class="b-b m-t-none-reset nav-map {if $k == 0}active{/if}" id="nav_setting_{$v.group_id}">
+                        <a href="javascript:;">
+                            <i class="fa fa-chevron-right pull-right m-t-xs text-xs icon-muted"></i>
+                            <i class="fa fa-fw fa-ellipsis-v"></i>
+                            {$v.group_name}
+                        </a>
+                    </li>
+                    {/foreach}
+                </ul>
+            </section>
+        </section>
+    </aside>
+
+	<aside class="bg-white">
+        <section class="vbox">
+            <header class="header b-b b-t bg-white-only">
+                <div class="m-t-sm">
+                    <a href="#subNav" data-toggle="class:hide" class="btn btn-sm btn-default active btn-nav-goods" btn_nav_goods_index="0">
+                        <i class="fa fa-caret-right text fa-lg"></i>
+                        <i class="fa fa-caret-left text-active fa-lg"></i>
+                    </a>
+                    <a href="/trendadmin/setting/add" class="btn btn-sm btn-default load-content m-l-sm hide" style="margin-top:-5px;"><i class="fa fa-plus"></i> 添加(仅供开发者使用)</a>
+                    <span id="edit_notice"></span>
+                </div>
+            </header>
+            
+            <section class="scrollable wrapper panel">
+                <form class="form-horizontal" action="/trendadmin/setting/setVal" method="post" id="edit_form" enctype="multipart/form-data">
+                    
+                    {foreach from=$setting_group item=v key=k}
+                    {include file="trend/admin/template/setting.index.{$v.group_id}.html"}
+                    {/foreach}
+                    
+                    <!-- 从数据库读取设置的部分暂不启用 -->
+                    {if false}
+                    {foreach from=$settings item=v}
+                    <div class="form-group {if $v.val_inputtype == 'file'}file-reset{/if}">
+                        <label class="col-sm-2 control-label">{$v.label_name}</label>
+                        {if $v.val_inputtype == 'text'}
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="{$v.name}" name="{$v.name}" value="{$v.val}" placeholder="{$v.placeholder}" setting_id="{$v.setting_id}" />
+                            <span class="help-block m-b-none">{$v.note}</span>
+                        </div>
+                        {else if $v.val_inputtype == 'select'}
+                        <div class="col-sm-6">
+		                    <select id="{$v.name}" name="{$v.name}" class="input-sm form-control inline" setting_id="{$v.setting_id}">
+		                        {foreach from=$v.val_options_arr item=vv}
+		                        <option value="{$vv.option_value}" {if $v.val == $vv.option_value}selected{/if}>{$vv.option_title}</option>
+		                        {/foreach}
+		                    </select>
+		                    <span class="help-block m-b-none">{$v.note}</span>
+	                    </div>
+                        {else if $v.val_inputtype == 'checkbox'}
+                        <div class="col-sm-8">
+                            {foreach from=$v.val_options_arr item=vv}
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="{$v.name}" value="{$vv.option_value}" setting_id="{$v.setting_id}" {if $vv.option_value|in_array:$v.val}checked="checked"{/if} />{$vv.option_title}
+                            </label>
+                            {/foreach}
+                            <span class="help-block m-b-none">{$v.note}</span>
+                        </div>
+                        {else if $v.val_inputtype == 'radio'}
+                        <div class="col-sm-8">
+                            {foreach from=$v.val_options_arr item=vv}
+                            <label class="checkbox-inline p-left-0">
+                                <input type="radio" name="{$v.name}" value="{$vv.option_value}" setting_id="{$v.setting_id}" {if $v.val == $vv.option_value}checked="checked"{/if} />&nbsp;{$vv.option_title}
+                            </label>
+                            {/foreach}
+                            <span class="help-block m-b-none">{$v.note}</span>
+                        </div>
+                        {else if $v.val_inputtype == 'textarea'}
+                        <div class="col-sm-6">
+                            <textarea id="{$v.name}" name="{$v.name}" rows="2" class="form-control" placeholder="{$v.placeholder}" setting_id="{$v.setting_id}">{$v.val}</textarea>
+                            <span class="help-block m-b-none">{$v.note}</span>
+                        </div>
+                        {else if $v.val_inputtype == 'file'}
+                        <div class="col-sm-3">
+                            <a href="javascript:;" class="img-thumbnail pull-left">
+                                <img id="gallery_add_single_{$v.setting_id}" class="img-thumbnail-single" src="{if $v.val}/uploads{$v.val}{else}...{/if}" alt="..." />
+                            </a>
+                            <div class="col-md-4">
+                                <p>
+                                    <span class="btn btn-success fileinput-button">
+                                        <i class="icon-plus icon-white"></i>
+                                        <span>上传</span>
+                                        <input type="file" name="{$v.name}" setting_id="{$v.setting_id}" />
+                                    </span>
+                                </p>
+                                <br /><br />
+                                <p><button type="button" id="gallery_delete_single_{$v.setting_id}" class="btn btn-danger gallery-delete-single" 
+                                        setting_id="{if $v.val}{$v.setting_id}{/if}">删除</button></p>
+                            </div>
+                            <br />
+                            <span class="help-block m-b-none padder-t-xs" style="clear: both;">{$v.note}</span>
+                        </div>
+                        {/if}
+                        
+                        <div class="col-sm-2">
+                            <span class="edit-notice" id="edit_notice"></span>
+                        </div>
+                    </div>
+                    <div class="line line-dashed line pull-in"></div>
+                    {/foreach}
+                    {/if}
+                    
+                </form>
+            </section>
+        </section>
+    </aside>
+</section>
+
+<script src="{$_STATIC_CDN}/scripts/file-input/bootstrap-filestyle.min.js"></script>
+
+{$wrapper_suffix|default}

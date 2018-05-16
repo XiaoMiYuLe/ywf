@@ -1,0 +1,38 @@
+{$wrapper_prefix_center|default}
+<script src="{$_STATIC_URL}/ywf/webjs/cas/setting.contact.js" type="text/javascript"></script>
+
+<script>$("head>title").html("联系方式");</script>
+<!--中间：内容-->
+<div class="container_content" >
+    <!--我的账户-->
+    <div class="top" style="min-height:630px">
+        <div class="one">
+            <div class="blue-line"></div>
+            <span class="title">修改联系方式</span>
+        </div>
+        <div class="two_xgdlmm">
+            <div id="div1">
+                <label>详细地址：</label>
+                <input type="text" value="{if $contact}{$contact['address']}{/if}" name="address" placeholder="请输入详细地址" id="zhjymm_input1"/>
+            </div>
+            <div>
+                <label>邮&#12288;&#12288;编：</label>   
+                <input type="text" value="{if $contact}{$contact['zip_code']}{/if}" name="zip_code" placeholder="请输入邮编" id="zhjymm_input1"/>
+            </div>
+            <div>
+                <label>联系人&#12288;：</label>
+                <input type="text" value="{if $contact}{$contact['contacts_person']}{/if}" name="contacts_person" placeholder="请输入联系人姓名" id="zhjymm_input1"/>
+            </div>
+            <div>
+                <label>联系电话：</label>
+                <input type="text" value="{if $contact}{$contact['contacts_phone']}{/if}" name="contacts_phone" placeholder="请输入联系人电话" id="zhjymm_input1"/>
+            </div>
+            <div class="btn">
+                <button id="form-submit" style="margin-left:1px">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{$wrapper_suffix_center|default}

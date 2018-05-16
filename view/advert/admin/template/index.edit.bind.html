@@ -1,0 +1,222 @@
+<section class="edit-map wrapper default-hidden" id="edit_bind">
+    
+    <div class="form-group">
+        <label class="col-sm-2 control-label">资源类型</label>
+        <div class="col-sm-4">
+            <select id="bind_type" name="bind_type" class="form-control">
+                <option value="1" {if $content.bind_type == 1}selected{/if}>链接地址</option>
+                {if $app}
+                {foreach item=v from=$app}
+                <option value="{$v.appkeytype}" {if $content.bind_type == $v.appkey}selected{/if}>{$v.name}</option>
+                {/foreach}
+                {/if}
+                <option value="4" {if $content.bind_type == 4}selected{/if}>自定义</option>
+            </select>
+        </div>
+    </div>
+    <div class="line line-dashed line pull-in"></div>
+    
+    <div id="bind_type_1" class="bind-type-edit {if $content && $content.bind_type != 1}default-hidden{/if}">
+	    <div class="form-group">
+	        <label for="bind_source_1" class="col-sm-2 control-label">链接地址</label>
+	        <div class="col-sm-4">
+	            <input type="text" class="form-control" id="bind_source_1" name="bind_source[]" value="{if $content.bind_type == 1}{$content.bind_source}{/if}" placeholder="请输入链接地址" />
+	        </div>
+	    </div>
+    </div>
+    
+    <div id="bind_type_2" class="bind-type-edit {if ! $content || $content.bind_type != 2}default-hidden{/if}">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">绑定商品</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="bind_source_view_2" value="" disabled="disabled" />
+                <input type="hidden" id="bind_source_2" name="bind_source[]" value="{if $content.bind_type == 2}{$content.bind_source}{/if}" />
+            </div>
+            <div class="col-sm-6">
+                <span class="help-block m-b-none">请在下列列表中选择需要绑定的商品</span>
+            </div>
+        </div>
+        <div class="line line-dashed line pull-in"></div>
+    </div>
+    
+    <div id="bind_type_3" class="bind-type-edit {if ! $content || $content.bind_type != 3}default-hidden{/if}">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">绑定文章</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="bind_source_view_3" value="" disabled="disabled" />
+                <input type="hidden" id="bind_source_3" name="bind_source[]" value="{if $content.bind_type == 3}{$content.bind_source}{/if}" />
+            </div>
+            <div class="col-sm-6">
+                <span class="help-block m-b-none">请在下列列表中选择需要绑定的文章</span>
+            </div>
+        </div>
+        <div class="line line-dashed line pull-in"></div>
+    </div>
+    
+    <div id="bind_type_4" class="bind-type-edit {if ! $content || $content.bind_type != 4}default-hidden{/if}">
+        <div class="form-group">
+            <label for="bind_source_4" class="col-sm-2 control-label">自定义标签</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="bind_source_4" name="bind_source[]" value="{if $content.bind_type == 4}{$content.bind_source}{/if}" placeholder="请输入自定义标签" />
+                <span class="help-block m-b-none">该标签需要和前端人员协商填入</span>
+            </div>
+        </div>
+    </div>
+    
+    <div id="bind_source_listing_2" class="bind-source-edit {if ! $content || $content.bind_type != 2}default-hidden{/if}">
+	    <div class="form-group">
+	        <div class="col-sm-12">
+	            <section class="panel panel-default">
+	                <header class="panel-heading">
+	                    选择商品
+	                    <a id="btn_add_property_value" class="btn btn-xs btn-default pull-right hide">
+	                        <i class="fa fa-plus text"></i>
+	                        <span class="text">添加</span>
+	                    </a>
+	                    
+	                    <div class="col-sm-4 m-t-n-xs pull-right" id="search2">
+	                        <div class="input-group">
+	                            <input type="text" name="key_goods" class="input-sm form-control" placeholder="Search" />
+	                            <span class="input-group-btn">
+	                                <button class="btn btn-sm btn-default" id="action_search_goods" type="button">搜索</button>
+	                            </span>
+	                        </div>
+	                    </div>
+	                </header>
+	                <table class="table table-striped m-b-none datagrid" id="content_source_2">
+	                    <thead>
+	                    </thead>
+	                    <tfoot>
+	                        <tr>
+	                            <th class="row">
+	                                <div class="datagrid-footer-left col-sm-6 text-center-xs m-l-n" style="display:none;">
+	                                    <div class="grid-controls m-t-sm">
+	                                        <span>
+	                                            <span class="grid-start"></span> -
+	                                            <span class="grid-end"></span> （共
+	                                            <span class="grid-count"></span>）
+	                                        </span>
+	
+	                                        <div class="select grid-pagesize dropup" data-resize="auto">
+	                                            <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
+	                                                <span class="dropdown-label"></span>
+	                                                <span class="caret"></span>
+	                                            </button>
+	                                            <ul class="dropdown-menu">
+	                                                <li data-value="5"><a href="#">5</a></li>
+	                                                <li data-value="15" data-selected="true"><a href="#">15</a></li>
+	                                                <li data-value="20"><a href="#">20</a></li>
+	                                                <li data-value="50"><a href="#">50</a></li>
+	                                                <li data-value="100"><a href="#">100</a></li>
+	                                            </ul>
+	                                        </div>
+	                                        <span>/页</span>
+	                                    </div>
+	                                </div>
+	
+	                                <div class="datagrid-footer-right col-sm-6 text-right text-center-xs"
+	                                     style="display:none;">
+	                                    <div class="grid-pager m-r-n">
+	                                        <button type="button" class="btn btn-sm btn-default grid-prevpage"><i class="fa fa-chevron-left"></i></button>
+	                                        <!--<span>页</span>-->
+	                                        <div class="inline">
+	                                            <div class="input-group dropdown combobox">
+	                                                <input class="input-sm form-control" type="text">
+	                                                <div class="input-group-btn dropup">
+	                                                    <button class="btn btn-sm btn-default" data-toggle="dropdown"><i class="caret"></i></button>
+	                                                    <ul class="dropdown-menu pull-right"></ul>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                        <span>/ <span class="grid-pages"></span></span>
+	                                        <button type="button" class="btn btn-sm btn-default grid-nextpage"><i class="fa fa-chevron-right"></i></button>
+	                                    </div>
+	                                </div>
+	                            </th>
+	                        </tr>
+	                    </tfoot>
+	                </table>
+	            </section>
+	        </div>
+	    </div>
+    </div>
+    
+    <div id="bind_source_listing_3" class="bind-source-edit {if ! $content || $content.bind_type != 3}default-hidden{/if}">
+	    <div class="form-group">
+	        <div class="col-sm-12">
+	            <section class="panel panel-default">
+	                <header class="panel-heading">
+	                    选择文章
+	                    <a id="btn_add_property_value" class="btn btn-xs btn-default pull-right hide">
+	                        <i class="fa fa-plus text"></i>
+	                        <span class="text">添加</span>
+	                    </a>
+	                    
+	                    <div class="col-sm-4 m-t-n-xs pull-right" id="search2">
+	                        <div class="input-group">
+	                            <input type="text" name="key_article" class="input-sm form-control" placeholder="Search" />
+	                            <span class="input-group-btn">
+	                                <button class="btn btn-sm btn-default" id="action_search_article" type="button">搜索</button>
+	                            </span>
+	                        </div>
+	                    </div>
+	                </header>
+	                <table class="table table-striped m-b-none datagrid" id="content_source_3">
+	                    <thead>
+	                    </thead>
+	                    <tfoot>
+	                        <tr>
+	                            <th class="row">
+	                                <div class="datagrid-footer-left col-sm-6 text-center-xs m-l-n" style="display:none;">
+	                                    <div class="grid-controls m-t-sm">
+	                                        <span>
+	                                            <span class="grid-start"></span> -
+	                                            <span class="grid-end"></span> （共
+	                                            <span class="grid-count"></span>）
+	                                        </span>
+	
+	                                        <div class="select grid-pagesize dropup" data-resize="auto">
+	                                            <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
+	                                                <span class="dropdown-label"></span>
+	                                                <span class="caret"></span>
+	                                            </button>
+	                                            <ul class="dropdown-menu">
+	                                                <li data-value="5"><a href="#">5</a></li>
+	                                                <li data-value="15" data-selected="true"><a href="#">15</a></li>
+	                                                <li data-value="20"><a href="#">20</a></li>
+	                                                <li data-value="50"><a href="#">50</a></li>
+	                                                <li data-value="100"><a href="#">100</a></li>
+	                                            </ul>
+	                                        </div>
+	                                        <span>/页</span>
+	                                    </div>
+	                                </div>
+	
+	                                <div class="datagrid-footer-right col-sm-6 text-right text-center-xs"
+	                                     style="display:none;">
+	                                    <div class="grid-pager m-r-n">
+	                                        <button type="button" class="btn btn-sm btn-default grid-prevpage"><i class="fa fa-chevron-left"></i></button>
+	                                        <!--<span>页</span>-->
+	                                        <div class="inline">
+	                                            <div class="input-group dropdown combobox">
+	                                                <input class="input-sm form-control" type="text">
+	                                                <div class="input-group-btn dropup">
+	                                                    <button class="btn btn-sm btn-default" data-toggle="dropdown"><i class="caret"></i></button>
+	                                                    <ul class="dropdown-menu pull-right"></ul>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                        <span>/ <span class="grid-pages"></span></span>
+	                                        <button type="button" class="btn btn-sm btn-default grid-nextpage"><i class="fa fa-chevron-right"></i></button>
+	                                    </div>
+	                                </div>
+	                            </th>
+	                        </tr>
+	                    </tfoot>
+	                </table>
+	            </section>
+	        </div>
+	    </div>
+    </div>
+                    
+</section>

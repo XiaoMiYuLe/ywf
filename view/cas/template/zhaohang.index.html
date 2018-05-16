@@ -1,0 +1,30 @@
+{$wrapper_prefix_center|default}
+
+<script src="/static/ywf/webjs/yhbk/pay.js" type="text/javascript"></script>
+<script>$("head>title").html("签约成功")</script>
+
+<!--中间：内容-->
+<div class="container_content" >
+    <!--我的账户-->
+    <div class="top" style="min-height:664px">
+        <div class="one">
+            <div class="blue-line"></div>
+            <span class="title">提示</span>
+        </div>
+        <div class="two_tip">
+            <div class="img_tip"></div>
+            {if $data.status==0}
+            <p>签约成功!</p>
+            {else}
+            	<p>{$data.error}</p>
+            {/if}
+            <p>
+                <a href="/cas/user/index">返回个人中心</a>
+            </p>
+        </div>
+    </div>
+</div>
+</div>
+<input name="phone" type="text" value="{$data.data.phone}">
+<input name="order_no" type="text" value="{$data.data.order_no}">
+{$wrapper_suffix_center|default}

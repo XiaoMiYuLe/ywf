@@ -1,0 +1,72 @@
+{$wrapper_prefix|default}
+
+<!-- sortable -->
+<script src="{$_STATIC_CDN}/scripts/sortable/jquery.sortable.js" type="text/javascript"></script>
+<script type="text/javascript">
+var category_id = '{$category_id}';
+</script>
+
+<script src="{$_STATIC_URL}/goods/admin/js/category.bindvirtual.js"></script>
+
+<section class="hbox stretch">
+    <aside class="bg-white b-r">
+        <section class="vbox">
+            <header class="header bg-white b-b clearfix">
+                <div class="row m-t-sm">
+                    <p class="h4 col-sm-2">虚拟分类管理</p>
+                </div>
+            </header>
+            
+            <section class="scrollable wrapper w-f">
+                <form class="form-horizontal" id="edit_form" action="/goodsadmin/category/bindVirtual" method="post">
+                    <div class="form-group">
+                        <label for="label_name" class="col-sm-2 control-label">分类名称</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{$category.category_name}</p>
+                        </div>
+                    </div>
+                    <div class="line line-dashed line-lg pull-in"></div>
+                    
+                    <div class="edit-map" id="edit_virtual">
+                        <section class="panel panel-default">
+                            <table class="table table-striped m-b-none datagrid" id="virtual_listing">
+                                <thead>
+                                </thead>
+                            </table>
+                        </section>
+                    </div>
+                    <input type="hidden" name="category_id" value="{$category_id}" />
+                    <input type="hidden" name="virtual_str" value="{$virtual_str}" />
+                </form>
+            </section>
+            
+            <footer class="footer b-t bg-white-only">
+                <div class="m-t-sm">
+                    <button type="button" id="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存</button>
+                    <button type="button" id="submit_cancel" class="btn btn-danger btn-sm input-submit">取消</button>
+                    <span id="edit_notice"></span>
+                </div>
+            </footer>
+        </section>
+    </aside>
+    
+    <aside class="bg-light lter aside-md" id="selected_virtual">
+        <section class="vbox">
+            <header class="b-b header"><p class="h4">已选<font class="text-sm">（可拖拽排序）</font></p></header>
+            <section class="scrollable w-f">
+                <ul class="nav nav-stacked list-group gutter list-group-lg list-group-sp sortable">
+                    {foreach from=$properties item=v}
+                    <li class="b-b m-t-none-reset" id="li_virtual_{$v.category_id}" virtual_id="{$v.category_id}" data-alias="{$v.alias}" data-url="{$v.url}" data-type="p" draggable="true">
+                        <a href="javascript:;">
+                            <i title="移除该虚拟分类" class="fa fa-times pull-right m-t-xs fa-remove-virtual"></i>
+                            <i class="fa fa-fw fa-ellipsis-v"></i><font class="virtual-name">{$v.alias}</font>
+                        </a>
+                    </li>
+                    {/foreach}
+                </ul>
+            </section>
+        </section>
+    </aside>
+</section>
+
+{$wrapper_suffix|default}

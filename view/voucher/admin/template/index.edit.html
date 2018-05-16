@@ -1,0 +1,73 @@
+{$wrapper_prefix|default}
+
+<!-- Datepicker -->
+<link href="{$_STATIC_URL}/scripts/datepicker/css/datepicker3.css" rel="stylesheet" type="text/css"/>
+<script src="{$_STATIC_URL}/scripts/datepicker/js/bootstrap-datepicker.js"></script>
+<script src="{$_STATIC_URL}/scripts/datepicker/js/locales/bootstrap-datepicker.zh-CN.time.js" charset="UTF-8"></script>
+
+<script src="{$_STATIC_URL}/voucher/admin/js/index.edit.js"></script>
+
+<section class="hbox stretch">
+    <aside class="aside-md bg-white b-r">
+        <section class="vbox">
+            <header class="b-b header">
+                <p class="h4">{if $content}编辑代金券{else}添加代金券{/if}</p>
+            </header>
+                
+            <section class="scrollable wrapper w-f">
+                <form class="form-horizontal" id="edit_form" action="/voucheradmin/index/add" method="post" enctype="multipart/form-data">
+                    <div class="line line-dashed line pull-in"></div>
+                    
+                    <div class="form-group">
+                        <label for="voucher_money" class="col-sm-2 control-label"><font class="red">* </font>代金券金额</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="voucher_money" name="voucher_money" value="{$content.voucher_money}" placeholder="请输入代金券金额" />
+                        </div>
+                    </div>
+                    <div class="line line-dashed line pull-in"></div>
+                    <div class="form-group">
+                        <label for="use_money" class="col-sm-2 control-label"><font class="red">* </font>满多少使用</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="use_money" name="use_money" value="{$content.use_money}" placeholder="请输入满多少使用" />
+                        </div>
+                    </div>
+                    <div class="line line-dashed line pull-in"></div>
+                    <div class="form-group">
+                        <label for="valid_data" class="col-sm-2 control-label"><font class="red">* </font>有效时间</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="valid_data" name="valid_data" value="{$content.valid_data}" placeholder="请输入有效天数" />
+                        </div>
+                    </div>                    
+                    <div class="line line-dashed line pull-in"></div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">状态</label>
+                        <div class="col-sm-4">
+                            <label class="checkbox-inline p-left-0">
+                                <input type="radio" name="disabled" value="1" {if $content.disabled == '1'}checked="checked"{else}checked="checked" {/if}/>&nbsp;未失效
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="radio" name="disabled" value="2" {if $content.disabled == '2'}checked="checked"{/if} />&nbsp;失效
+                            </label>
+                        </div>
+                    </div>
+                
+                    <input type="hidden" name="voucher_id" id="voucher_id" value="{$content.voucher_id}" />
+                </form>
+            </section>
+            
+            <footer class="footer b-t bg-white-only">
+                <div class="m-t-sm">
+                    <button type="button" id="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存</button>
+                    {if ! $voucher_id}<button type="button" id="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">保存并继续添加</button>{/if}
+                    <button type="button" id="submit_cancel" class="btn btn-danger btn-sm input-submit">取消</button>
+                    <span id="edit_notice"></span>
+                </div>
+            </footer>
+        </section>
+    </aside>
+</section>
+
+<script src="{$_STATIC_CDN}/scripts/file-input/bootstrap-filestyle.min.js"></script>
+
+{$wrapper_suffix|default}

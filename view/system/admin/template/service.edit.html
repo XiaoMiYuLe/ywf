@@ -1,0 +1,85 @@
+{$wrapper_prefix|default}
+
+<!-- Datepicker -->
+<link href="{$_STATIC_URL}/scripts/datepicker/css/datepicker3.css" rel="stylesheet" type="text/css"/>
+<script src="{$_STATIC_URL}/scripts/datepicker/js/bootstrap-datepicker.js"></script>
+<script src="{$_STATIC_URL}/scripts/datepicker/js/locales/bootstrap-datepicker.zh-CN.time.js" charset="UTF-8"></script>
+
+<script src="{$_STATIC_URL}/cas/js/casvalidator.js" type="text/javascript"></script>
+<script src="{$_STATIC_URL}/article/admin/js/service.edit.js" type="text/javascript"></script>
+<script src="{$_STATIC_CDN}/scripts/ckeditor/4.4.1/ckeditor.js" type="text/javascript"></script>
+<section class="hbox stretch">
+    <aside class="aside-md bg-white b-r">
+        <section class="vbox">
+            <header class="b-b header">
+                <p class="h4">{if $content}编辑售后服务{else}添加售后服务{/if}</p>
+                <input type="hidden" name="username_edit" id="username_edit" value="{$user_info.username}" />
+            </header>
+                
+            <section class="scrollable wrapper w-f">
+                <form class="form-horizontal" id="edit_form" action="/articleadmin/index/servicesaleadd" method="post">
+				    <div class="form-group">
+				    	<label class="col-sm-2 control-label">服务类型:</label>
+                        <select name="cat_id" class="input-sm form-control inline col-def-3 col-sm-4">
+                             <option value="0">请选择</option>
+                             {foreach from=$category item=v}
+                             <option value="{$v.cat_id}" {if $content.cat_id==$v.cat_id}selected{/if}>{$v.cat_name}</option>
+                             {/foreach}
+                        </select>
+                        <label class="col-sm-2 control-label">服务性质:</label>
+                        {if $content.ser_sale_type}
+                        <div class="col-sm-4">
+                            <label class="checkbox-inline p-left-0">
+                                <input type="checkbox" name="service_sale_type[]"  value="1" {if $content.ser_sale_type == 1}checked{/if}/>&nbsp;新机
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="service_sale_type[]"  value="2"  {if $content.ser_sale_type == 2}checked{/if}/>&nbsp;二手
+                            </label>
+                        </div>
+                        {else}
+                        <div class="col-sm-4">
+                            <label class="checkbox-inline p-left-0">
+                                <input type="checkbox" name="service_sale_type[]"  value="1" checked/>&nbsp;新机
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="service_sale_type[]"  value="2"checked/>&nbsp;二手
+                            </label>
+                        </div>
+                        {/if}
+                    </div>
+				    <div class="line line-dashed line-sm pull-in"> </div>
+				    <div class="col-sm-12">
+					       <textarea name="ser_sale_detail" id="editor1" rows="10" class="form-control fck-editor">{$content.ser_sale_detail}</textarea>
+					</div>
+                    <input type="hidden" id="ser_sale_id"  name="ser_sale_id" value="{$content.ser_sale_id}" />
+                </form>
+            </section>
+            
+            <footer class="footer b-t bg-white-only">
+                <div class="m-t-sm">
+                    <button type="button" data_submit_type="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存</button>
+                    <button type="button" data_submit_type="submit_cancel" class="btn btn-danger btn-sm input-submit">取消</button>
+                    <span id="edit_notice"></span>
+                </div>
+            </footer>
+        </section>
+    </aside>
+</section>
+<script type="text/javascript">
+    var ckeditor1;
+    
+    var config = {
+            extraPlugins: 'codesnippet',
+            codeSnippet_theme: 'monokai_sublime',
+            height: 500
+        };
+    
+    if (typeof CKEDITOR == 'object') {
+        if (CKEDITOR.instances['editor1']) {
+            CKEDITOR.remove(CKEDITOR.instances['editor1']);
+        }
+        ckeditor1 = CKEDITOR.replace('editor1', config);
+    }
+    
+</script>
+{$wrapper_suffix|default}

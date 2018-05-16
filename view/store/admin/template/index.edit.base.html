@@ -1,0 +1,135 @@
+
+<section class="edit-map wrapper" id="edit_base">
+    
+	<div class="form-group m-b-xs">
+		<label class="col-sm-2 control-label"><font class="red">* </font>签约开始时间</label>
+		<div class="col-sm-10">
+			<input id="signing_time_start" name="signing_time_start" class="input-sm input-s datepicker-input form-control" type="text" 
+			        data-date-format="yyyy-mm-dd" value="{$store.signing_time_start|truncate:10:'':true}" />
+		</div>
+	</div>
+	<div class="line line-dashed line-sm pull-in"></div>
+
+	<div class="form-group m-b-xs">
+		<label class="col-sm-2 control-label"><font class="red">* </font>签约结束时间</label>
+		<div class="col-sm-10">
+			<input id="signing_time_end" name="signing_time_end" class="input-sm input-s datepicker-input form-control" type="text" 
+			        data-date-format="yyyy-mm-dd" value="{$store.signing_time_end|truncate:10:'':true}" />
+		</div>
+	</div>
+	<div class="line line-dashed line-sm pull-in"></div>
+
+	<div class="form-group m-b-xs">
+		<label for="company_name" class="col-sm-2 control-label"><font class="red">* </font>公司名称</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" id="company_name" name="company_name" value="{$store.company_name}" placeholder="请输入公司名称" />
+		    <input type="hidden" name="company_name_edit" id="company_name_edit" value="{$store.company_name}" />
+		</div>
+	</div>
+	<div class="line line-dashed line-sm pull-in"></div>
+
+	<div class="form-group m-b-xs">
+		<label class="col-sm-2 control-label">所在地区</label>
+		<div class="col-sm-8">
+		    <select data-init="3743" data-selected="{$store.region_hid_arr.2}" class="input-sm form-control inline col-def-3 region">
+                <option value="0">请选择</option>
+            </select>
+		    <select data-init="{$store.region_hid_arr.2}" data-selected="{$store.region_hid_arr.3}" class="input-sm form-control inline col-def-3 region">
+                <option value="0">请选择</option>
+            </select>
+		    <select name="region_id" data-init="{$store.region_hid_arr.3}" data-selected="{$store.region_hid_arr.4}" class="input-sm form-control inline col-def-3 region">
+                <option value="0">请选择</option>
+            </select>
+		</div>
+	</div>
+	<div class="line line-dashed line-sm pull-in"></div>
+
+	<div class="form-group m-b-xs">
+		<label for="address" class="col-sm-2 control-label">详细地址</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" id="address" name="address" value="{$store.address}" placeholder="请输入店铺详细地址" />
+		</div>
+	</div>
+	<div class="line line-dashed line-sm pull-in"></div>
+
+	<div class="form-group m-b-xs">
+		<label for="legalp_name" class="col-sm-2 control-label">公司法人</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" id="legalp_name" name="legalp_name" value="{$store.legalp_name}" placeholder="请输入法人姓名" />
+		</div>
+	</div>
+	<div class="line line-dashed line-sm pull-in"></div>
+
+	<div class="form-group m-b-xs">
+		<label for="business_license" class="col-sm-2 control-label">营业执照号码</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" id="business_license" name="business_license" value="{$store.business_license}" placeholder="请输入公司营业执照号码" />
+		</div>
+	</div>
+	<div class="line line-dashed line-sm pull-in"></div>
+
+	<div class="form-group m-b-xs file-reset">
+		<label class="col-sm-2 control-label">营业执照图片</label>
+		<div class="col-sm-8">
+			<input type="file" name="business_image" id="business_image" class="filestyle" data-icon="false" data-buttonText="上传图片" data-classbutton="btn btn-default" data-classinput="form-control inline input-s" />
+			{if $store.business_image}
+            <a href="/uploads{$store.business_image}" class="thumb-sm" target="_blank"><img src="/uploads{$store.business_image}" /></a>
+            {/if}
+		</div>
+	</div>
+	<div class="line line-dashed line-sm pull-in"></div>
+
+	<div class="form-group m-b-xs">
+		<label for="business_categoryids" class="col-sm-2 control-label">主营业务</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" id="business_categoryids" name="business_categoryids" value="{$store.business_categoryids}" placeholder="请输入公司主营业务" />
+		</div>
+	</div>
+	<div class="line line-dashed line-sm pull-in"></div>
+
+	<div class="form-group m-b-xs">
+		<label for="tel" class="col-sm-2 control-label">公司电话</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" id="tel" name="tel" value="{$store.tel}" placeholder="请输入公司电话" />
+		</div>
+	</div>
+	<div class="line line-dashed line-sm pull-in"></div>
+
+	<div class="form-group m-b-xs">
+		<label for="fax" class="col-sm-2 control-label">公司传真</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" id="fax" name="fax" value="{$store.fax}" placeholder="请输入公司传真" />
+		</div>
+	</div>
+	<div class="line line-dashed line-sm pull-in"></div>
+
+	<div class="form-group m-b-xs">
+		<label for="email" class="col-sm-2 control-label">公司邮箱</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" id="email" name="email" value="{$store.email}" placeholder="请输入公司邮箱" />
+		</div>
+	</div>
+	<div class="line line-dashed line-sm pull-in"></div>
+	
+	<div class="form-group m-b-xs">
+        <label class="col-sm-2 control-label">是否审核</label>
+        <div class="col-sm-4">
+            <select name="is_verify" id="is_verify" class="form-control input-sm">
+                <option value="0" {if $store.is_verify eq 0}selected{/if}>待审核</option>
+                <option value="1" {if $store.is_verify eq 1}selected{/if}>通过审核</option>
+                <option value="-1" {if $store.is_verify eq -1}selected{/if}>拒绝审核</option>
+            </select>
+            <input type="hidden" name="is_verify_old" value="{$store.is_verify}" />
+        </div>
+    </div>
+    <div class="line line-dashed line-sm pull-in"></div>
+    
+    <div id="rejection_reason" class="form-group m-b-xs {if $store.is_verify neq -1}default-hidden{/if}">
+        <label for="rejection_reason" class="col-sm-2 control-label">拒绝审核原因</label>
+        <div class="col-sm-4">
+            <textarea name="rejection_reason" id="rejection_reason" rows="2" class="form-control" placeholder="请输入拒绝审核的原因">{$store.rejection_reason}</textarea>
+        </div>
+    </div>
+
+</section>
+            

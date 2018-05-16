@@ -1,0 +1,106 @@
+<!-- 头部结构开始-->
+<div class="nav_top_bg">
+    <div class="nav_top w1200">
+        <div class="nav_text fl">
+            <a href="">客服电话：400-1369-998</a>
+        </div>
+        <ul class="nav_top_left fl">
+            <li id="sj" style="position:relative;">
+                <a href="javascript:;">手机版</a>
+                <img id="sjshow" width="145" height="145" style="z-index: 99;position: absolute;top:30px;left:0;display: none;" src="/static/ywf/img/icon/app.jpg">
+            </li>
+
+            <li style="background: url({$_STATIC_CDN}/ywf/img/icon/weixin.png) left center no-repeat;position: relative;" id="wx">
+                <a href="javascript:;" id="wx">官方微信</a>
+                <img id="wxshow" width="145" height="145" style="z-index: 99;position: absolute;top:30px;left:0;display: none;" src="/static/ywf/img/icon/webchart.jpg">
+            </li>
+            <li  style="background: url({$_STATIC_CDN}/ywf/img/icon/help.png) left center no-repeat;">
+                <a href="javascript:;" onclick="location.href = '/page/help/index'">帮助中心</a>
+
+            </li>
+        </ul>
+        {if {$loggedInUser}}
+        <div class="nav_top_bg buy_nav"> 
+            <div class="nav_top_right buy_nav_top_right fr">
+                <a class="logo tel" href="/cas/user/index">{$loggedInUser['hidephone']}</a>
+
+                {if {$loggedInUser['is_validate'] ==1}}
+                <a class="ren" href="/cas/user/index">认证
+                    <span></span>
+                </a>
+                {else}
+
+                {/if}
+                <a class="regist tuichu" style="color: lightgray;" href="/cas/sign/out">退出</a>
+            </div>
+        </div>
+        {else}  
+        <div class="nav_top_right fr">
+            <a href="/cas/sign/in" class="logo">登录</a>
+            <a href="/cas/sign/up" class="regist">立即注册</a>
+        </div>
+        {/if}
+    </div>
+</div>
+
+<div class="nav_bg">
+    <div class="nav">
+        <a onclick="location.href = '/index/index'" href="javascript:;" class="logo">亿万福</a>
+        <ul>
+            <li onclick="location.href = '/index/index'"><a href="javascript:;" id="index" class="current">首页</a></li>
+            <li onclick="location.href = '/goods/goods/index'"><a href="javascript:;" id="goods">理财产品</a></li>
+            <li><a href="javascript:;" onclick="location.href = '/page/newbies/index'" id="newbies">新手指南</a></li>
+            <li><a href="javascript:;" onclick="location.href = '/page/guarantee/index'" id="guarantee">安全保障</a></li>
+            <li><a href="javascript:;" onclick="location.href = '/page/index/index'" id="aboutus">关于我们</a></li>
+            <li onclick="location.href = '/cas/user/index'"><a href="javascript:;" id="mycount1">我的账户</a></li>
+        </ul>
+    </div>
+</div>
+{literal}
+<script>
+    $('#sj').mouseover(function(){
+       $('#sjshow').show();
+    });
+    $("#sj").mouseout(function(){
+        $("#sjshow").hide();
+    });
+    $('#wx').mouseover(function(){
+       $('#wxshow').show();
+    });
+    $('#wx').mouseout(function(){
+       $('#wxshow').hide();
+    });
+    
+</script>
+{/literal}
+
+
+{literal}
+<script>
+    $(document).ready(function () {
+        var pathname = window.location.pathname;
+
+        switch (pathname) {
+            case '/index/index':
+                $("#index").css('border-bottom', '3px solid #2197d7').css('color', '#2197d7');
+                break;
+            case '/goods/goods/index':
+                $("#goods").css('border-bottom', '3px solid #2197d7').css('color', '#2197d7');
+                break;
+            case '/page/newbies/index':
+                $("#newbies").css('border-bottom', '3px solid #2197d7').css('color', '#2197d7');
+                break;
+            case '/page/guarantee/index':
+                $("#guarantee").css('border-bottom', '3px solid #2197d7').css('color', '#2197d7');
+                break;
+            case '/page/index/index':
+                $("#aboutus").css('border-bottom', '3px solid #2197d7').css('color', '#2197d7');
+                break;
+            case '/cas/user/index':
+                $("#mycount1").css('border-bottom', '3px solid #2197d7').css('color', '#2197d7');
+                break;
+        }
+    });
+</script>
+{/literal}
+<!-- 头部结构结束-->

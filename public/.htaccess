@@ -1,0 +1,18 @@
+#SetEnv APPLICATION_ENV development
+
+RewriteEngine On
+RewriteBase /
+
+# 静态资源
+RewriteCond %{REQUEST_URI}  ^/static/(.*) 
+RewriteRule ^.*$ - [NC,L]
+
+# VPS 别名访问(样例)
+#RewriteCond %{REQUEST_URI}  ^/vps/(.*) 
+#RewriteRule ^vps/(.*)$      vps.php/$1 [L]
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L]

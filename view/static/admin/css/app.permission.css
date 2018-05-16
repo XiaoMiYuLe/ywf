@@ -1,0 +1,11 @@
+/* button 淡蓝色 */
+a.button-style-a{padding:3px 0 2px; text-align:center; background-position:0 -221px;} 
+a.button-style-a:hover{background-position:0 -241px;}
+a.button-style-a em.l{background-color:#BED1D8}
+a.button-style-a em.r{background-color:#BED1D8}
+a.button-style-a:hover em.l{background-color:#89ABB8}
+a.button-style-a:hover em.r{background-color:#89ABB8}
+
+/* .main-top .list-set */
+.list-set {position:absolute; top:10px; left:0; width:108px;}
+.list-set a.button-style-a{width:87px;}

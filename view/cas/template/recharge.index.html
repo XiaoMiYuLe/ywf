@@ -1,0 +1,81 @@
+{$wrapper_prefix_center|default}
+
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/tab.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/cas/myAlert.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/recharge/recharge.js"></script>
+<script>$("head>title").html("充值");</script>
+
+
+<!--中间：内容-->
+<div class="container_content" >
+    <!--我的账户-->
+    <div class="top" style="min-height:786px">
+        <div class="one">
+            <div class="blue-line"></div>
+            <span class="title">充值</span>
+        </div>
+        <div class="two_recharge" >
+            <p class="ye">账户余额<span>{$asset}元</span></p> 
+            <div class="pay">
+                <label>充值方式：</label>
+                <span class="cur">
+                    <img src="/static/ywf/img/pay2.png" alt=""/>
+                    <i></i>
+                </span>
+                <span>
+                    <img src="/static/ywf/img/pay1.png" alt="" onclick="location = '/cas/recharge/internetbank'"/>
+                </span>
+            </div>
+
+
+            <div class="money_input" style="height:50px;padding-top: 20px;">
+                <label style="float:left;margin-top:10px;">投资账户：</label>
+                {if {$card.bank_name}}
+                <div class="yinghang" style="float:left;">
+                    <ul>
+                        <li>
+                            <i style="padding-left: 0px;"><img src="{$card.link}" alt=""/></i>
+                            <span>{$card.bank_name}</span>
+                            <strong style="color:#333;">尾号{$card.bank_no}</strong> 
+                        </li>
+                        <li >
+                            |    <strong>{$card.quota}</strong>
+                        </li>
+                    </ul>
+                </div>
+                {else}
+                <a href="/cas/bank/addbank"><span id="wbk" style="color:red;">未绑卡</span></a>
+                {/if}
+            </div> 
+
+
+            <div class="money_input">
+                <label>手机号码：</label>
+                <span>{$loggedInUser.hidephone}</span>
+            </div>
+            <div class="money_input">
+                <label>充值金额：</label>
+                <input type="text" vlaue="" id="money"  placeholder="100元起"/>
+            </div>
+            <div class="yzm">
+                <label >验证码：</label>
+                <input type="text" vlaue="" id="check_code" class="" placeholder="请输入验证码"/>
+                <button class="getyzm_btn" id="code">获取验证码</button>
+            </div>
+            <button class="cz_btn" id="button1">充值</button>
+            <input type="hidden" value="" id="order">
+            <div class="text">
+                <p>温馨提示</p>
+                <p>1、单笔最小充值金额为2元，最大充值金额为100万。</p>
+                <p>2、您需开通网上银行才能进行在线充值，如果您还没有开通网上银行，请致电所属银行客服电话询问开通流程。</p>
+                <p>3、不同银行对线上支付均有不同的限额规定，如支付超过限额，请致电银行客服申请提高额度再来充值。</p>
+                <p>各大银行的限额表您可查看： 《银行线上支付限额表》</p>
+                <p>4、根据国家法规的规定，不受理各类信用卡的充值申请。</p>
+                <p>5、充值中如果遇到任何问题，您也可点击右侧的在线客服寻求帮助。</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{$wrapper_suffix_center|default}

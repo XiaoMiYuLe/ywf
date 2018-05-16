@@ -1,0 +1,107 @@
+{$wrapper_prefix|default}
+
+<script src="{$_STATIC_URL}/admin/js/cache.index.js" type="text/javascript"></script>
+
+<section class="hbox stretch">
+    <aside class="aside-md bg-white b-r">
+        <section class="vbox">
+            <header class="b-b header">
+                <p class="h4">缓存清理</p>
+            </header>
+            
+            <section class="scrollable wrapper w-f">
+                <form class="form-horizontal" id="edit_form" action="/admin/cache/cleanSingle" method="post">
+                    <div class="form-group">
+                        <label for="appkey" class="col-sm-2 control-label">清理路由缓存</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">
+                                清理路由缓存之后，请到基础配置工具页面重新生成路由，否则很多页面将无法正常访问。<br />
+                                基础配置工具地址：<a href="{$_STORE_URL}/setting.php" target="_blank">{$_STORE_URL}/setting.php</a>
+                            </p>
+                        </div>
+                        <div class="col-sm-2 pull-right">
+                            <button type="button" id="clean_cache_router" ct="router" class="btn btn-s-md btn-primary btn-sm input-submit">清理</button>
+                        </div>
+                    </div>
+                    <div class="line line-dashed line-lg pull-in"></div>
+                        
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">清理 Smarty 缓存</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">清理 smarty 生成的静态文件缓存。位置：/data/template_c</p>
+                        </div>
+                        <div class="col-sm-2 pull-right">
+                            <button type="button" id="clean_cache_smarty" ct="smarty" class="btn btn-s-md btn-warning btn-sm input-submit">清理</button>
+                        </div>
+                    </div>
+                    <div class="line line-dashed line-lg pull-in"></div>
+                        
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">清理文件缓存</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">可能有些缓存是以文件形式进行存储，将在这里进行清除。位置：/data/tmp</p>
+                        </div>
+                        <div class="col-sm-2 pull-right">
+                            <button type="button" id="clean_cache_file" ct="file" class="btn btn-s-md btn-primary btn-sm input-submit">清理</button>
+                        </div>
+                    </div>
+                    <div class="line line-dashed line-lg pull-in"></div>
+                        
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">清理 Cookie</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">仅清理根目录下的 Cookie，其他分目录下的 Cookie 请手动清除</p>
+                        </div>
+                        <div class="col-sm-2 pull-right">
+                            <button type="button" id="clean_cache_cookie" ct="cookie" class="btn btn-s-md btn-warning btn-sm input-submit">清理</button>
+                        </div>
+                    </div>
+                    <div class="line line-dashed line-lg pull-in"></div>
+                        
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">清理 Session</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">清理 Session 将会导致退出登录，请慎用</p>
+                        </div>
+                        <div class="col-sm-2 pull-right">
+                            <button type="button" id="clean_cache_session" ct="session" class="btn btn-s-md btn-primary btn-sm input-submit">清理</button>
+                        </div>
+                    </div>
+                    <div class="line line-dashed line-lg pull-in"></div>
+                        
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">清理 Redis</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">将清空当前所使用的 Redis 数据库，若有重要数据尚未持久化，请先处理之后再清除，以防数据丢失</p>
+                        </div>
+                        <div class="col-sm-2 pull-right">
+                            <button type="button" id="clean_cache_redis" ct="redis" class="btn btn-s-md btn-warning btn-sm input-submit">清理</button>
+                        </div>
+                    </div>
+                    <div class="line line-dashed line-lg pull-in"></div>
+                        
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">清理 Memcache/Memcached</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">将清空所有存放在 Memcache/Memcached 中的数据，请确认之后再清除，以防数据丢失</p>
+                        </div>
+                        <div class="col-sm-2 pull-right">
+                            <button type="button" id="clean_cache_memcache" ct="memcache" class="btn btn-s-md btn-primary btn-sm input-submit">清理</button>
+                        </div>
+                    </div>
+                    
+                    <input type="hidden" name="target" value="router" />
+                </form>
+            </section>
+            
+            <footer class="footer b-t bg-white-only">
+                <div class="m-t-sm">
+                    <button type="button" id="submit_save_clean_cache_all" ct="all" class="btn btn-s-md btn-primary btn-sm input-submit">一键清理所有</button>
+                    <span id="edit_notice"></span>
+                </div>
+            </footer>
+        </section>
+    </aside>
+</section>
+
+{$wrapper_suffix|default}

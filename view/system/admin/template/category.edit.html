@@ -1,0 +1,83 @@
+{$wrapper_prefix|default}
+
+<script src="{$_STATIC_URL}/article/admin/js/category.edit.js"></script>
+
+<!-- modal - 编辑分类 -->
+<div class="modal-dialog" id="modal_content">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="modal_title">{if $category}编辑分类{else}添加分类{/if}</h4>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" action="/articleadmin/category/add" method="post" id="edit_form">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">父级分类</label>
+                    <div class="col-sm-6">
+	                    <select name="parent_id" id="parent_id" class="form-control">
+                            <option value="0">
+                                {if $category && $category.parent_name}{$category.parent_name} [ID:{$category.parent_id}]
+                                {else}Root Category [ID:0]{/if}
+                            </option>
+                            {foreach from=$categories item=v}
+                            <option value="{$v.category_id}" {if $v.category_id == $category.parent_id}selected{/if}>{$v.str_padding}{$v.title}</option>
+                            {/foreach}
+                        </select>
+	                </div>
+	                <div class="col-sm-3">
+	                    <button type="button" name="resetParentCategory" id="resetParentCategory" class="btn btn-sm input-submit">设置为根分类</button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="title" class="col-sm-3 control-label"><font class="red">*</font>分类名</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="title" name="title" value="{$category.title}" placeholder="请输入分类名称" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sort_order" class="col-sm-3 control-label">序号</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="sort_order" name="sort_order" value="{if $category}{$category.sort_order}{else}255{/if}" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description" class="col-sm-3 control-label">描述</label>
+                    <div class="col-sm-6">
+                        <textarea rows="2" class="form-control" id="description" name="description" placeholder="您可以在这里对该分类进行简要描述">{$category.description}</textarea>
+                    </div>
+                </div>
+                
+                <input type="hidden" name="category_id" value="{$category.category_id}" />
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存并返回列表管理</button>
+            {if ! $category}<button type="button" id="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">保存并继续添加</button>{/if}
+            <button type="button" id="submit_cancel" class="btn btn-danger btn-sm input-submit" data-dismiss="modal">取消</button>
+            <span id="edit_notice"></span>
+        </div>
+    </div>
+</div>
+<!-- / modal - 编辑分类 -->
+
+<!-- {literal} -->
+<script type="text/javascript">
+    /* 重置父分类 */
+    $("#resetParentCategory").click(function() {
+        $('#parentCategoryId').val("0");
+        $('#parent_id').get(0).selectedIndex = 0;
+        
+        // 若是修改，点击选择后，判断其是否转移分类，并标记
+        if ($("#category_id").val() > 0 && 0 != $("#oldParentCategoryId").val()) {
+            $("#updateChangeCat").val("1");
+        } else {
+            $("#updateChangeCat").val("0");
+        }
+    });
+</script>
+<!-- {/literal} -->
+
+{$wrapper_suffix|default}

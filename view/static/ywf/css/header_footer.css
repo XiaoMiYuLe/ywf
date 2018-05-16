@@ -1,0 +1,227 @@
+
+/*头样式开始*/
+.w1200{
+  width: 1200px;
+  margin: 0 auto;
+}
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+.nav_top_bg{
+  width:100%;
+  background:#1d1b28; 
+}
+.nav_top{
+  height: 30px;
+  margin: 0 auto;
+}
+.nav_top .nav_text  a{
+	color: #999999;
+	line-height: 30px;
+	height: 30px;
+	margin-right: 20px;
+}
+
+.nav_top .nav_top_left li{
+	width: 80px;
+  float: left;
+  height: 30px;
+  padding-left: 20px;
+  background: url(/static/ywf/img/icon/phone.png) left center no-repeat;
+  margin-right: 15px;
+}
+.nav_top .nav_top_left li:nth-child(1){
+	margin-right: 0px;
+}
+.nav_top .nav_top_left li a{
+  color: #999999;
+  height: 30px;
+  line-height: 30px;
+  display:block; 
+}
+
+.nav_top .nav_top_left li span{
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: 5px;	
+  background: url(/static/ywf/img/icon/down.png) right center no-repeat;
+}
+
+.nav_top .nav_top_right  a{
+  display: block;
+  width: 72px;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  float: left;
+  color: #ccc;
+}
+.nav_top .nav_top_right  .regist{
+  background-color: #ff721d;
+  color: #fff;
+  width: 90px;
+}
+.nav_bg{
+	width: 100%;
+	background: #fff;
+}
+.nav{
+	height: 80px;
+	width: 1200px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.nav .logo{
+	width: 315px;
+	display: block;
+  height: 46px;
+  background: url(/static/ywf/img/icon/logo.png) center center no-repeat;
+  background-size: 100% 100%;
+  text-indent: -999em;
+  outline: 0;
+  margin-top: 20px;
+  margin-right: 180px;
+  float: left;
+}
+
+.nav ul{
+  overflow: hidden;
+  float: right;
+}
+.nav ul li{
+  width: 94px;
+  float: left;  
+  height: 80px;
+  margin-right: 20px;
+}
+.nav ul li:last-child{
+	padding-left: 20px;
+	background: url(/static/ywf/img/icon/line.png) 18px center no-repeat;
+	text-align: left;
+	margin-right: 0px;
+}
+.nav ul li a.current{
+  color: #2197d7;
+  border-bottom: 3px solid #2197d7;
+}
+.nav ul li a:hover{
+  color: #2197d7;
+  border-bottom: 3px solid #2197d7;
+}
+.nav ul li a{
+ display: block;
+ width: 94px;
+ text-align: center;
+ height: 50px;
+ line-height: 50px;
+ color: #1d1b28;
+ margin-top: 15px;
+}
+/*头样式结束*/
+
+
+/*底部样式开始*/
+.foot_bg{
+  width: 100%;
+  background: #1d1b28;
+}
+.foot{
+  
+}
+.foot_content{
+  width: 1200px;
+  height: 300px;
+  margin: 0 auto;
+} 
+.foot_content .foot_list{
+  width: 174px;
+  float: left;
+  padding-top: 30px;
+}
+.foot_content .foot_list3{
+  width: 132px;
+}
+.foot_content .foot_list h2{
+  color: #999999;
+  font-size: 16px;
+  line-height: 32px;
+  font-weight: 400;
+}
+
+.foot_content .foot_list  li{
+  line-height: 32px;
+  font-size: 14px;
+}
+
+.foot_content .foot_list  li a{
+ color: #999999;
+}
+.foot_content  .foot_weixin,.foot_content  .foot_app{
+  width: 140px;
+  margin-right: 55px
+}
+.foot_content  .foot_weixin img,.foot_content  .foot_app img{
+  display: block;
+  width: 140px;
+  height: 140px;
+  margin-bottom: 10px;
+}
+.foot_content  .foot_weixin p,.foot_content  .foot_app p{
+ text-align: center;
+  font-size: 16px;
+  line-height: 20px;
+  color: #999999;
+}
+.foot_content .line{
+  width: 60px;
+  margin-top: 56px;
+  height: 130px;
+  float: left;
+  background: url(/static/ywf/img/icon/line2.png)  left center no-repeat;
+}
+.foot_content .line2{
+  width: 2px;
+  background: url(/static/ywf/img/icon/line2.png)  left center no-repeat;
+}
+.foot_content  .foot_last{
+  padding: 24px 0 0 50px;
+}
+.foot_content  .foot_last h2{
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.foot_content  .foot_last p{
+  height: 50px;
+  width: 188px;
+  line-height: 50px;
+  font-size: 26px;
+  padding-left: 37px;
+  color: #fff;
+  background: url(/static/ywf/img/icon/phone2.png) left center no-repeat;
+
+}
+.foot_content  .foot_last span{
+  color: #999999;
+  line-height: 35px;
+  display: block;
+} 
+.bottom_bg{
+  width: 100%;
+  border-top: 1px solid #3f3d46;
+}
+.bottom p{
+  width: 600px;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+  margin: 0 auto;
+  color: #999999;
+  font-size: 14px;
+}
+/*底部样式结束*/
+

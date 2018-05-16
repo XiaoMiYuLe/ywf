@@ -1,0 +1,67 @@
+{$wrapper_prefix_center|default}
+
+
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/tab.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/go_top.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/alert.js"></script>
+<!-- 弹框 js-->
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/cas/myAlert.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/cas/cash.index.js"></script>
+
+<script>$("head>title").html("提现");</script>
+<!--中间：内容-->
+<div class="container_content" >
+    <!--我的账户-->
+    <div class="top" style="min-height:665px">
+        <div class="one">
+            <div class="blue-line"></div>
+            <span class="title">提现</span>
+        </div>
+        <div class="two_recharge" >
+            <p class="ye2">账户余额<span>{$balance['asset']}元</span></p> 
+            <div class="money_input">
+                <label>提现至银行卡：</label>
+                {if {$bank['bank_name']}}
+                <span>{$bank['bank_name']}&nbsp;&nbsp;&nbsp;&nbsp;尾号 {$bank['bank_no']} </span>
+                {else}
+                <span>未绑卡 </span>
+                {/if}
+                <i class="zs_icon"></i>
+            </div>
+            <div class="money_input" id="tx_money">
+                <label>提现金额：</label>
+                <input type="text" vlaue="" id="tixian" placeholder="请输入提现金额"/>
+            </div>
+            <div class="money_input" id="sxf">
+                <label>手续费：</label>
+                <span>{if {$number['number']} == 0}{2}{else}{0}{/if}.00元</span>
+            </div>
+            <div class="money_input" id="pay_password">
+                <label>交易密码：</label>
+                <input type="password" maxlength="6" minlength="6" id="password" vlaue="" placeholder="请输入交易密码"/>
+                <a href="/cas/resetpassword/forgotPaypwd">忘记密码？</a>
+            </div>
+            <button class="cz_btn form-submit" id="tz_btn">提现</button>
+            <div class="text" id="tx_text">
+                <p>温馨提示</p>
+                <p>1、每月免费提现2次，超过2次每笔收2元手续费；</p>
+                <p>2、提现单笔2万（含）以下预计3小时内到账；</p>
+                <p>3、提现单笔2万以上，下一工作日16：00前到账；</p>
+            </div>
+            <input type="hidden" value="{$balance['asset']}" id="asset"/>
+            <input type="hidden" value="{$balance['bank_status']}" id="bank_status"/>
+            <input type="hidden" value="{$balance['status']}" id="status"/>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--回到顶部开始-->
+<div class="sidebar_nav">
+    <a href="" class="gotop"><span>回顶部</span></a>
+    <a href="" class="kefu"><span>客服</span></a>
+    <a href="" class="app"><span>手机APP</span></a>
+</div>
+<!--回到顶部结束-->
+
+{$wrapper_suffix_center|default}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Expires" CONTENT="-1">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <link rel="stylesheet" href="{$_STATIC_URL}/promotion/css/reset.css">
+    <link rel="stylesheet" href="{$_STATIC_URL}/promotion/css/style.css">
+    <title>品牌墙</title>
+</head>
+<body>
+    <header>
+        <a href="#" class="back"></a>
+        <span>品牌墙</span>
+        <a href="#" class="find">筛选</a>
+    </header>
+    {foreach from=$brands item=v}
+    <a href="#{$v.brand_id}">
+    <div class="item">
+    	<img src="{$v.brand_logo}" alt="">
+    	<h1>{$v.brand_name}<span>{$v.brand_desc}</span></h1>
+    </div>
+    </a>
+    {/foreach}
+</body>
+
+</html>

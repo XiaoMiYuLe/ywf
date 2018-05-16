@@ -1,0 +1,29 @@
+
+<section class="edit-map wrapper default-hidden" id="edit_meta">
+    <div class="form-group m-b-xs">
+        <label for="meta_title" class="col-sm-2 control-label">商品页面标题</label>
+        <div class="col-sm-6">
+            <textarea name="meta_title" id="meta_title" rows="2" class="form-control" placeholder="请输入商品页面标题">{$content.meta_title}</textarea>
+            <span class="help-block m-b-none">留空则默认显示商品名称</span>
+        </div>
+    </div>
+    <div class="line line-dashed line-sm pull-in"></div>
+    
+    <div class="form-group m-b-xs">
+        <label for="meta_keywords" class="col-sm-2 control-label">META_KEYWORDS<br />(页面关键词)</label>
+        <div class="col-sm-6">
+            <textarea name="meta_keywords" id="meta_keywords" rows="2" class="form-control" placeholder="请输入页面关键词">{$content.meta_keywords}</textarea>
+            <span class="help-block m-b-none">留空则默认继承分类或全局设置的KEYWORDS内容</span>
+        </div>
+    </div>
+    <div class="line line-dashed line-sm pull-in"></div>
+    
+    <div class="form-group m-b-xs">
+        <label for="meta_description" class="col-sm-2 control-label">META_DESCRIPTION<br />(页面描述)</label>
+        <div class="col-sm-6">
+            <textarea name="meta_description" id="meta_description" rows="2" class="form-control" placeholder="请输入页面描述">{$content.meta_description}</textarea>
+            <span class="help-block m-b-none">留空则默认继承分类或全局设置的DESCRIPTION内容</span>
+        </div>
+    </div>
+    <div class="line line-dashed line-sm pull-in"></div>
+</section>

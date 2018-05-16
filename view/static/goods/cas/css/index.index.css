@@ -1,0 +1,30 @@
+/* base - reset */
+.ztree li ul.line {height:auto!important; border:0!important;}
+.scrollable-ztree {overflow-x:auto!important;}
+
+#search_cat li {
+display: block;
+padding: 5px 15px;
+clear: both;
+font-weight: 400;
+line-height: 1.428571429;
+color: #333;
+white-space: nowrap;
+cursor:pointer;
+}
+
+/* base */
+.grid-pager .combobox {position:relative; max-width:80px; top:10px;}
+
+/* main */
+.tag_li {padding: 5px 15px; cursor:pointer;}
+.imgbundle { 
+  background-image: url('../img/bundle.gif');
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  margin-right: 2px;
+  width:9px;
+  height:9px;
+}
+.tag_li .selected { background-position:0 -2267px;}
+.tag_li .selected_no { background-position:0 -2276px;}

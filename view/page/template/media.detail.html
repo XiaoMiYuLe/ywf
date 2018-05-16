@@ -1,0 +1,91 @@
+{$wrapper_prefix_front|default}
+
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/tab.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/go_top.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/alert.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/page/media.detail.js"></script>
+
+{literal}
+<style type="text/css">
+    .two_mtbd p{
+        padding-left:34px;	
+        padding-right:34px;
+        padding-top:28px;
+        font-size:15px;
+        line-height: 26px;
+        color:#666;
+    }
+</style>
+{/literal}
+
+<script>$("head>title").html("媒体报告");</script>
+<div class="container">
+    <!--左边：内容-->
+    <div class="container_left" id="security_left">
+        <div class="top" id="security_top">
+            <p>关于我们</p>
+            <!--<p>
+             <i></i>
+             <i></i>
+             <i></i>
+            </p>-->
+        </div>
+        <div style="width:140px;height:1px;background-color:#e8e8e8;margin:0 auto"></div>
+        <div class="low">
+            <ul>
+                <li id="1" class="about">
+                    <span style="padding-left:14px">亿万福介绍</span>
+                </li>
+                <li id="2" class="about">
+                    <span class="">公司介绍</span>
+                </li>
+                <li id="3" class="about">
+                    <span>安全保障</span>
+                </li>
+                
+                <li class="media" onclick="location.href='/page/media/index'">
+                    <span>媒体报道</span>
+                </li>
+                 <li class="media" onclick="location.href='/page/wealth/index'">
+                    <span>财富动态</span>
+                </li>
+                <li class="platform" onclick="location.href='/page/platform/index'">
+                    <span>平台公告</span>
+                </li>
+                <li class="help" onclick="location.href='/page/help/index'">
+                    <span>帮助中心</span>
+                </li>
+                
+                <li id="9" class="about">
+                    <span>联系我们</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--中间：内容-->
+    <div class="container_content" >
+        <!--我的账户-->
+        <div class="top" style="min-height:640px">
+            <div class="one">
+                <div class="blue-line"></div>
+                <h2 style="font-size:20px;padding-left: 25px;;line-height: 50px;" id="title">{$detail['title']}</h2>
+            </div>
+            <div class="two_mtbd" style="min-height:560px;padding-bottom:30px;" id="body">
+                {$detail['body']}
+            </div>
+        </div>
+    </div>
+    
+    <div class="page_count"></div>
+    <div id="paging"></div>
+</div>
+<!-- 尾部结构结束  -->
+
+<!--回到顶部开始-->
+<div class="sidebar_nav">
+    <a href="" class="gotop"><span>回顶部</span></a>
+    <a href="" class="kefu"><span>客服</span></a>
+    <a href="" class="app"><span>手机APP</span></a>
+</div>
+
+{$wrapper_suffix_front|default}

@@ -1,0 +1,74 @@
+{$wrapper_prefix|default}
+
+<link href="{$_STATIC_URL}/admin/css/permissionassign.css" rel="stylesheet" type="text/css" />
+<script src="{$_STATIC_URL}/admin/js/permissionassign.js" type="text/javascript"></script>
+
+<section class="hbox stretch">
+    <aside class="aside-md bg-white b-r" id="subNav">
+        <section class="vbox">
+            <header class="b-b header"><p class="h4">模块</p></header>
+            <section class="scrollable w-f">
+                <ul class="nav nav-pills nav-stacked no-radius">
+                    {foreach from=$allApps key=k item=v}
+                    <li class="b-b m-t-none-reset {if $appkey == $v.appkey}active{/if}">
+                        <a href="/admin/permissionAssign/assign?userid={$userinfo.userid}&appkey={$v.appkey}" class="load-content">
+                            <i class="fa fa-chevron-right pull-right m-t-xs text-xs icon-muted"></i>
+                            <i class="fa fa-fw fa-ellipsis-v"></i>
+                            {$v.name}
+                        </a>
+                    </li>
+                    {/foreach}
+                    
+                    <input type="hidden" name="appkey" value="{$appkey}" />
+                </ul>
+            </section>
+        </section>
+    </aside>
+        
+    <aside>
+        <section class="vbox">
+            <header class="header bg-white b-b clearfix">
+                <p>为独立用户《{$userinfo.username}》分配权限</p>
+            </header>
+                
+            <section class="scrollable wrapper">
+                {foreach from=$permissions item=pmg}
+                <section class="panel panel-default">
+                    <header class="panel-heading">权限组：{$pmg.permission_group}
+                        <span class="edit-notice" id="edit_notice_{$pmg.permission_group}"></span>
+                    </header>
+                    <table class="table table-striped m-b-none text-sm">
+                        <thead>
+                            <tr>
+                                <th width="80">权限ID</th>
+                                <th width="150">权限名</th>                    
+                                <th>描述</th>
+                                <th width="60">授权</th>
+                                <th width="130">所属组是否已授权</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach from=$pmg.permissions item=data key=k}
+                            <tr>                    
+                                <td >{$data.permission_id}</td>
+		                        <td>{$data.permission_name}</td>
+		                        <td>{$data.description}</td>
+		                        <td>
+		                            <input type="checkbox" class="permission_assign" value="{$data.permission_id}" id="pm_{$data.permission_id}" ut="user" pg="{$pmg.permission_group}" {if $data.permission_id|in_array:$selfPermissionids}checked="checked"{/if} />
+		                        </td>
+		                        <td>
+		                            {if $data.permission_id|in_array:$groupPermissions}<span style="color:green;font-size:15px;">√</span>{else}×{/if}
+		                        </td>
+                            </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
+                </section>
+                {/foreach}
+            </section>
+            <input type="hidden" name="parameter" value="{$userinfo.userid}" />
+        </section>
+    </aside>
+</section>
+
+{$wrapper_suffix|default}

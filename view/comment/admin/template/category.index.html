@@ -1,0 +1,60 @@
+{$wrapper_prefix|default}
+
+<link href="{$_STATIC_URL}/goods/admin/css/category.index.css" rel="stylesheet" type="text/css" />
+<script src="{$_STATIC_URL}/goods/admin/js/category.js" type="text/javascript"></script>
+
+{include file="content.top.html"}
+
+<div id="content_body">
+    <div class="main-top">
+        <span class="nav-now">商品分类管理</span>
+        <div class="list_filter">
+            <ul class="type">
+                <li>
+                    <a id="item_add" href="javascript:;">添加</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <table class="tablesorter">
+            <thead>
+                <tr>
+                    <th class="p0 category_id"><a class="block" href="javascript:;">ID</a></th>
+                    <th class="p0 title"><a class="block" href="javascript:;">分类名称</a></th>
+                    <th class="p0 sort_order"><a class="block" href="javascript:;">序号</a></th>
+                    <th class="p0 set set-category"><a class="block" href="javascript:;">操作</a></th>
+                </tr>
+            </thead>
+            <tbody>
+            {foreach from=$categories item=v}
+                <tr id="tr_{$v.category_id}" category_id="{$v.category_id}">
+                    <td class="category_id">{$v.category_id}</td>
+                    <td class="title">{$v.str_padding}{$v.title}</td>
+                    <td class="sort_order">{$v.sort_order}</td>
+                    <td class="set">
+                        <a href="javascript:;" class="operate-edit">编辑</a> | 
+                        <a href="javascript:;" class="operate-add-son">添加子分类</a> | 
+                        <a href="javascript:;" class="operate-delete">删除</a>
+                    </td>
+                </tr>
+            {/foreach}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- {literal} -->
+<script type="text/javascript">
+    /* tr hover */
+    $("tbody>tr").hover(function() {
+        $(this).addClass("tr_hover");
+    },
+    function() {
+        $(this).removeClass("tr_hover");
+    });
+</script>
+<!-- {/literal} -->
+            
+{$wrapper_suffix|default}

@@ -1,0 +1,213 @@
+
+<link href="{$_STATIC_URL}/admin/setting/css/menu.css" rel="stylesheet" type="text/css" />
+<script src="{$_STATIC_URL}/admin/setting/js/menu.edit.js" type="text/javascript"></script>
+
+<!-- modal - 编辑导航 -->
+<div class="modal-dialog" id="modal_edit">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="modal_title">{if $menu}编辑导航{else}添加导航{/if}</h4>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" action="/setting/menu/add" method="post" id="edit_form">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">选择分组</label>
+                    <div class="col-sm-6">
+                        <select name="group_id" id="group_id" class="form-control">
+                            {foreach from=$groups item=v}
+                            <option value="{$v.group_id}" {if $v.group_id == $menu.group_id}selected{/if}>{$v.group_name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">父导航</label>
+                    <div class="col-sm-6">
+                        <select name="pid" id="pid" class="form-control">
+                            <option value="0">Root Category [ID:0]</option>
+                            {foreach from=$menus item=v}
+                            <option value="{$v.menu_id}" {if $v.menu_id == $menu.pid}selected{/if}>{$v.menu}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" id="resetParentNavigation" class="btn btn-sm input-submit">设置为顶级导航</button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="menu" class="col-sm-3 control-label"><font class="red">*</font>导航名称</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="menu" id="menu" value="{$menu.menu}" placeholder="请输入导航名称" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">链接方式</label>
+                    <div class="col-sm-7">
+                        <label class="checkbox-inline p-left-0">
+                            <input type="radio" name="link_type" value="1" {if $menu.link_type == 1 || ! $menu.link_type}checked{/if} /> 内部地址
+                        </label>
+                        <label class="checkbox-inline ">
+                            <input type="radio" name="link_type" value="2" {if $menu.link_type == 2}checked{/if} /> 外部地址
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group {if $menu.link_type == 2}default-hidden{/if}" id="link_folder">
+                    <label for="folder" class="col-sm-3 control-label">链接地址</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="folder" id="folder" value="{$menu.folder}" placeholder="请输入链接地址" />
+                    </div>
+                </div>
+                
+                <div class="form-group {if $menu.link_type == 1 || ! $menu.link_type}default-hidden{/if}" id="link_url">
+                    <label for="url" class="col-sm-3 control-label">链接地址</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="url" id="url" value="{$menu.url}" placeholder="请输入链接地址" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sort_order" class="col-sm-3 control-label">序号</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="sort_order" id="sort_order" value="{if $menu}{$menu.sort_order}{else}255{/if}" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="icon" class="col-sm-3 control-label">ICON 图标</label>
+                    <div class="col-sm-7">
+                        <div class="input-group dropdown combobox" id="myCombobox">
+                            <input type="text" name="icon" class="form-control" value="{if $menu}{$menu.icon}{else}fa-file-text{/if}" />
+                            <div class="input-group-btn">
+                                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><i class="caret"></i></button>
+                                <ul class="dropdown-menu pull-right">
+                                    <li data-value="fa-file-text" {if $menu.icon == 'fa-file-text'}class="active"{/if}><a href="javascript:;"><i class="fa fa-file-text"></i><span class="text padder">fa-file-text</span></a></li>
+                                    <li data-value="fa-bar-chart-o" {if $menu.icon == 'fa-bar-chart-o'}class="active"{/if}><a href="javascript:;"><i class="fa fa-bar-chart-o"></i><span class="text padder">fa-bar-chart-o</span></a></li>
+                                    <li data-value="fa-bell" {if $menu.icon == 'fa-bell'}class="active"{/if}><a href="javascript:;"><i class="fa fa-bell"></i><span class="text padder">fa-bell</span></a></li>
+                                    <li data-value="fa-building-o" {if $menu.icon == 'fa-building-o'}class="active"{/if}><a href="javascript:;"><i class="fa fa-building-o"></i><span class="text padder">fa-building-o</span></a></li>
+                                    <li data-value="fa-cloud" {if $menu.icon == 'fa-cloud'}class="active"{/if}><a href="javascript:;"><i class="fa fa-cloud"></i><span class="text padder">fa-cloud</span></a></li>
+                                    <li data-value="fa-comment" {if $menu.icon == 'fa-comment'}class="active"{/if}><a href="javascript:;"><i class="fa fa-comment"></i><span class="text padder">fa-comment</span></a></li>
+                                    <li data-value="fa-comments" {if $menu.icon == 'fa-download'}class="active"{/if}><a href="javascript:;"><i class="fa fa-comments"></i><span class="text padder">fa-comments</span></a></li>
+                                    <li data-value="fa-cutlery" {if $menu.icon == 'fa-download'}class="active"{/if}><a href="javascript:;"><i class="fa fa-cutlery"></i><span class="text padder">fa-cutlery</span></a></li>
+                                    <li data-value="fa-download" {if $menu.icon == 'fa-download'}class="active"{/if}><a href="javascript:;"><i class="fa fa-download"></i><span class="text padder">fa-download</span></a></li>
+                                    <li data-value="fa-plane" {if $menu.icon == 'fa-plane'}class="active"{/if}><a href="javascript:;"><i class="fa fa-plane"></i><span class="text padder">fa-plane</span></a></li>
+                                    <li data-value="fa-gavel" {if $menu.icon == 'fa-gavel'}class="active"{/if}><a href="javascript:;"><i class="fa fa-gavel"></i><span class="text padder">fa-gavel</span></a></li>
+                                    <li data-value="fa-headphones" {if $menu.icon == 'fa-headphones'}class="active"{/if}><a href="javascript:;"><i class="fa fa-headphones"></i><span class="text padder">fa-headphones</span></a></li>
+                                    <li data-value="fa-lemon-o" {if $menu.icon == 'fa-lemon-o'}class="active"{/if}><a href="javascript:;"><i class="fa fa-lemon-o"></i><span class="text padder">fa-lemon-o</span></a></li>
+                                    <li data-value="fa-location-arrow" {if $menu.icon == 'fa-location-arrow'}class="active"{/if}><a href="javascript:;"><i class="fa fa-location-arrow"></i><span class="text padder">fa-location-arrow</span></a></li>
+                                    <li data-value="fa-music" {if $menu.icon == 'fa-music'}class="active"{/if}><a href="javascript:;"><i class="fa fa-music"></i><span class="text padder">fa-music</span></a></li>
+                                    <li data-value="fa-shopping-cart" {if $menu.icon == 'fa-shopping-cart'}class="active"{/if}><a href="javascript:;"><i class="fa fa-shopping-cart"></i><span class="text padder">fa-shopping-cart</span></a></li>
+                                    <li data-value="fa-sitemap" {if $menu.icon == 'fa-truck'}class="active"{/if}><a href="javascript:;"><i class="fa fa-sitemap"></i><span class="text padder">fa-sitemap</span></a></li>
+                                    <li data-value="fa-truck" {if $menu.icon == 'fa-truck'}class="active"{/if}><a href="javascript:;"><i class="fa fa-truck"></i><span class="text padder">fa-truck</span></a></li>
+                                    <li data-value="fa-video-camera" {if $menu.icon == 'fa-video-camera'}class="active"{/if}><a href="javascript:;"><i class="fa fa-video-camera"></i><span class="text padder">fa-video-camera</span></a></li>
+                                    <li data-value="fa-gear" {if $menu.icon == 'fa-gear'}class="active"{/if}><a href="javascript:;"><i class="fa fa-gear"></i><span class="text padder">fa-gear</span></a></li>
+                                    <li data-value="fa-gears" {if $menu.icon == 'fa-gears'}class="active"{/if}><a href="javascript:;"><i class="fa fa-gears"></i><span class="text padder">fa-gears</span></a></li>
+                                    <li data-value="fa-film" {if $menu.icon == 'fa-film'}class="active"{/if}><a href="javascript:;"><i class="fa fa-film"></i><span class="text padder">fa-film</span></a></li>
+                                    <li data-value="fa-coffee" {if $menu.icon == 'fa-coffee'}class="active"{/if}><a href="javascript:;"><i class="fa fa-coffee"></i><span class="text padder">fa-coffee</span></a></li>
+                                    <li data-value="fa-bullhorn" {if $menu.icon == 'fa-bullhorn'}class="active"{/if}><a href="javascript:;"><i class="fa fa-bullhorn"></i><span class="text padder">fa-bullhorn</span></a></li>
+                                    <li data-value="fa-anchor" {if $menu.icon == 'fa-anchor'}class="active"{/if}><a href="javascript:;"><i class="fa fa-anchor"></i><span class="text padder">fa-anchor</span></a></li>
+                                    <li data-value="fa-archive" {if $menu.icon == 'fa-archive'}class="active"{/if}><a href="javascript:;"><i class="fa fa-archive"></i><span class="text padder">fa-archive</span></a></li>
+                                    <li data-value="fa-briefcase" {if $menu.icon == 'fa-briefcase'}class="active"{/if}><a href="javascript:;"><i class="fa fa-briefcase"></i><span class="text padder">fa-briefcase</span></a></li>
+                                    <li data-value="fa-user" {if $menu.icon == 'fa-user'}class="active"{/if}><a href="javascript:;"><i class="fa fa-user"></i><span class="text padder">fa-user</span></a></li>
+                                    <li data-value="fa-users" {if $menu.icon == 'fa-wrench'}class="active"{/if}><a href="javascript:;"><i class="fa fa-users"></i><span class="text padder">fa-users</span></a></li>
+                                    <li data-value="fa-trash-o" {if $menu.icon == 'fa-wrench'}class="active"{/if}><a href="javascript:;"><i class="fa fa-trash-o"></i><span class="text padder">fa-trash-o</span></a></li>
+                                    <li data-value="fa-wrench" {if $menu.icon == 'fa-wrench'}class="active"{/if}><a href="javascript:;"><i class="fa fa-wrench"></i><span class="text padder">fa-wrench</span></a></li>
+                                    <li data-value="fa-home" {if $menu.icon == 'fa-gift'}class="active"{/if}><a href="javascript:;"><i class="fa fa-home"></i><span class="text padder">fa-home</span></a></li>
+                                    <li data-value="fa-gift" {if $menu.icon == 'fa-gift'}class="active"{/if}><a href="javascript:;"><i class="fa fa-gift"></i><span class="text padder">fa-gift</span></a></li>
+                                    <li data-value="fa-gamepad" {if $menu.icon == 'fa-gamepad'}class="active"{/if}><a href="javascript:;"><i class="fa fa-gamepad"></i><span class="text padder">fa-gamepad</span></a></li>
+                                    <li data-value="fa-bug" {if $menu.icon == 'fa-bug'}class="active"{/if}><a href="javascript:;"><i class="fa fa-bug"></i><span class="text padder">fa-bug</span></a></li>
+                                    <li data-value="fa-book" {if $menu.icon == 'fa-book'}class="active"{/if}><a href="javascript:;"><i class="fa fa-book"></i><span class="text padder">fa-book</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">ICON 背景</label>
+                    <div class="col-sm-7">
+                        <div class="btn-group m-r">
+                            <button class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" id="icon_bg_selected">
+                                <span class="dropdown-label padder {if $menu}{$menu.icon_bg}{else}bg-white{/if}">
+                                    {if $menu}{$menu.icon_bg}{else}bg-white{/if}
+                                </span> 
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-select" id="icon_bg_ul">
+                                <li {if $menu.icon_bg == 'bg-white'}class="active"{/if}>
+                                    <a href="javascript:;"><input type="radio" name="icon_bg" value="bg-white">bg-white
+                                        <label class="label bg-white form-control-static pos-rlt pull-right m-t-nx col-sm-5">&nbsp;</label>
+                                    </a>
+                                </li>
+                                <li {if $menu.icon_bg == 'bg-light'}class="active"{/if}>
+                                    <a href="javascript:;"><input type="radio" name="icon_bg" value="bg-light">bg-light
+                                        <label class="label bg-light form-control-static pos-rlt pull-right m-t-nx col-sm-5">&nbsp;</label>
+                                    </a>
+                                </li>
+                                <li {if $menu.icon_bg == 'bg-warning'}class="active"{/if}>
+                                    <a href="javascript:;"><input type="radio" name="icon_bg" value="bg-warning">bg-warning
+                                        <label class="label bg-warning form-control-static pos-rlt pull-right m-t-nx col-sm-5">&nbsp;</label>
+                                    </a>
+                                </li>
+                                <li {if $menu.icon_bg == 'bg-danger'}class="active"{/if}>
+                                    <a href="javascript:;"><input type="radio" name="icon_bg" value="bg-danger">bg-danger
+                                        <label class="label bg-danger form-control-static pos-rlt pull-right m-t-nx col-sm-5">&nbsp;</label>
+                                    </a>
+                                </li>
+                                <li {if $menu.icon_bg == 'bg-info'}class="active"{/if}>
+                                    <a href="javascript:;"><input type="radio" name="icon_bg" value="bg-info">bg-info
+                                        <label class="label bg-info form-control-static pos-rlt pull-right m-t-nx col-sm-5">&nbsp;</label>
+                                    </a>
+                                </li>
+                                <li {if $menu.icon_bg == 'bg-success'}class="active"{/if}>
+                                    <a href="javascript:;"><input type="radio" name="icon_bg" value="bg-success">bg-success
+                                        <label class="label bg-success form-control-static pos-rlt pull-right m-t-nx col-sm-5">&nbsp;</label>
+                                    </a>
+                                </li>
+                                <li {if $menu.icon_bg == 'bg-primary'}class="active"{/if}>
+                                    <a href="javascript:;"><input type="radio" name="icon_bg" value="bg-primary">bg-primary
+                                        <label class="label bg-primary form-control-static pos-rlt pull-right m-t-nx col-sm-5">&nbsp;</label>
+                                    </a>
+                                </li>
+                                <li {if $menu.icon_bg == 'bg-dark'}class="active"{/if}>
+                                    <a href="javascript:;"><input type="radio" name="icon_bg" value="bg-dark">bg-dark
+                                        <label class="label bg-dark form-control-static pos-rlt pull-right m-t-nx col-sm-5">&nbsp;</label>
+                                    </a>
+                                </li>
+                                <li {if $menu.icon_bg == 'bg-black'}class="active"{/if}>
+                                    <a href="javascript:;"><input type="radio" name="icon_bg" value="bg-black">bg-black
+                                        <label class="label bg-black form-control-static pos-rlt pull-right m-t-nx col-sm-5">&nbsp;</label>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">是否显示</label>
+                    <div class="col-sm-7">
+                        <label class="checkbox-inline p-left-0">
+                            <input type="radio" name="if_show" value="1" {if $menu.if_show == 1 || ! $menu.if_show}checked{/if} /> 显示
+                        </label>
+                        <label class="checkbox-inline ">
+                            <input type="radio" name="if_show" value="0" {if $menu.if_show === '0'}checked{/if} /> 隐藏
+                        </label>
+                    </div>
+                </div>
+                
+                <input type="hidden" name="menu_id" value="{$menu.menu_id}" />
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存并返回列表管理</button>
+            {if ! $menu}<button type="button" id="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">保存并继续添加</button>{/if}
+            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">取消</button>
+        </div>
+    </div>
+</div>
+<!-- / modal - 编辑导航 -->

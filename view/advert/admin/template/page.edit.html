@@ -1,0 +1,29 @@
+<script src="{$_STATIC_URL}/advert/admin/js/page.edit.js"></script>
+
+<!-- modal - 编辑 -->
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="modal_title">{if $page}编辑广告页{else}添加广告页{/if}</h4>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" action="/advertadmin/page/add" method="post" id="edit_form">
+                <div class="form-group">
+                    <label for="title" class="col-sm-3 control-label"><font class="red">* </font>页面标题</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="title" name="title" value="{$page.title}" placeholder="请输入页面标题" />
+                    </div>
+                </div>
+                
+                <input type="hidden" name="page_id" value="{$page.page_id}" />
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" data_submit_type="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存</button>
+            {if ! $page}<button type="button" data_submit_type="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">保存并继续添加</button>{/if}
+            <button type="button" data_submit_type="submit_cancel" class="btn btn-danger btn-sm input-submit">取消</button>
+        </div>
+    </div>
+</div>
+<!-- / modal - 编辑-->

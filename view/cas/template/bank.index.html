@@ -1,0 +1,44 @@
+{$wrapper_prefix_center|default}
+
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/tab.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/go_top.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/alert.js"></script>
+
+<script>$("head>title").html("我的银行卡");</script>
+
+<!--中间：内容-->
+<div class="container_content">
+    <!--我的账户-->
+    <div class="top" style="min-height:630px">
+        <div class="one">
+            <div class="blue-line"></div>
+            <span class="title">银行卡</span>
+        </div>
+        <div class="bank_cardover">
+            <div>
+                <img alt="" src="{$card.link}">
+                <p>
+                    <a href="">{$card.bank_name}</a>
+                    <span>储蓄卡</span>
+                </p>
+                <p>
+                    {$card.bank_no}
+                </p>
+                <p>{$card.quota}</p>
+            </div>
+            <p style="width:600px">为了您的账户安全，我们只允许绑定一张银行卡。所以在本息未归还之前，请不要注销相关卡片。
+                如有紧急需要，请致电客服：400-1369-998</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--回到顶部开始-->
+<div class="sidebar_nav">
+    <a href="" class="gotop"><span>回顶部</span></a>
+    <a href="" class="kefu"><span>客服</span></a>
+    <a href="" class="app"><span>手机APP</span></a>
+</div>
+<!--回到顶部结束-->
+
+{$wrapper_suffix_center|default}

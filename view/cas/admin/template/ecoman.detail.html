@@ -1,0 +1,140 @@
+{$wrapper_prefix|default}
+
+<script src="{$_STATIC_URL}/cas/admin/js/ecoman.detail.js" type="text/javascript"></script>
+
+<section class="hbox stretch">
+    <aside class="aside-md bg-white b-r" id="subNav">
+        <section class="vbox">
+            <header class="b-b header"><p class="h4">用户详情</p></header>
+            <section class="scrollable w-f">
+                <ul class="nav nav-pills nav-stacked no-radius">
+                    <li class="b-b m-t-none-reset nav-map active" id="nav_base">
+                        <a href="javascript:;">
+                            <i class="fa fa-chevron-right pull-right m-t-xs text-xs icon-muted"></i>
+                            <i class="fa fa-fw fa-ellipsis-v"></i>
+                            基本信息
+                        </a>
+                    </li>
+                    {if false}
+                    <li class="b-b m-t-none-reset nav-map" id="nav_account">
+                        <a href="javascript:;">
+                            <i class="fa fa-chevron-right pull-right m-t-xs text-xs icon-muted"></i>
+                            <i class="fa fa-fw fa-ellipsis-v"></i>
+                            订单历史
+                        </a>
+                    </li>
+                    <li class="b-b m-t-none-reset nav-map" id="nav_setting">
+                        <a href="javascript:;">
+                            <i class="fa fa-chevron-right pull-right m-t-xs text-xs icon-muted"></i>
+                            <i class="fa fa-fw fa-ellipsis-v"></i>
+                            积分历史
+                        </a>
+                    </li>
+                    <li class="b-b m-t-none-reset nav-map" id="nav_crm">
+                        <a href="javascript:;">
+                            <i class="fa fa-chevron-right pull-right m-t-xs text-xs icon-muted"></i>
+                            <i class="fa fa-fw fa-ellipsis-v"></i>
+                            评论历史
+                        </a>
+                    </li>
+                    {/if}
+                </ul>
+            </section>
+        </section>
+    </aside>
+
+    <aside class="bg-white">
+        <section class="vbox">
+            <header class="header bg-white b-b clearfix">
+                <div class="m-t-sm">
+                    <a href="#subNav" data-toggle="class:hide" class="btn btn-sm btn-default active btn-nav-goods"
+                       btn_nav_goods_index="0">
+                        <i class="fa fa-caret-right text fa-lg"></i>
+                        <i class="fa fa-caret-left text-active fa-lg"></i>
+                    </a>
+                    <a href="javascript:;" class="btn btn-sm btn-default" id="button_cancel"><i class="fa fa-reply"></i>
+                        返回</a>
+                </div>
+            </header>
+
+            <section class="scrollable wrapper">
+                <section class="panel panel-default portlet-item">
+                    <header class="panel-heading">基本信息</header>
+                    <table class="table table-striped2 m-b-none text-sm">
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-2">用户名:</td>
+                            <td class="col-sm-4">{$user.username}</td>
+                            <td class="col-sm-2">身份证号:</td>
+                            <td class="col-sm-4">{$user.idcard}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-2">手机号码:</td>
+                            <td class="col-sm-4">{$user.phone}</td>
+                            <td class="col-sm-2">账户余额:</td>
+                            <td class="col-sm-4">{$user.asset}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-2">注册时间:</td>
+                            <td class="col-sm-4">{$user.ctime}</td>
+                            <td class="col-sm-2">是否是经纪人:</td>
+                            <td class="col-sm-4">{if $user.is_ecoman==0}否{else}是{/if}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-2">新用户代金券状态:</td>
+                            <td class="col-sm-4">{$user.voucher_status}</td>
+                            <td class="col-sm-2">新用户代金券ID:</td>
+                            <td class="col-sm-4">{$user.voucher_id}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-2">推荐人:</td>
+                            <td class="col-sm-4">{$user.recommender}</td>
+                            <td class="col-sm-2">用户状态:</td>
+                            <td class="col-sm-4">{if $user.status==0}正常{else}被冻结{/if}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section class="panel panel-default portlet-item">
+                    <header class="panel-heading">银定银行卡</header>
+                    <table class="table table-striped2 m-b-none text-sm">
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-1">RID</td>
+                            <td class="col-sm-2">绑定时间</td>
+                            <td class="col-sm-2">所属银行</td>
+                            <td class="col-sm-2">开户行</td>
+                            <td class="col-sm-2">银行账号</td>
+                            <td class="col-sm-2">卡状态</td>
+                            <td class="col-sm-2">操作</td>
+                        </tr>
+                        {if $bank}
+                        {foreach $bank as $v}
+                         <tr>
+                            <td class="col-sm-1">{$v.bank_id}</td>
+                            <td class="col-sm-2">{$v.ctime}</td>
+                            <td class="col-sm-2">{$v.bank_name}</td>
+                            <td class="col-sm-2">{$v.subbank_name}</td>
+                            <td class="col-sm-2">{$v.is_del}</td>
+                            <td class="col-sm-2">{if $v.is_del==0}正常{else}失效{/if}</td>
+                            <td class="col-sm-2"><button class="button_bank" value="{$v.bank_id}">设为失效</button></td>
+                        </tr>
+                        {/foreach}
+                        {/if}
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+        </section>
+    </aside>
+</section>
+
+{$wrapper_suffix|default}

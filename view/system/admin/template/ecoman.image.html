@@ -1,0 +1,70 @@
+{$wrapper_prefix|default}
+<script src="{$_STATIC_URL}/system/admin/js/ecoman.image.js"></script>
+<section class="hbox stretch">
+    <aside>
+        <section class="vbox">
+            <section class="scrollable wrapper">
+                <section class="panel panel-default">
+                    <div class="table-responsive">
+                        <!-- <table class="table table-striped m-b-none datagrid " > -->
+	                        </div>
+	                            <form  class="form-horizontal" id="edit_form" action="/systemadmin/index/ecomanimageadd" method="post" enctype="multipart/form-data">
+	                            	<div id="for_type" {if $content.type == 2}class="default-hidden"{/if}>
+                        				<div class="form-group m-b-xs file-reset">
+                            				<label class="col-sm-2 control-label">经纪人背景图片</label>
+	                               			<div class="col-sm-4">
+	                                   			<input type="file" name="ecoman_image" id="ecoman_image" class="filestyle" data-icon="false" data-classbutton="btn btn-default" data-classinput="form-control inline input-s" />
+	                                   			{if $content.ecoman_image}
+	                                   			<a href="{$upload_cdn}/uploads{$content.ecoman_image}" class="thumb-sm" target="_blank"><img src="{$upload_cdn}/uploads{$content.ecoman_image}" /></a>
+	                                   			{/if}
+	                               			</div>
+                        				</div>
+                    				</div>
+                    				</br>
+	                            	</br>
+                    				<div class="col-sm-2 control-label">
+                    					<input  type="button" id="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit" value="提交"></input>
+									<span id="edit_notice"></span>
+                    				
+                    				</div>
+                    				
+								</form>
+							<div>
+	                            </br>
+	                            </br>
+	                            </br>
+	                            </br>
+	                            </br>
+	                            </br>
+	                            </br>
+	                            </br>
+	                            </br>
+	                            </br>
+	                            </br>
+	                            </br>
+	                        </div>
+                        <!-- </table> -->
+                    </div>
+                </section>
+            </section>
+        </section>
+    </aside>
+</section>
+<script type="text/javascript">
+    var ckeditor1;
+    
+    var config = {
+            extraPlugins: 'codesnippet',
+            codeSnippet_theme: 'monokai_sublime',
+            height: 500
+        };
+    
+    if (typeof CKEDITOR == 'object') {
+        if (CKEDITOR.instances['editor1']) {
+            CKEDITOR.remove(CKEDITOR.instances['editor1']);
+        }
+        ckeditor1 = CKEDITOR.replace('editor1', config);
+    }
+    
+</script>  
+{$wrapper_suffix|default}

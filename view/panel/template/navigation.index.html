@@ -1,0 +1,29 @@
+{$wrapper_prefix|default}
+
+<script src="{$_STATIC_URL}/panel/js/navigation.index.js"></script>
+
+<section class="vbox">
+    <header class="header bg-white b-b clearfix">
+        <div class="row m-t-sm">
+            <div class="col-sm-8 m-b-xs">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-default action-refresh" title="Refresh"><i class="fa fa-refresh"></i></button>
+                </div>
+                <a href="/panel/navigation/add" data-toggle="ajaxModal" class="btn btn-sm btn-default" id="modal_edit"><i class="fa fa-plus"></i> 添加</a>
+            </div>
+        </div>
+    </header>
+        
+    <section class="scrollable wrapper">
+        <section class="panel panel-default">
+            <div class="table-responsive">
+                <table class="table table-striped m-b-none datagrid" id="navigation_listing">
+                    <thead>
+                    </thead>
+                </table>
+            </div>
+        </section>
+    </section>
+</section>
+
+{$wrapper_suffix|default}

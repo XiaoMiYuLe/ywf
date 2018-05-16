@@ -1,0 +1,67 @@
+{$wrapper_prefix_front|default}
+
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/tab.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/go_top.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/alert.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/show_hidden.js"></script>
+
+<!--分页插件-->
+<link type="text/css" rel="stylesheet" href="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination.css"/>
+<script type="text/javascript" src="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination-1.2.7.min.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/page/help.index.js"></script>
+
+<script>$("head>title").html("帮助中心");</script>
+<div class="container">
+    <!--左边：内容-->
+    <div class="container_left" id="helpcenter_left">
+        <div class="top">
+            <p>帮助中心</p>
+            <!--<p>
+             <i></i>
+             <i></i>
+             <i></i>
+            </p>-->
+        </div>
+        <div style="width:140px;height:1px;background-color:#e8e8e8;margin:0 auto"></div>
+        <div class="low">
+            <ul>
+                {if !empty($navigation)}
+                {foreach $navigation as $k=>$v}
+                <li>
+                    <span class="help" id="{$v['category_id']}">{$v['title']}</span>
+                </li>
+                {/foreach}
+                {/if}
+            </ul>
+        </div>
+    </div>
+    
+    <!--中间：内容-->
+    <div class="container_content" >
+        <!--我的账户-->
+        <div class="top" style="min-height:530px">
+            <div class="one">
+                <div class="blue-line"></div>
+                <span class="title" id="title"></span>
+            </div>
+            <div class="two_helpcenter">
+                <ul id="list">
+                    
+                </ul>
+            </div>
+
+        </div>
+        
+        <div id="paging"></div>
+    </div>
+    
+</div>
+
+<!--回到顶部开始-->
+<div class="sidebar_nav">
+    <a href="" class="gotop"><span>回顶部</span></a>
+    <a href="" class="kefu"><span>客服</span></a>
+    <a href="" class="app"><span>手机APP</span></a>
+</div>
+
+{$wrapper_suffix_front|default}

@@ -1,0 +1,162 @@
+{$wrapper_prefix|default}
+
+<link href="{$_STATIC_URL}/comment/admin/css/index.detail.css" rel="stylesheet" type="text/css" />
+<script src="{$_STATIC_URL}/comment/admin/js/index.detail.js" type="text/javascript"></script>
+
+<section class="hbox stretch">
+    <aside class="aside-md bg-white b-r">
+        <section class="vbox">
+            <header class="header bg-white b-b clearfix">
+                <div class="row m-t-sm">
+                    <div class="col-sm-8 m-b-xs">
+                        <a href="javascript:;" class="btn btn-sm btn-default" id="button_cancel"><i class="fa fa-reply"></i> 返回</a>
+                        <font class="h4 v-middle padder">
+                        {if ($content.goods_pattern eq 3 && $content.goods_type eq 2 )||
+                        ($content.goods_pattern eq 3 && $content.goods_type eq 3 ) ||
+                        ($content.goods_pattern eq 3 && $content.goods_type eq 4 )
+                        }其他产品详情{elseif ($content.goods_type eq 1 && $content.goods_pattern eq 2)||
+                        ($content.goods_type eq 1 && $content.goods_pattern eq 2)
+                        }债权产品详情{elseif $content.goods_pattern eq 1}新手产品详情{/if}
+                        </font>
+                    </div>
+                </div>
+            </header>
+              
+            <section class="scrollable wrapper">
+                <section class="panel panel-default portlet-item">
+                    <header class="panel-heading">基本信息</header>
+                    <table class="table table-striped2 m-b-none text-sm">
+                        <tbody>
+                            <tr>                    
+                                <td class="col-sm-2">产品名称</td>
+                                <td class="col-sm-4">
+                                    {$content.goods_name}
+                                </td>
+                                <td class="col-sm-2">产品模式</td>
+                                <td class="col-sm-4">{if $content.goods_pattern eq 1}新手类{elseif $content.goods_pattern eq 2}直购类{elseif $content.goods_pattern eq 3}预约类{/if}</td>
+                            </tr>
+                            <tr> 
+                                {if $content.goods_pattern eq 2 || $content.goods_pattern eq 3}                   
+                                <td class="col-sm-2">产品类型</td>
+                                <td class="col-sm-4">{if $content.goods_type eq 1}债权{elseif $content.goods_type eq 2}保险{elseif $content.goods_type eq 3}资管{elseif $content.goods_type eq 4}基金{/if}</td>
+                                {elseif $content.goods_pattern eq 1}
+                                <td class="col-sm-2">产品编号</td>
+                                <td class="col-sm-4">{$content.goods_id}</td>
+                                {/if}
+                                <td class="col-sm-2">产品状态</td>
+                                <td class="col-sm-4">{if $content.goods_status eq 1}销售中{elseif $content.goods_status eq 2}已售罄{elseif $content.goods_status eq 3}已下架{/if}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section class="panel panel-default portlet-item">
+                <header class="panel-heading">产品参数</header>
+                <table class="table table-striped2 m-b-none text-sm">
+                        <tbody>
+                        {if $content.goods_pattern eq 2 || $content.goods_pattern eq 3}
+                            <tr>                    
+                                <td class="col-sm-2">年化收益率(%)</td>
+                                <td class="col-sm-4">{$content.yield}</td>
+                                <td class="col-sm-2">购买上限(元)</td>
+                                <td class="col-sm-4">{$content.high_pay}</td>
+                            </tr>
+                            <tr>                    
+                                <td class="col-sm-2">递增金额(元)</td>
+                                <td class="col-sm-4">{$content.increasing_pay}</td>
+                                <td class="col-sm-2">期限(天)</td>
+                                <td class="col-sm-4">{$content.financial_period}</td>
+                            </tr>
+                            <tr>                    
+                                <td class="col-sm-2">起售金额(元)</td>
+                                <td class="col-sm-4">{$content.low_pay}</td>
+                                <td class="col-sm-2">佣金比例(%)</td>
+                                <td class="col-sm-4">{$content.goods_broratio}</td>
+                            </tr>
+                            <tr>                    
+                                <td class="col-sm-2">总额度(元)</td>
+                                <td class="col-sm-4">{$content.all_fee}</td>
+                            </tr>
+                            </tbody>
+                            </table>
+                            {elseif $content.goods_pattern eq 1}
+                            <tr>                    
+                                <td class="col-sm-2">年化收益率(%)</td>
+                                <td class="col-sm-4">{$content.yield}</td>
+                                <td class="col-sm-2">购买上限(元)</td>
+                                <td class="col-sm-4">{$content.high_pay}</td>
+                            </tr>
+                            <tr>                    
+                                <td class="col-sm-2">递增金额(元)</td>
+                                <td class="col-sm-4">{$content.increasing_pay}</td>
+                                <td class="col-sm-2">期限(天)</td>
+                                <td class="col-sm-4">{$content.financial_period}</td>
+                            </tr>
+                            <tr>                    
+                                <td class="col-sm-2">起售金额(元)</td>
+                                <td class="col-sm-4">{$content.low_pay}</td>
+                                <td class="col-sm-2">总额度(元)</td>
+                                <td class="col-sm-4">{$content.all_fee}</td>
+                            </tr>
+                            </tbody>
+                            </table>
+                            {/if}
+                </section>
+                {if $content.goods_type eq 1}
+                <section class="panel panel-default portlet-item">
+                            <header class="panel-heading">其它参数</header>
+                            <table class="table table-striped2 m-b-none text-sm">
+                            <tbody>
+                            <tr>                    
+                                <td class="col-sm-2">起息日期</td>
+                                <td class="col-sm-4">{if $content.is_now eq 1}购买当日{elseif $content.is_now eq 2}{$content.start_time}{/if}</td>
+                                <td class="col-sm-2">结息日期</td>
+                                <td class="col-sm-4">{$content.end_time}</td>
+                            </tr>
+                            <tr>                    
+                                <td class="col-sm-2">兑付日期</td>
+                                <td class="col-sm-4">{$content.deal_date}</td>
+                            </tr>
+                            </tbody>
+                            </table>
+                            </section>
+                            {/if}
+                <section class="panel panel-default portlet-item">
+                    <header class="panel-heading">状态信息</header>
+                <table class="table table-striped2 m-b-none text-sm">
+                        <tbody>
+                            <tr>                    
+                                <td class="col-sm-2">兑付方式</td>
+                                <td class="col-sm-4">{$content.deal_way}</td>
+                                <td class="col-sm-2">提前赎回</td>
+                                <td class="col-sm-4">{if $content.redeem_status eq 1}允许{elseif $content.redeem_status eq 2}不允许{/if}</td>
+                            </tr>
+                            <tr>                    
+                                <td class="col-sm-2">兑付本金</td>
+                                <td class="col-sm-4">{if $content.principal_status eq 1}是{elseif $content.principal_status eq 2}否{/if}</td>
+                                <td class="col-sm-2">是否结息</td>
+                                <td class="col-sm-4">{if $content.deal_status eq 1}是{elseif $content.deal_status eq 2}否{/if}</td>
+                            </tr>
+                            </tbody>
+                            </table>
+                </section>
+                
+                <section class="panel panel-default portlet-item">
+                    <header class="panel-heading">产品介绍</header>
+                    <section class="panel-body">
+                    {$content.goods_detail}
+                    </section>
+                </section>
+                
+                <section class="panel panel-default portlet-item">
+                    <header class="panel-heading">安全保障</header>
+                    <section class="panel-body">
+                    {$content.safety}
+                    </section>
+                </section>
+                
+            </section>
+        </section>
+    </aside>
+</section>
+
+{$wrapper_suffix|default}

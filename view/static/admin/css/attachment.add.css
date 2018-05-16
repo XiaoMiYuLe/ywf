@@ -1,0 +1,73 @@
+/* base */
+body {font-size:12px; background:none;}
+textarea {padding:0;}
+ul, ol {margin:0; padding:0;}
+input[readonly], textarea[readonly] {cursor:pointer;}
+.close {}
+.default-hidden {display:none;}
+.default-readonly {background-color:#F5F5F5;}
+
+
+/* upload instructions */
+.instructions {background-color:#F5F5F5; border:1px solid rgba(0, 0, 0, 0.05); border-radius:4px;
+    box-shadow:0 1px 1px rgba(0, 0, 0, 0.05) inset; margin:10px 10px 20px; min-height:20px; padding:19px;}
+
+/* upload operational */
+.operational {margin:0 10px 0;}
+.row {margin-left:0;}
+.span7 {width:auto; margin-left:0;}
+.fileupload-loading {top:150px;}
+
+.table td.td-checkbox, .table td.preview, .table td.title-label, .table td.size, .table td.td-delete 
+    {display:table-cell; text-align:center; vertical-align:middle;}
+.td-checkbox {width:36px;}
+.preview {width:120px;}
+    .preview img {cursor:pointer;}
+.table td.title-label {width:420px; min-width:420px; text-align:left;}
+    .notice {float:left; padding-left:60px;}
+    .update-loading {background: 40px 0px url(../img/loading.gif) no-repeat;}
+    .update-successful {background: 40px 0px url(../img/ico-done.gif) no-repeat;}
+    .update-failed {background: 40px 0px url(../img/ico-delete.gif) no-repeat;}
+    .input-title, .input-label {width:360px;}
+.size {width:100px;}
+.td-delete {width:90px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* upload button */
+/*#file_uploader {width:100%; height:30px; border:1px solid #d2d2d2; cursor:pointer;}
+
+.qq-upload-button {width:100%; cursor:pointer;}*/
+
+/* upload attachment */
+/*.attachment-list {padding:10px;}
+    #content .gallery {height:175px;}
+        .gallery .title {display:block; font-weight:bold;}
+        .gallery-img-a {display:block;width:200px;height:150px;border:1px solid #d2d2d2;margin:3px 0;padding:1px; cursor:auto;}
+        #content .gallery .gallery-img {margin:0; cursor:pointer;}
+        .gallery-filter-do {position:relative;top:-27px; left:2px; width:200px; text-align:center; padding:2px 0; background:#000; opacity:0.6;}
+        .gallery-filter-do a {color:#FFF;}
+        .gallery-filter-do a:hover {text-decoration:underline;}
+        .gallery-filter-do .ico-delete {margin-right:50px;}
+        .gallery-filter-edit {position:relative; border:1px solid #000; top:-210px; left:-10px; width:214px; height:155px; overflow-y:auto; padding:2px; background:#333; opacity:0.9;}
+        #content table {border:1px solid #CFCFCF; color:#FFF;}
+        .gallery-filter-edit .description {width:165px;}
+            .div-edit-ctrol {padding:3px;}
+            .div-edit-ctrol .edit-notice {float:left; line-height:24px; color:#FFF;}
+            .div-edit-ctrol .button-edit {float:right;}
+*/

@@ -1,0 +1,33 @@
+{$wrapper_prefix|default}
+
+<link href="{$_STATIC_URL}/admin/frontend/css/page.css" rel="stylesheet" type="text/css" />
+<script src="{$_STATIC_URL}/admin/frontend/js/menu.group.js" type="text/javascript"></script>
+
+{include file="content.top.html"}
+
+<form name="editForm" id="edit_form" action="/adminfrontend/menugroup/add" method="post">
+    <div id="content_body">
+        <div class="main-top">
+            <span class="nav-now">添加菜单分组</span>
+        </div>
+        
+        <div class="main-content main-content-edit">
+            <div class="form-element">
+                <label class="req" for="group_name"><font class="red-star">*</font>分组名称:</label>
+                <div>
+                    <input type="text" name="group_name" id="group_name" size="60" class="input-text required" value="{$group.group_name}" />
+                    <span class="eg ht0">&nbsp;</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-bottom">
+            <input type="button" id="submit_save_back" value="保存并返回列表管理" class="input-submit" />
+            <input type="button" id="submit_save_continue" value="保存并继续添加" class="input-submit" />
+            <input type="button" id="submit_cancel" value="取&nbsp;&nbsp;消" class="input-submit" />
+            <span id="edit_notice"></span>
+        </div>
+    </div>
+</form>
+            
+{$wrapper_suffix|default}

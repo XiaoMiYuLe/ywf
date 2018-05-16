@@ -1,0 +1,65 @@
+
+<section class="edit-map wrapper default-hidden" id="edit_setting">
+    
+    <div class="form-group m-b-xs">
+        <label for="store_name" class="col-sm-2 control-label">店铺名称</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="store_name" name="store_name" value="{$store.store_name}" placeholder="请输入店铺名称" />
+            <input type="hidden" name="store_name_edit" id="store_name_edit" value="{$store.store_name}" />
+        </div>
+    </div>
+    <div class="line line-dashed line-sm pull-in"></div>
+    
+    <div class="form-group m-b-xs file-reset">
+        <label class="col-sm-2 control-label">店铺 Logo</label>
+        <div class="col-sm-7">
+            <input type="file" name="logo" id="logo" class="filestyle" data-icon="false" data-buttonText="上传图片" data-classbutton="btn btn-default" data-classinput="form-control inline input-s" />
+            {if $store.logo}
+            <a href="/uploads{$store.logo}" class="thumb-sm" target="_blank"><img src="/uploads{$store.logo}" /></a>
+            {/if}
+        </div>
+    </div>
+    <div class="line line-dashed line-sm pull-in"></div>
+    
+    <div class="form-group m-b-xs">
+        <label class="col-sm-2 control-label">发货地区</label>
+        <div class="col-sm-8">
+            <select data-init="3743" data-selected="{$store.region_hid_ship_arr.2}" class="input-sm form-control inline col-def-3 region">
+                <option value="0">请选择</option>
+            </select>
+            <select name="region_id_ship" data-init="{$store.region_hid_ship_arr.2}" data-selected="{$store.region_hid_ship_arr.3}" class="input-sm form-control inline col-def-3 region">
+                <option value="0">请选择</option>
+            </select>
+        </div>
+    </div>
+    <div class="line line-dashed line-sm pull-in"></div>
+    
+    <div class="form-group m-b-xs">
+        <label for="address_return" class="col-sm-2 control-label">退货地址</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="address_return" name="address_return" value="{$store.address_return}" placeholder="请输入退货地址" />
+        </div>
+    </div>
+    <div class="line line-dashed line-sm pull-in"></div>
+
+    <div class="form-group m-b-xs">
+        <label for="return_rule" class="col-sm-2 control-label">退货条约</label>
+        <div class="col-sm-8">
+            <textarea name="return_rule" id="return_rule" rows="5" class="form-control" placeholder="请输入退货条约">{$store.return_rule}</textarea>
+        </div>
+    </div>
+    <div class="line line-dashed line-sm pull-in"></div>
+    
+    <div class="form-group m-b-xs">
+        <label class="col-sm-2 control-label">发布商品是否需审核</label>
+        <div class="col-sm-4">
+            <label class="switch">
+                <input type="checkbox" id="goods_verify" name="goods_verify" value="1" {if $store.goods_verify == '' || $store.goods_verify == 1}checked=checked{/if} />
+                <span></span>
+            </label>
+        </div>
+    </div>
+    <div class="line line-dashed line-sm pull-in"></div>
+    
+</section>
+            

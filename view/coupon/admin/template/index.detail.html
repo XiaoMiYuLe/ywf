@@ -1,0 +1,220 @@
+{$wrapper_prefix|default}
+
+<script src="{$_STATIC_URL}/coupon/admin/js/index.detail.js" type="text/javascript"></script>
+<section class="hbox stretch "  >
+<aside class="aside-md bg-white ">
+<section class="vbox">
+  <header class="header bg-white b-b clearfix">
+      <div class="row m-t-sm">
+          <div class="col-sm-8 m-b-xs">
+              <a href="javascript:;" class="btn btn-sm btn-default" id="button_cancel"><i
+                      class="fa fa-reply"></i> 返回</a>
+              <font class="h4 v-middle padder">优惠券详情</font>
+          </div>
+      </div>
+  </header>
+  <section class="edit-map wrapper scrollable w-f">
+    <section class="panel panel-default ">
+    <header class="panel-heading">基础信息</header>
+      <section class="scrollable wrapper panel w-f">
+                <form class="form-horizontal">
+          <div class="form-group">
+             <label class="col-sm-2 control-label">优惠券名称：</label>
+              <div class="col-sm-4">
+                <p class="form-control-static">{$coupon.coupon_name}</p>
+              </div>
+              <label class="col-sm-2 control-label">类型：</label>
+              <div class="col-sm-4">
+              {if $coupon.coupon_type == 2}
+               <p class="form-control-static">{$coupon.coupon_type_txt}券</p>
+              {/if}
+              {if $coupon.coupon_type == 1}
+                         <p class="form-control-static">通用券</p>
+                        {/if}
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label  class="col-sm-2 control-label">面额：</label>
+              <div class="col-sm-4">
+                 <p class="form-control-static">{$coupon.face_value}</p>
+              </div>
+
+             <label class="col-sm-2 control-label">发放量：</label>
+              <div class="col-sm-4">
+                <p class="form-control-static">{$coupon.total}</p>
+              </div>
+          </div>
+          
+          <div class="form-group">
+              <label  class="col-sm-2 control-label">有效期开始时间：</label>
+              <div class="col-sm-4">
+                 <p class="form-control-static">{$coupon.valid_stime}</p>
+              </div>
+
+            <label class="col-sm-2 control-label">有效期结束时间：</label>
+              <div class="col-sm-4">
+                <p class="form-control-static">{$coupon.valid_etime}</p>
+              </div>
+          </div>
+          
+          <div class="form-group">
+                        <label  class="col-sm-2 control-label">发放开始时间：</label>
+                        <div class="col-sm-4">
+                           <p class="form-control-static">{$coupon.grant_stime}</p>
+                        </div>
+
+                        <label class="col-sm-2 control-label">发放结束时间：</label>
+                        <div class="col-sm-4">
+                          <p class="form-control-static">{$coupon.grant_etime}</p>
+                        </div>
+                    </div>
+
+          <div class="form-group">
+              <label  class="col-sm-2 control-label">使用详情：</label>
+              <div class="col-sm-4">
+                 <p class="form-control-static">{$coupon.body}</p>
+              </div>
+          </div>
+                    
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">使用规则：</label>
+                        <div class="col-sm-4">
+                           <p class="form-control-static">{$coupon.rule}</p>
+                        </div>
+                    </div>
+                    
+                    {if $coupon.coupon_type == 2}
+          <div class="form-group">
+              <label  class="col-sm-2 control-label">使用条件：</label>
+              <div class="col-sm-4">
+                 <p class="form-control-static">满 {$coupon.basic_price} 元  {$coupon.relation_content_txt} 可使用</p>
+              </div>
+          </div>
+          {/if}
+                </form>
+              </section>
+
+    </section>
+
+    <section class="panel panel-default ">
+    <header class="panel-heading ">兑换信息</header>
+      <section class="scrollable wrapper panel w-f">
+                <form class="form-horizontal">
+          <div class="form-group">
+              <label class="col-sm-1 control-label">发放量：</label>
+              <div class="col-sm-1">
+                 <p class="form-control-static">{$coupon.total}</p>
+              </div>
+              
+              <label class="col-sm-1 control-label">剩余量：</label>
+              <div class="col-sm-1">
+                 <p class="form-control-static">{$surplus}</p>
+              </div>
+              
+              <label class="col-sm-1 control-label">已兑换：</label>
+              <div class="col-sm-1">
+                 <p class="form-control-static">{$exchanged_total}</p>
+              </div>
+              
+              <label class="col-sm-1 control-label">已使用：</label>
+              <div class="col-sm-1">
+                 <p class="form-control-static">{$used_total}</p>
+              </div>
+              
+              <label class="col-sm-1 control-label">未使用：</label>
+              <div class="col-sm-1">
+                 <p class="form-control-static">{$unused_total}</p>
+              </div>
+          </div>
+                </form>
+          </section>
+    </section>
+
+            <header class="header bg-white b-b clearfix">
+                <div class="row m-t-sm">
+                    <div class="col-sm-12 m-b-xs text-right p-left-0">
+                    <form class="form-inline">
+                            <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" name="keywords" style="width:200px;" class="input-sm form-control" placeholder="用户名/用户手机" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-sm btn-default action-refresh" type="button"> 搜索</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>                  
+                </div>
+            </header>
+
+          <section class="scrollable wrapper">
+                <section class="panel panel-default">
+                    <div class="table-responsive">
+                        <table class="table table-striped m-b-none datagrid" id="content_listing">
+                            <thead>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th class="row">
+                                        <div class="datagrid-footer-left col-sm-6 text-center-xs m-l-n"
+                                             style="display:none;">
+                                            <div class="grid-controls m-t-sm">
+                                                    <span>
+                                                        <span class="grid-start"></span> -
+                                                        <span class="grid-end"></span> （共
+                                                        <span class="grid-count"></span>）
+                                                    </span>
+
+                                                <div class="select grid-pagesize dropup" data-resize="auto">
+                                                    <button data-toggle="dropdown"
+                                                            class="btn btn-sm btn-default dropdown-toggle">
+                                                        <span class="dropdown-label"></span>
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li data-value="5"><a href="#">5</a></li>
+                                                        <li data-value="15" data-selected="true"><a href="#">15</a></li>
+                                                        <li data-value="20"><a href="#">20</a></li>
+                                                        <li data-value="50"><a href="#">50</a></li>
+                                                        <li data-value="100"><a href="#">100</a></li>
+                                                    </ul>
+                                                </div>
+                                                <span>/页</span>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="coupon_id" value="{$coupon.coupon_id}" />
+                                        <div class="datagrid-footer-right col-sm-6 text-right text-center-xs" style="display:none;">
+                                            <div class="grid-pager m-r-n">
+                                                <button type="button" class="btn btn-sm btn-default grid-prevpage"><i
+                                                        class="fa fa-chevron-left"></i></button>
+                                                <!--<span>页</span>-->
+
+                                                <div class="inline">
+                                                    <div class="input-group dropdown combobox">
+                                                        <input class="input-sm form-control" type="text">
+
+                                                        <div class="input-group-btn dropup">
+                                                            <button class="btn btn-sm btn-default" data-toggle="dropdown"><i class="caret"></i></button>
+                                                            <ul class="dropdown-menu pull-right"></ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span>/ <span class="grid-pages"></span></span>
+                                                <button type="button" class="btn btn-sm btn-default grid-nextpage"><i
+                                                        class="fa fa-chevron-right"></i></button>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </section>
+            </section>
+     
+  </section>
+</section>
+</aside>
+</section>
+{$wrapper_suffix|default}

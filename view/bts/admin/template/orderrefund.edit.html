@@ -1,0 +1,44 @@
+{$wrapper_prefix|default}
+
+<script src="{$_STATIC_URL}/bts/admin/js/orderrefund.edit.js"></script>
+
+<!-- modal - 编辑汇率 -->
+<div class="modal-dialog" id="modal_content">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="modal_title">编辑退货单信息</h4>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" action="/btsadmin/orderRefund/edit/" method="post" id="edit_form">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><font class="red">* </font>订单状态</label>
+                    <div class="col-sm-6">
+                        <select name="status" id="status" class="form-control">
+                             <option value="1" {if $data.status == 1}selected{/if}>已成功退货</option>
+                             {if $data.status == 2}<option value="2" {if $data.status == 2}selected{/if}>等待审核</option>{/if}
+                             {if $data.status != 1 && $data.status <= 3}<option value="3" {if $data.status == 3}selected{/if}>已审核/待退货</option>{/if}
+                             {if $data.status != 1 && $data.status <= 4}<option value="4" {if $data.status == 4}selected{/if}>用户已退货</option>{/if}
+                        </select>
+                    </div>
+                                    </div>
+                <div class="form-group">
+                    <label for="fromdecrement" class="col-sm-3 control-label">订单备注</label>
+                    <div class="col-sm-6">
+                        <textarea name="reason" id="reason" rows="2" class="form-control">{$data.reason}</textarea>
+                    </div>
+                </div>
+                
+                <input type="hidden" name="refund_id" id="refund_id" value="{$data.refund_id}" />
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存并返回列表管理</button>
+            <button type="button" id="submit_cancel" class="btn btn-danger btn-sm input-submit" data-dismiss="modal">取消</button>
+            <span id="edit_notice"></span>
+        </div>
+    </div>
+</div>
+<!-- / modal - 编辑汇率 -->
+
+{$wrapper_suffix|default}

@@ -1,0 +1,105 @@
+{$wrapper_prefix|default}
+
+<!-- Datepicker -->
+<link href="{$_STATIC_URL}/scripts/datepicker/css/datepicker3.css" rel="stylesheet" type="text/css"/>
+<script src="{$_STATIC_URL}/scripts/datepicker/js/bootstrap-datepicker.js"></script>
+<script src="{$_STATIC_URL}/scripts/datepicker/js/locales/bootstrap-datepicker.zh-CN.time.js" charset="UTF-8"></script>
+
+<script src="{$_STATIC_URL}/advert/admin/js/index.edit.js"></script>
+
+<section class="hbox stretch">
+    <aside class="aside-md bg-white b-r">
+        <section class="vbox">
+            <header class="b-b header">
+                <p class="h4">{if $content}编辑广告{else}添加广告{/if}</p>
+            </header>
+                
+            <section class="scrollable wrapper w-f">
+                <form class="form-horizontal" id="edit_form" action="/advertadmin/index/add" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><font class="red">* </font>广告类型</label>
+                        <div class="col-sm-4">
+                            <select id="type" name="type" class="form-control">
+                                <option value="1" {if $content.type == 1}selected{/if}>图片</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="line line-dashed line pull-in"></div>
+                    
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label"><font class="red">* </font>广告标题</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="title" name="title" value="{$content.title}" placeholder="请输入广告标题" />
+                        </div>
+                    </div>
+                    <div class="line line-dashed line pull-in"></div>
+                    
+                    <div id="for_type" {if $content.type == 2}class="default-hidden"{/if}>
+                        <div class="form-group m-b-xs file-reset">
+                            <label class="col-sm-2 control-label">上传附件</label>
+                               <div class="col-sm-4">
+                                   <input type="file" name="image" id="image" class="filestyle" data-icon="false" data-classbutton="btn btn-default" data-classinput="form-control inline input-s" />
+                                   {if $content.image}
+                                   		<a href="{$upload_cdn}/uploads{$content.image}" class="thumb-sm" target="_blank"><img src="{$upload_cdn}/uploads{$content.image}" /></a>
+                                   {/if}
+                               </div>
+                        </div>
+                        <div class="line line-dashed line pull-in"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="link_url" class="col-sm-2 control-label">链接地址</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="link_url" name="link_url" value="{$content.link_url}" placeholder="请输入链接地址" />
+                        </div>
+                        <label class="col-sm-1 control-label">需加上http://</label>
+                    </div>
+                    <div class="line line-dashed line pull-in"></div>
+                    
+                    <div class="form-group">
+                        <label for="count" class="col-sm-2 control-label">点击次数</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="count" name="count" value="{$content.count}" placeholder="输入数量以预设点击次数" />
+                        </div>
+                    </div>
+                    <div class="line line-dashed line pull-in"></div>
+                    
+                    <div class="form-group">
+                        <label for="sort_order" class="col-sm-2 control-label">序号</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="sort_order" name="sort_order" value="{if $content.sort_order}{$content.sort_order}{else}0{/if}" />
+                        </div>
+                    </div>
+                    <div class="line line-dashed line pull-in"></div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">状态</label>
+                        <div class="col-sm-4">
+                            <label class="checkbox-inline p-left-0">
+                                <input type="radio" name="status" value="1" {if $content.status == '1'}checked="checked"{else}checked="checked" {/if}/>&nbsp;启用
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="radio" name="status" value="0" {if $content.status == '0'}checked="checked"{/if} />&nbsp;不启用
+                            </label>
+                        </div>
+                    </div>
+                
+                    <input type="hidden" name="content_id" id="content_id" value="{$content.content_id}" />
+                </form>
+            </section>
+            
+            <footer class="footer b-t bg-white-only">
+                <div class="m-t-sm">
+                    <button type="button" id="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存</button>
+                    {if ! $content_id}<button type="button" id="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">保存并继续添加</button>{/if}
+                    <button type="button" id="submit_cancel" class="btn btn-danger btn-sm input-submit">取消</button>
+                    <span id="edit_notice"></span>
+                </div>
+            </footer>
+        </section>
+    </aside>
+</section>
+
+<script src="{$_STATIC_CDN}/scripts/file-input/bootstrap-filestyle.min.js"></script>
+
+{$wrapper_suffix|default}

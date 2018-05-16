@@ -1,0 +1,8 @@
+/* base - reset */
+.ztree li ul.line {height:auto!important; border:0!important;}
+.scrollable-ztree {overflow-x:auto!important;}
+
+/* base */
+.grid-pager .combobox {position:relative; max-width:80px; top:10px;}
+
+/* main */

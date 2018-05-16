@@ -1,0 +1,41 @@
+{$wrapper_prefix_front|default}
+
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/gotop.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/rightnow_buy.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/tableft.js"></script>
+<script>$("head>title").html("购买成功");</script>
+<div class="login_content reminder buy_sucess_content">
+    <div class="register">
+        <div class="reg_right reg_right11">
+            <div class="sucess">
+                <h2></h2>
+                <span style="text-align:center;height:40px;line-height:40px;">购买成功</span> 
+                <p>订单号：<em>{$order_no}</em></p>
+                <p class="p2">您已购买成功，<strong id="timer"></strong> 秒后会跳转到个人中心。</p>
+                <div class="btn">
+                    <a href="/cas/user/index" class="jump">立即跳转</a>
+                    <a href="/goods/goods/index" class="gobuy">继续购买 >
+                    </a>
+                </div>
+            </div>	         	  
+        </div>
+
+    </div>   	
+</div>
+<script>
+    $(document).ready(function () {
+        var nums = 10;
+        var numnow;
+        $("#timer").html(10);
+        var ss = setInterval(function () {
+            nums--;
+            numnow = nums;
+            $("#timer").html(numnow);
+            if (nums == 0) {
+                clearInterval(ss);
+                window.location.href='/cas/user/index';
+            }
+        }, 1000)
+    });
+</script>
+{$wrapper_suffix_front|default}

@@ -1,0 +1,53 @@
+{$wrapper_prefix_center|default}
+
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/tab.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/go_top.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/alert.js"></script>
+<!--分页插件-->
+<link type="text/css" rel="stylesheet" href="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination.css"/>
+<script type="text/javascript" src="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination-1.2.7.min.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/cas/user.income.js"></script>
+
+<script>$("head>title").html("收益记录");</script>
+
+<!--中间：内容-->
+<div class="container_content">
+    <!--资金流水-->
+    <div class="top">
+        <div class="one">
+            <div class="blue-line"></div>
+            <span class="title">收益记录</span>
+        </div>
+        <div class="three" id="three">
+            <table class="" id="table1"  style="white-space: nowrap;" >
+                <thead>
+                    <tr>
+                        <th>产品名称</th>
+                        <th>购买时间</th>
+                        <th>收益金额</th>
+                        <th>收益方式</th>
+                        <th>账户余额</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="page_count"></div>
+    <div id="paging" class="m-pagination"></div>
+
+</div>
+</div>
+
+<!--回到顶部开始-->
+<div class="sidebar_nav">
+    <a href="" class="gotop"><span>回顶部</span></a>
+    <a href="" class="kefu"><span>客服</span></a>
+    <a href="" class="app"><span>手机APP</span></a>
+</div>
+<!--回到顶部结束-->
+{$wrapper_suffix_center|default}

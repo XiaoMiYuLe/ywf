@@ -1,0 +1,79 @@
+{$wrapper_prefix|default}
+
+<script src="{$_STATIC_URL}/advert/admin/js/frendlink.edit.js"></script>
+
+<section class="hbox stretch">
+    <aside class="aside-md bg-white b-r">
+        <section class="vbox">
+            <header class="b-b header">
+                <p class="h4">{if $link}编辑友情链接{else}添加友情链接{/if}</p>
+            </header>
+                
+           <section class="scrollable wrapper w-f">
+	           <form class="form-horizontal" action="/advertadmin/frendlink/add" method="post" id="edit_form" enctype="multipart/form-data">
+	                <div class="form-group">
+	                    <label for="sort_order" class="col-sm-2 control-label">序号</label>
+	                    <div class="col-sm-4">
+	                        <input type="text" class="form-control" id="sort_order" name="sort_order" value="{if $link.sort_order}{$link.sort_order}{else}0{/if}" maxlength="5" />
+	                    </div>
+	                </div>
+	                <div class="line line-dashed line pull-in"></div>
+	                
+	                <div class="form-group">
+	                    <label for="link_name" class="col-sm-2 control-label"><font class="red">* </font>友情链接名称</label>
+	                    <div class="col-sm-4">
+	                        <input type="text" class="form-control" id="link_name" name="link_name" value="{$link.link_name}" placeholder="请输入友情链接名称" />
+	                    </div>
+	                </div>
+	                <div class="line line-dashed line pull-in"></div>
+	                
+	                <div class="form-group">
+	                    <label for="href" class="col-sm-2 control-label">链接地址</label>
+	                    <div class="col-sm-4">
+	                        <input type="text" class="form-control" id="href" name="href" value="{if $link.href}{$link.href}{else}http://{/if}" />
+	                    </div>
+	                </div>
+	                <div class="line line-dashed line pull-in"></div>
+	                
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">友情链接图片</label>
+	                    <div class="col-sm-4">
+	                        <input type="file" name="image_url" id="image_url" class="filestyle" data-icon="false" data-buttonText="上传图片" data-classbutton="btn btn-default" data-classinput="form-control inline input-s" />
+	                        {if $link.image_url}
+	                        <a href="{$link.image_url}" class="thumb-sm" target="_blank"><img src="{$link.image_url}" /></a>
+	                        {/if}
+	                    </div>
+	                </div>
+	                <div class="line line-dashed line pull-in"></div>
+	                
+	                <div class="form-group">
+                        <label class="col-sm-2 control-label">状态</label>
+                        <div class="col-sm-4">
+                            <label class="checkbox-inline p-left-0">
+                                <input type="radio" {if $link.status == 1}checked{/if} name="status" value="1" /> 启用
+                            </label>
+                            <label class="checkbox-inline p-left-0">
+                                <input type="radio" {if $link.status == '0'}checked{/if} name="status" value="0" /> 关闭
+                            </label>
+                        </div>
+                    </div>
+	                
+	                <input type="hidden" name="link_id" value="{$link.link_id}" />
+	            </form>
+            </section>
+            
+            <footer class="footer b-t bg-white-only">
+                <div class="m-t-sm">
+                    <button type="button" data_submit_type="submit_save_back" class="btn btn-s-md btn-primary btn-sm input-submit">保存</button>
+                    {if ! $link}<button type="button" data_submit_type="submit_save_continue" class="btn btn-s-md btn-primary btn-sm input-submit">保存并继续添加</button>{/if}
+                    <button type="button" data_submit_type="submit_cancel" class="btn btn-danger btn-sm input-submit">取消</button>
+                    <span id="edit_notice"></span>
+                </div>
+            </footer>
+        </section>
+    </aside>
+</section>
+
+<script src="{$_STATIC_CDN}/scripts/file-input/bootstrap-filestyle.min.js"></script>
+
+{$wrapper_suffix|default}

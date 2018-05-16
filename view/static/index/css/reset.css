@@ -1,0 +1,11 @@
+/* ============ reset ============== */
+.error {color:#FF0000;}
+.default-hidden {display:none;}
+
+/* ============ base ============== */
+body {margin:0; padding:0; border:0; height:100%; text-align:left;} 
+#contain{position:relative; height:100%; padding:10px; margin:10px auto; border:0;}
+#content {position:relative;margin:10px auto 10px auto} 
+#bottom {position: relative;margin:0px auto} 
+#top {position:relative;margin:0px auto;z-index:99} 
+

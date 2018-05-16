@@ -1,0 +1,80 @@
+{$wrapper_prefix_center|default}
+<!--回到顶部-->
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/tab.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/go_top.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/alert.js"></script>
+<!--分页插件-->
+<link type="text/css" rel="stylesheet" href="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination.css"/>
+<script type="text/javascript" src="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination-1.2.7.min.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/cas/order.detail.js"></script>
+
+<script>$("head>title").html("订单详情");</script>
+<!--中间：内容-->
+<div class="container_content" >
+    <!--我的账户-->
+    <div class="top" style="min-height:658px">
+        <div class="one">
+            <div class="blue-line"></div>
+            <span class="title">订单详情</span>
+        </div>
+        <div class="two_orderdatelist" >
+            <p>订单状态：<span>{$show}</span></p> 
+            <div class="item" id="item_one">
+                <label>订单号：</label>
+                <span>{$orderInfo['order_no']}</span>
+            </div>
+            <div class="item">
+                <label>产品名称：</label>
+                <span>{$orderInfo['goods_name']}</span>
+            </div>
+            <div class="item">
+                <label>预期年化收益：</label>
+                <span>{$orderInfo['yield']}%</span>
+            </div>
+            <div class="item">
+                <label>投资金额：</label>
+                <span>{$orderInfo['buy_money']}元</span>
+            </div>
+            <div class="item">
+                <label>实付金额：</label>
+                <span>{$orderInfo['real_money']}元</span>
+            </div>
+            <div class="item">
+                <label>预计到期收益：</label>
+                <span>{$orderInfo['bts_yield']}元</span>
+            </div>
+            <div class="item">
+                <label>下单时间：</label>
+                <span>{$orderInfo['ctime']}</span>
+            </div>
+            <div class="item">
+                <label>起息日期：</label>
+                <span>{$orderInfo['start_time']}</span>
+            </div>
+            <div class="item">
+                <label>结息日期：</label>
+                <span>{$orderInfo['end_time']}</span>
+            </div>
+            <div class="item">
+                <label>兑付日期：</label>
+                <span>{$orderInfo['cash_time']}</span>
+            </div>
+            <div class="item">
+                <a id="word" href="javascript:;">电子合同</a>
+                <a onclick="location.href = '/goods/goods/detail?goods_id=' + {$orderInfo['goods_id']}" href="javascript:;">产品详情</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<input id="order_no" value="{$orderInfo['order_no']}" type="hidden" />
+<!--回到顶部开始-->
+<div class="sidebar_nav">
+    <a href="" class="gotop"><span>回顶部</span></a>
+    <a href="" class="kefu"><span>客服</span></a>
+    <a href="" class="app"><span>手机APP</span></a>
+</div>
+
+<!--回到顶部结束-->
+{$wrapper_suffix_center|default}
