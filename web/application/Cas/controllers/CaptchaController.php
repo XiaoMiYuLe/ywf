@@ -24,7 +24,6 @@ class CaptchaController extends Zeed_Controller_Action
     
     public function image()
     {
-        $capimg = new Zeed_Captcha_Image();
         $options = array(
           'width' => 100, 
           'height' => 40, 
@@ -34,8 +33,8 @@ class CaptchaController extends Zeed_Controller_Action
           'wordUseNumbers' => true, 
           'backgroundColor' => 0xFFFFFF
         );
-        
-        $capimg->setOption($options);
+        $capimg = new Zeed_Captcha_Image($options);
+//        $capimg->setOption($options);
         $capimg->setParam('font', ZEED_PATH_DATA . 'font/DejaVuSerif.ttf');
         $capimg->setId('');
         $capimg->setWord();
