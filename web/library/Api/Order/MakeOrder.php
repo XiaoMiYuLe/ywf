@@ -282,9 +282,6 @@ class Api_Order_MakeOrder
 
     /**
      * 验证参数
-     *
-     * @param array $params            
-     * @throws Zeed_Exception
      */
     public static function validate ($params)
     {

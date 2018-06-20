@@ -294,7 +294,7 @@ class SignController extends Zeed_Controller_Action {
             $str= "/(?!^[0-9]+$)(?!^[A-z]+$)(?!^[^A-z0-9]+$)^.{6,16}$/";
             if (!preg_match($str, $arr['repwd'])) {
                 $res['status'] = 1;
-                $res['error'] = "密码必须为6-16位，同时包含数字和字母两种";
+                $res['error'] = "密码必须为6-16位，同时包含数字和字母两种,332";
                 return $res;
             }
             

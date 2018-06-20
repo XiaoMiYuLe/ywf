@@ -30,7 +30,7 @@ class Api_Cas_ResetPassword
         	try {
         	    
         	    /* 判断是否传password */
-        	    Util_Validator::test_pwd(trim($res['data']['newpassword']),"密码必须为6-16位，同时包含数字和字母两种");
+        	    Util_Validator::test_pwd(trim($res['data']['newpassword']),"密码必须为6-16位，同时包含数字和字母两种，555");
         	    
         		/* 检查用户是否存在 */
         		if (! $userExists = Cas_Model_User::instance()->fetchByPK($res['data']['userid'])) {

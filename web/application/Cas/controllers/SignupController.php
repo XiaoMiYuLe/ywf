@@ -134,7 +134,7 @@ class SignupController extends IndexAbstract
         $regpwd = "/(?!^[0-9]+$)(?!^[A-z]+$)(?!^[^A-z0-9]+$)^.{6,16}$/";
         if (!preg_match($regpwd, $pwd)) {
             $res['status'] = 1;
-            $res['error'] = "密码必须为6-16位，同时包含数字和字母两种";
+            $res['error'] = "密码必须为6-16位，同时包含数字和字母两种,331";
             return $res;
         }
        /*两次输入密码*/

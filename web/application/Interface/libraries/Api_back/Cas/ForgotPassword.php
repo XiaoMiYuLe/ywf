@@ -64,7 +64,7 @@ class Api_Cas_ForgotPassword
                 }
                 
                 /* 新密码格式 */
-                Util_Validator::test_pwd(trim($res['data']['newpassword']),"密码必须为6-16位，同时包含数字和字母两种");
+                Util_Validator::test_pwd(trim($res['data']['newpassword']),"密码必须为6-16位，同时包含数字和字母两种,666");
                 
                 //重新加密
                 $data['salt'] = Zeed_Util::genRandomString(10);

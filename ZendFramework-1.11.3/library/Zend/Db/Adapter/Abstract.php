@@ -455,6 +455,7 @@ abstract class Zend_Db_Adapter_Abstract
      */
     public function query($sql, $bind = array())
     {
+//        var_dump($sql);
         // connect to the database if needed
         $this->_connect();
 

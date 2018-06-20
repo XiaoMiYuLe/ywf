@@ -81,6 +81,10 @@ $config['controllers']['test'] = 'Test/controllers';
 
 $config['controllers']['interest'] = 'Index/controllers';
 $config['controllers']['index'] = 'Index/controllers';
+
+
+//新版P2P的产品
+$config['controllers']['borrow'] = 'P2P/borrow';
 return $config;
 
 // End ^ LF ^ UTF-8

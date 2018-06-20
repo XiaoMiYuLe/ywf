@@ -1,0 +1,93 @@
+{$wrapper_prefix_front|default}
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/gotop.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/goods.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/tableft.js"></script>
+<!-- 分页插件 -->
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/goods/goods.index.js"></script>
+<link type="text/css" rel="stylesheet" href="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination.css"/>
+<script type="text/javascript" src="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination-1.2.7.min.js"></script>
+
+<script>$("head>title").html("理财产品");</script>
+<!-- 商品列表模块开始 -->
+<div class="goods_content">
+    <ul class="product_second goods_product_second">
+        <li class="current" id="licai">
+            在线理财
+            <span></span>
+        </li>
+        <li id="zhuanrang">
+            转让专区
+            <span></span>
+        </li>
+        <li id="yuyue">
+            产品预约
+            <span></span>
+        </li>
+    </ul>
+    <div class="goods_box">
+        <div class="goods_box_l" >
+            <div id="licai_content"></div>
+            <div id="page" class="m-pagination"></div>
+        </div>
+        <div class="goods_box_l" style="display: none;">
+            <div id="zhuanrang_content"></div>
+            <div id="page1" class="m-pagination"></div>
+        </div>
+        <div class="goods_box_l" style="display: none">
+            <div id="yuyue_content"></div> 
+            <div id="page2" class="m-pagination"></div>
+        </div>
+        
+        <div class="goods_side">
+            <div class="side_img">
+                <img src="{$_STATIC_CDN}/ywf/img/pic/pic_4.png" alt="" >
+            </div>
+            <div class="side_mode">
+                <div class="side_text">
+                    <p>7天平台数据</p>
+                    <span>更新至{$time}</span>
+                </div>
+                <ul class="add_text">
+                    <li>
+                        <p>{$count}</p>
+                        <span>累计投资笔数 (笔)</span>
+                    </li>
+                    <li>
+                        <p>{$buy_money}</p>
+                        <span>累计投资总额 (元)</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="side_mode">
+                <div class="side_text">
+                    <p>投资动态</p>
+                    <span>更新至{$time}</span>
+                </div>
+                <div  class="add_text add_textdown z_scroll">
+                    <ul>
+                        {if $order_new}
+                        {foreach $order_new as $v}
+                        <li>	
+                            <p>投资: <strong>{$v.buy_money}</strong> 元</p>
+                            <span>用户:{$v.phone} {$v.goods_name}</span>
+                        </li> 
+                        {/foreach} 
+                        {/if}
+                    </ul>
+                </div>
+                <div class="add_white"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<!-- 商品列表模块结束 -->
+
+<div class="sidebar_nav">
+    <a href="" class="gotop"><span>回顶部</span></a>
+    <a href="" class="kefu"><span>客服</span></a>
+    <a href="" class="app"><span>手机APP</span></a>
+</div>
+{$wrapper_suffix_front|default}

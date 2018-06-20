@@ -14,7 +14,6 @@
  * @since      July 6, 2015
  * @version    SVN: $Id$
  */
-
 define('ZEED_BOOT', dirname(__FILE__) . '/');
 define('ZEED_IN_PRODUCTION', 0);
 define('ZEED_ROOT', str_replace('\\', '/', realpath(ZEED_BOOT . '../') . '/'));
@@ -24,6 +23,11 @@ define('ZEED_PATH_CONF', ZEED_ROOT . 'config/');
 define('ZEED_PATH_VIEW', ZEED_ROOT . 'view/');
 define('ZEED_PATH_DATA', ZEED_ROOT . 'data/');
 define('ZEED_PATH_UPLOAD', ZEED_ROOT . 'upload/');
+define('NOW_TIME', date('Y-m-d H:i:s'));
+
+//die;
+//var_dump('P'.date('YmdH'). substr(microtime(),2,7));
+//die;
 
 require_once 'install/setup.php';
 
@@ -32,24 +36,24 @@ if (file_exists(ZEED_BOOT . '/../config/env.php')) {
 } else {
     error_reporting(E_ALL);
 }
-error_reporting(E_ALL^E_NOTICE^E_WARNING);
+error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 
 require_once 'Zeed.php';
 require_once ZEED_PATH . 'Zeed/Loader' . EXT;
 Zeed_Loader::registerAutoload();
 
 Zeed::packageClass(array(
-        'Zeed_Benchmark', 
-        'Zeed_Request_Abstract',
-        'Zeed_Request_Http',
-        'Zeed_Controller_Front', 
-        'Zeed_Controller_Dispatcher_Interface', 
-        'Zeed_Controller_Dispatcher', 
-        'Zeed_Controller_Action_Interface', 
-        'Zeed_Controller_Action', 
-        'Zeed_Controller_Router_Rewrite', 
-        'Zeed_Controller_Router_Route_Module', 
-        'Zeed_Controller_Request'), null, ZEED_IN_PRODUCTION);
+    'Zeed_Benchmark',
+    'Zeed_Request_Abstract',
+    'Zeed_Request_Http',
+    'Zeed_Controller_Front',
+    'Zeed_Controller_Dispatcher_Interface',
+    'Zeed_Controller_Dispatcher',
+    'Zeed_Controller_Action_Interface',
+    'Zeed_Controller_Action',
+    'Zeed_Controller_Router_Rewrite',
+    'Zeed_Controller_Router_Route_Module',
+    'Zeed_Controller_Request'), null, ZEED_IN_PRODUCTION);
 
 Zeed_Benchmark::start('_total_execution');
 

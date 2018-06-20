@@ -41,7 +41,7 @@ class Api_Cas_Signup
                 Util_Validator::test_mobile($res['data']['phone'],"请填写正确的手机号码");
                 
                 /* 判断是否传password */
-                Util_Validator::test_pwd(trim($res['data']['password']),"密码必须为6-16位，同时包含数字和字母两种");
+                Util_Validator::test_pwd(trim($res['data']['password']),"密码必须为6-16位，同时包含数字和字母两种,444");
                 //验证用户是否注册过
                 $exist_phone = Cas_Model_User::instance()->fetchByWhere( "phone = '{$res['data']['phone']}'");
 

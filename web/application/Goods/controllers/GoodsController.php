@@ -45,7 +45,6 @@ class GoodsController extends IndexAbstract {
         }
 
         $data['order_new'] = $order_new ? $order_new : array();
-
         $this->setData('data', $data);
         $this->addResult(self::RS_SUCCESS, 'php', 'goods.index');
         return parent::multipleResult(self::RS_SUCCESS);

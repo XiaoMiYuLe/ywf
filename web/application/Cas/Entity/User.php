@@ -2,10 +2,10 @@
 /**
  * Zeed Platform Project
  * Based on Zeed Framework & Zend Framework.
- * 
+ *
  * LICENSE
  * http://www.zeed.com.cn/license/
- * 
+ *
  * @category   Zeed
  * @package    Zeed_ChangeMe
  * @subpackage ChangeMe
@@ -28,6 +28,7 @@ class Cas_Entity_User extends Zeed_Object
     public $salt;
     public $encrypt;
     public $asset;
+    public $freeze_money;
     public $is_buy;
     public $ctime;
     public $mtime;

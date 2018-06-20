@@ -118,8 +118,8 @@ class Api_Goods_GetGoodsList
             	
             	
             	/*总记录数*/
-            	$count = Goods_Model_List::instance()->getCount($where);
-            	
+//            	$count = Goods_Model_List::instance()->getCount($where);
+                $count = 50;
             	// 计算总页数
             	$pageCount = ceil($count / $res['data']['psize']);
             	

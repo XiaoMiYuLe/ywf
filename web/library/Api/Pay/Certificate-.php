@@ -85,8 +85,6 @@ class Api_Pay_Certificate
 			self::$_res['error'] = '返回url未提供';
 			return self::$_res;
 		}
-	
-		
 		self::$_res['data'] = $params;
 		return self::$_res;
 	}

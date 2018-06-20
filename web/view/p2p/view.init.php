@@ -52,13 +52,13 @@ $smarty->assign('user_info',$this->getData('data.user_info'));
 $smarty->assign('keyword',$this->getData('data.keyword'));
 
 // 加载页面头尾
-//$smarty->assign('wrapper_prefix', $smarty->fetch('index/' . $_theme . '/wrapper.prefix.html'));
-//$smarty->assign('wrapper_suffix', $smarty->fetch('index/' . $_theme . '/wrapper.suffix.html'));
+$smarty->assign('wrapper_prefix', $smarty->fetch('index/' . $_theme . '/wrapper.prefix.html'));
+$smarty->assign('wrapper_suffix', $smarty->fetch('index/' . $_theme . '/wrapper.suffix.html'));
 $smarty->assign('wrapper_prefix_front', $smarty->fetch('index/' . $_theme . '/wrapper.prefix_front.html'));
 $smarty->assign('wrapper_suffix_front', $smarty->fetch('index/' . $_theme . '/wrapper.suffix_front.html'));
 
-//$smarty->assign('wrapper_prefix_center', $smarty->fetch('index/' . $_theme . '/wrapper.prefix_center.html'));
-//$smarty->assign('wrapper_suffix_center', $smarty->fetch('index/' . $_theme . '/wrapper.suffix_center.html'));
+$smarty->assign('wrapper_prefix_center', $smarty->fetch('index/' . $_theme . '/wrapper.prefix_center.html'));
+$smarty->assign('wrapper_suffix_center', $smarty->fetch('index/' . $_theme . '/wrapper.suffix_center.html'));
 
 
 // End ^ LF ^ encoding

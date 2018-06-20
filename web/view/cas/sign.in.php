@@ -17,19 +17,19 @@
 
 require_once dirname(__FILE__) . '/view.init.php';
 
-$smarty->assign('loginCaptchaId', $this->captchaId);
-$smarty->assign('login_username', $this->input->post('username'));
-$smarty->assign('loginerror', $this->error);
-$smarty->assign('continue', $this->continue);
-
-$msg = $this->input->query('msg');
-$sig = $this->input->query('sig');
-if (empty($msg) || md5($msg.'@Wang#Wu#Wang@') != $sig) {
-    $msg = false;
-    $sig = false;
-}
-$smarty->assign('loginmsg', $msg);
-$smarty->assign('loginsig', $msg);
+//$smarty->assign('loginCaptchaId', $this->captchaId);
+//$smarty->assign('login_username', $this->input->post('username'));
+//$smarty->assign('loginerror', $this->error);
+//$smarty->assign('continue', $this->continue);
+//
+//$msg = $this->input->query('msg');
+//$sig = $this->input->query('sig');
+//if (empty($msg) || md5($msg.'@Wang#Wu#Wang@') != $sig) {
+//    $msg = false;
+//    $sig = false;
+//}
+//$smarty->assign('loginmsg', $msg);
+//$smarty->assign('loginsig', $msg);
 
 $smarty->display('sign.in.html');
 

@@ -79,10 +79,6 @@ return array(
         'Order.GetOrderDetail' => array('class' => 'Api_Order_GetOrderDetail'),
         
         /* 用户模块 */
-        'Cas.SendCode' => array('class' => 'Api_Cas_SendCode'), // 发送验证码
-        'Cas.Signup' => array('class' => 'Api_Cas_Signup'), // 注册
-        'Cas.Login' => array('class' => 'Api_Cas_Login'), // 登录
-        'Cas.ForgotPassword' => array('class' => 'Api_Cas_ForgotPassword'), // 找回密码
         'Cas.GetUserVoucher' => array('class' => 'Api_Cas_GetUserVoucher'),//获取优惠券列表
         'Cas.GetUserBrokerage' => array('class' => 'Api_Cas_GetUserBrokerage'),//获取用户佣金
         'Cas.GetRecordLog' => array('class' => 'Api_Cas_GetRecordLog'),//获取用户资金流水详情
@@ -129,7 +125,6 @@ return array(
         'Pay.TestCallBack' => array('class' => 'Api_Pay_TestCallBack'),
         'Pay.Iscallback' => array('class' => 'Api_Pay_Iscallback'),
         'Pay.Iskamiok' => array('class' => 'Api_Pay_Iskamiok'),
-        'Pay.BindCard2' => array('class' => 'Api_Pay_BindCard2'),
         'Pay.Certificate' => array('class' => 'Api_Pay_Certificate'),
          /*余额支付*/
         'Pay.BalancePaid' => array('class' => 'Api_Pay_BalancePaid'),
