@@ -23,8 +23,8 @@
       <file leaf-file-name="Model.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/library/Zeed/Db/Model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="101" column="26" selection-start-line="101" selection-start-column="20" selection-end-line="101" selection-end-column="26" />
+            <state relative-caret-position="574">
+              <caret line="630" column="44" lean-forward="true" selection-start-line="630" selection-start-column="44" selection-end-line="630" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -40,6 +40,7 @@
       <find>find</find>
       <find>Zend_Db_Table_Abstract</find>
       <find>update</find>
+      <find>fetch</find>
     </findStrings>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -51,7 +52,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="260" />
     <option name="y" value="20" />
     <option name="width" value="1400" />
@@ -112,15 +113,15 @@
       <workItem from="1526459672972" duration="50000" />
       <workItem from="1527587005104" duration="668000" />
       <workItem from="1527643524298" duration="2664000" />
-      <workItem from="1528793204736" duration="1241000" />
+      <workItem from="1528793204736" duration="2710000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4623000" />
+    <option name="totallyTimeSpent" value="6092000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -189,8 +190,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/library/Zeed/Db/Model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="101" column="26" selection-start-line="101" selection-start-column="20" selection-end-line="101" selection-end-column="26" />
+        <state relative-caret-position="574">
+          <caret line="630" column="44" lean-forward="true" selection-start-line="630" selection-start-column="44" selection-end-line="630" selection-end-column="44" />
         </state>
       </provider>
     </entry>

@@ -41,8 +41,6 @@ class ListController extends Zeed_Controller_Action
         $data['list'] = $list ? $list : array();
         $data['count'] = P2P_Model_Borrow::instance()->getCount($where);
 
-        Cas_Entity_User::newInstance()->freezeMoney("", 200);
-
         return $data;
 //        var_dump($data);
 //        $this->setData('data', $data);
@@ -86,6 +84,12 @@ class ListController extends Zeed_Controller_Action
         $userid = $this->input->get('uid');
 
         return P2P_Model_Borrow::instance()->invest($borrow_id,$userid,$buy_money);
+    }
+
+    /* 投资状态,下单 */
+    public function fullBorrow()
+    {
+        return P2P_Model_Borrow::instance()->fullBorrow();
     }
 
 
