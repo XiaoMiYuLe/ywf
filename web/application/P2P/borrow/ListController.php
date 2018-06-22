@@ -50,6 +50,34 @@ class ListController extends Zeed_Controller_Action
 //        return self::RS_SUCCESS;
     }
 
+    /**
+     * 标的详情
+     */
+    public function detail()
+    {
+        $this->addResult(self::RS_SUCCESS, 'json');
+        /* 接收参数 */
+        $bid = $this->input->get('bid', 0);
+        $b_list = P2P_Model_Borrow::instance()->fetchByWhere('borrow_id = '.$bid);
+        $borrow = null;
+        if($b_list){
+            $borrow = $b_list[0];
+        }
+        $bi_list = P2P_Model_BorrowInfo::instance()->fetchByWhere('borrow_id = '.$bid);
+        $borrow_info = null;
+        if($bi_list){
+            $borrow_info = $bi_list[0];
+        }
+        $data['borrow'] = $borrow;
+        $data['info'] = $borrow_info;
+        var_dump($data);die;
+        $this->setData('data', $data);
+        $this->addResult(self::RS_SUCCESS, 'php', 'index.index');
+//        return parent::multipleResult(self::RS_SUCCESS);
+//        $this->addResult(self::RS_SUCCESS, 'php', 'sign.in.php');
+        return parent::multipleResult(self::RS_SUCCESS);
+    }
+
     /* 投资状态,下单 */
     public function invest()
     {
