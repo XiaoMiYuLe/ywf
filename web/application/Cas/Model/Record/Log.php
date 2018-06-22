@@ -52,8 +52,9 @@ class Cas_Model_Record_Log extends Zeed_Db_Model
     /**
      * 资金冻结方法
      */
-    public function freezeMoney($user = null, $order_no = '', $money = 0)
+    public function freezeMoney($userid = 0, $order_no = '', $money = 0)
     {
+        $user = Cas_Model_User::instance()->getUserByUserid($userid);
         $freeze_money = $user['freeze_money'] + $money;//冻结金额
         $flow_asset = $user['asset'] - $money;//账户金额
         if (!$this->doUserMoney($user['userid'], $flow_asset, $freeze_money, $user['asset'], $user['freeze_money'])) {
@@ -73,8 +74,9 @@ class Cas_Model_Record_Log extends Zeed_Db_Model
     /*
      * 资金解冻方法
      */
-    public function unFreezeMoney($user = null, $order_no = '', $money = 0)
+    public function unFreezeMoney($userid = 0, $order_no = '', $money = 0)
     {
+        $user = Cas_Model_User::instance()->getUserByUserid($userid);
         $freeze_money = $user['freeze_money'] - $money;//冻结金额
         $flow_asset = $user['asset'] + $money;//账户金额
         if (!$this->doUserMoney($user['userid'], $flow_asset, $freeze_money, $user['asset'], $user['freeze_money'])) {
@@ -94,8 +96,9 @@ class Cas_Model_Record_Log extends Zeed_Db_Model
     /*
      * 减少资金
      */
-    public function reduceMoney($user = null, $order_no = '', $money = 0, $type = 2)
+    public function reduceMoney($userid = 0, $order_no = '', $money = 0, $type = 2)
     {
+        $user = Cas_Model_User::instance()->getUserByUserid($userid);
         $freeze_money = $user['freeze_money'];//冻结金额
         $flow_asset = $user['asset'] - $money;//账户金额
         if (!$this->doUserMoney($user['userid'], $flow_asset, $freeze_money, $user['asset'], $user['freeze_money'])) {
@@ -115,8 +118,9 @@ class Cas_Model_Record_Log extends Zeed_Db_Model
     /*
      * 增加资金
      */
-    public function addMoney($user = null, $order_no = '', $money = 0, $type = 1)
+    public function addMoney($userid = 0, $order_no = '', $money = 0, $type = 1)
     {
+        $user = Cas_Model_User::instance()->getUserByUserid($userid);
         $freeze_money = $user['freeze_money'];//冻结金额
         $flow_asset = $user['asset'] + $money;//账户金额
         if (!$this->doUserMoney($user['userid'], $flow_asset, $freeze_money, $user['asset'], $user['freeze_money'])) {

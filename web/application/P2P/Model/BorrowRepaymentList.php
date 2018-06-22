@@ -83,9 +83,9 @@ class P2P_Model_BorrowRepaymentList extends P2P_Model_Public
         //借款天数
         $borrow_time_limit = $borrow['borrow_time_limit'];
         //计息结算时间
-        $interest_end_time = date("Y-m-d", strtotime($full_time) + 24 * 60 * 60 * ($borrow_time_limit - 1));
+        $interest_end_time = date("Y-m-d", strtotime($interest_start_time) + 24 * 60 * 60 * ($borrow_time_limit - 1));
         //最后一期兑付时间
-        $last_payment_time = date("Y-m-d", strtotime($full_time) + 24 * 60 * 60 * $borrow_time_limit);
+        $last_payment_time = date("Y-m-d", strtotime($interest_start_time) + 24 * 60 * 60 * $borrow_time_limit);
         //收益率
         //$yield_rate = $borrow['yield_rate'];
         //计息方式
@@ -101,11 +101,11 @@ class P2P_Model_BorrowRepaymentList extends P2P_Model_Public
             $this->beginTransaction();
             $limit_num = 1;//第几期
             if ($interest_rate == "1") {
-                if (!$this->insert([
+                if (!$this->insert(array(
                     'borrow_id' => $borrow['borrow_id'], "borrow_user_id" => $borrow['borrow_user_id'], 'time_limit' => $borrow_time_limit,
                     "expect_interest_money" => $sum_brokerage_money, "brokerage_money" => $sum_brokerage_money,
                     "is_last" => "1", "interest_limit_num" => $limit_num, "expect_payment_time" => $last_payment_time, "add_time" => NOW_TIME
-                ])
+                ))
                 ) {
                     throw new Zeed_Exception('创建还款记录失败');
                 }
@@ -155,11 +155,11 @@ class P2P_Model_BorrowRepaymentList extends P2P_Model_Public
                     }
 
                     //如果插入失败，回滚跳出
-                    if (!$this->insert([
+                    if (!$this->insert(array(
                         'borrow_id' => $borrow['borrow_id'], "borrow_user_id" => $borrow['borrow_user_id'], 'time_limit' => $repay_date,
                         "expect_interest_money" => $expect_interest_money, "brokerage_money" => $brokerage_money, "is_last" => $is_last,
                         "interest_limit_num" => $limit_num, "expect_payment_time" => $repay_time, "add_time" => NOW_TIME
-                    ])
+                    ))
                     ) {
                         throw new Zeed_Exception('创建还款记录失败');
                     }
@@ -172,14 +172,14 @@ class P2P_Model_BorrowRepaymentList extends P2P_Model_Public
                 } while (true);
             }
             //更新对应标的投资记录的信息
-            if (!P2P_Model_BorrowInvestList::instance()->update(['interest_limit' => $limit_num, 'last_payment_time' => $last_payment_time],
-                ['borrow_id' => $borrow['borrow_id']])
+            if (!P2P_Model_BorrowInvestList::instance()->update(array('interest_limit' => $limit_num, 'last_payment_time' => $last_payment_time),
+                'borrow_id = ' . $borrow['borrow_id'])
             ) {
                 throw new Zeed_Exception('创建还款记录失败');
             }
             //更新标的信息
-            if (!P2P_Model_Borrow::instance()->update(['interest_end_time' => $interest_end_time, 'interest_start_time' => $interest_start_time,
-                'last_payment_time' => $last_payment_time, 'interest_limit' => $limit_num], ['borrow_id' => $borrow['borrow_id']])) {
+            if (!P2P_Model_Borrow::instance()->update(array('interest_end_time' => $interest_end_time, 'interest_start_time' => $interest_start_time,
+                'last_payment_time' => $last_payment_time, 'interest_limit' => $limit_num), 'borrow_id = ' . $borrow['borrow_id'])) {
                 throw new Zeed_Exception('创建还款记录失败');
             }
             $this->commit();

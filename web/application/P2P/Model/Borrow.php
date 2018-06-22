@@ -63,6 +63,12 @@ class P2P_Model_Borrow extends P2P_Model_Public
         if ($borrow['borrow_status'] != 1) {
             return $this->dataFormat('', 1, '该标的不在募集中');
         }
+        if (strtotime($borrow['show_time']) > strtotime(NOW_TIME)) {
+            return $this->dataFormat('', 1, '该标的还未开放募集');
+        }
+        if ((strtotime($borrow['show_time']) + $borrow['raise_day'] * 24 * 60 * 60) < strtotime(NOW_TIME)) {
+            return $this->dataFormat('', 1, '该标的已过募集期');
+        }
         if ($buy_money < $borrow['low_pay']) {
             return $this->dataFormat('', 1, '投资金额小于标的最低投资额');
         }
@@ -82,7 +88,7 @@ class P2P_Model_Borrow extends P2P_Model_Public
             //获取订单编号
             $order_no = $this->getOrderNo();
             //冻结用户资金，生成用户资金记录
-            $freeze_status = Cas_Model_Record_Log::instance()->freezeMoney($user, $order_no, $buy_money);
+            $freeze_status = Cas_Model_Record_Log::instance()->freezeMoney($userid, $order_no, $buy_money);
             if (!$freeze_status) {
                 throw new Zeed_Exception('投资失败');
             }
@@ -98,7 +104,7 @@ class P2P_Model_Borrow extends P2P_Model_Public
                 $borrow_arr['borrow_status'] = 2;
                 $borrow_arr['full_time'] = date(DATETIME_FORMAT);
             }
-            if (!$this->update($borrow_arr, array("borrow_id" => $borrow_id, 'raise_money' => $borrow['raise_money']))) {
+            if (!$this->update($borrow_arr, "borrow_id = " . $borrow_id . ' and raise_money = ' . $borrow['raise_money'])) {
                 throw new Zeed_Exception('投资失败');
             }
             $this->commit();
@@ -115,7 +121,7 @@ class P2P_Model_Borrow extends P2P_Model_Public
     public function fullBorrow()
     {
         //查询需要满标的标的
-        $full_borrows = P2P_Model_Borrow::instance()->fetchByWhere("borrow_status = 2");
+        $full_borrows = $this->fetchByWhere("borrow_status = 2");
         //还款表MODEL
         $brl_model = P2P_Model_BorrowRepaymentList::instance();
         //投资表MODEL
@@ -128,7 +134,7 @@ class P2P_Model_Borrow extends P2P_Model_Public
                 $br_list = $brl_model->buildRepayment($borrow);
                 if ($br_list) {
                     //查询投资记录
-                    $bi_list = $bil_model->fetchByWhere("borrow_id = " . $borrow['borrow_id']." and invest_status = 1 ");
+                    $bi_list = $bil_model->fetchByWhere("borrow_id = " . $borrow['borrow_id'] . " and invest_status = 1 ");
                     $is_ok = true;
                     if ($bi_list) {
                         foreach ($bi_list as $bi_one) {
@@ -136,16 +142,15 @@ class P2P_Model_Borrow extends P2P_Model_Public
                                 $is_ok = false;
                             }
                         }
-                        if($is_ok){
-
+                        //所有还款和收益记录生成成功才修改标的满标状态
+                        if ($is_ok) {
+                            $this->update(array('borrow_status' => 3), 'borrow_status = 2 and borrow_id = ' . $borrow['borrow_id']);
                         }
                     }
                 }
             }
         }
     }
-
-
 }
 
 // End ^ LF ^ encoding

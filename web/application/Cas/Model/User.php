@@ -128,7 +128,7 @@ class Cas_Model_User extends Zeed_Db_Model
     /**
      * 根据用户ID获取用户信息
      *
-     * @param BigInteger $userid
+     * @param Integer $userid
      * @return array|null
      */
     public function getUserByUserid($userid)

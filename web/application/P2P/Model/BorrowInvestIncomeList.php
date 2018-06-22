@@ -28,16 +28,7 @@ class P2P_Model_BorrowInvestIncomeList extends P2P_Model_Public
     {
         return parent::_instance(__CLASS__);
     }
-    /*
-  `bil_id` int(11) DEFAULT '0' COMMENT '标的投资表id',
-  `brl_id` int(11) DEFAULT '0' COMMENT '还款表id',
-  `corpus_money` decimal(10,2) DEFAULT '0.00' COMMENT '应收本金',
-  `income_money` decimal(10,2) DEFAULT '0.00' COMMENT '收益金额',
-  `interest_limit_num` tinyint(1) DEFAULT '0' COMMENT '结算期数（第几期）',
-  `is_last` tinyint(1) DEFAULT '0' COMMENT '是否最后一期（0否 1是）',
-  `expect_payment_time` date DEFAULT NULL COMMENT '预兑付日（满标后生成）',
-  `add_time` datetime DEFAULT NULL COMMENT '添加时间',
-    */
+
     /*
      * 生成收益记录
      */
@@ -45,11 +36,64 @@ class P2P_Model_BorrowInvestIncomeList extends P2P_Model_Public
     {
         try {
             $this->beginTransaction();
-            $br_list = P2P_Model_BorrowRepaymentList::instance()->fetchByWhere("borrow_id = " . $borrow['borrow_id']);
+            $brl_model = P2P_Model_BorrowRepaymentList::instance();
+            $br_list = $brl_model->fetchByWhere("borrow_id = " . $borrow['borrow_id']);
             //预期收益总额
             $expect_income = 0;
+            //投资金额
+            $invest_money = $bi_one['invest_money'];
+            //收益率
+            $yield_rate = $bi_one['yield_rate'];
+            //计息方式
+            $interest_rate = $borrow['interest_rate'];
+            //平均每期本金（用于等额本金）
+            $avg_money = 0;
+            //计算平均值
+            if ($interest_rate == 3) {
+                $avg_money = ceil($invest_money / $borrow["interest_limit"]);
+            }
             foreach ($br_list as $br_one) {
-
+                //计息天数
+                $time_limit = $br_one['time_limit'];
+                //收益 ceil -- 进一法取整,floor -- 舍去法取整
+                $income_money = floor($invest_money * $yield_rate * $time_limit / 360) / 100;
+                //插入数据库的数据
+                $insert_money = $avg_money;
+                //是否最后一期
+                if ($br_one['is_last'] == 1) {
+                    $insert_money = $invest_money;
+                } else {
+                    $invest_money -= $avg_money;
+                }
+                //更新还款资金信息
+                $br_money = $income_money + $insert_money;
+                if (!$brl_model->update(array("expect_interest_money" => ($br_one['expect_interest_money'] + $br_money)),
+                    'expect_interest_money = ' . $br_one['expect_interest_money'] . ' and brl_id = ' . $br_one['brl_id'])) {
+                    throw new Zeed_Exception('更新还款记录资金失败');
+                }
+                //添加收益信息
+                if (!$this->insert(array('bil_id' => $bi_one['bil_id'], 'brl_id' => $br_one['brl_id'], 'corpus_money' => $insert_money,
+                    'income_money' => $income_money, 'interest_limit_num' => $br_one['interest_limit_num'], 'is_last' => $br_one['is_last'],
+                    'expect_payment_time' => $br_one['expect_payment_time'], 'add_time' => NOW_TIME))) {
+                    throw new Zeed_Exception('生成收益记录失败');
+                }
+                $expect_income += $income_money;
+            }
+            if (!P2P_Model_BorrowInvestList::instance()->update(array('expect_income' => $expect_income, 'invest_status' => 2), 'bil_id = ' . $bi_one['bil_id'])) {
+                throw new Zeed_Exception('更新投资预期收益记录失败');
+            }
+            $crl_model = Cas_Model_Record_Log::instance();
+            //投资人资金解冻
+            if (!$crl_model->unFreezeMoney($bi_one['invest_user_id'], $bi_one['order_no'], $bi_one['invest_money'])) {
+                throw new Zeed_Exception('资金解冻失败1');
+            }
+            //投资人满标投资扣款
+            if (!$crl_model->reduceMoney($bi_one['invest_user_id'], $bi_one['order_no'], $bi_one['invest_money'], 3)) {
+                throw new Zeed_Exception('满标投资扣款失败2');
+            }
+            //借款人满标增资
+            if (!$crl_model->addMoney($borrow['borrow_user_id'], $bi_one['order_no'], $bi_one['invest_money'],11)) {
+                throw new Zeed_Exception('满标增资失败3');
             }
             $this->commit();
         } catch (Exception $e) {
