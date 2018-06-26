@@ -72,7 +72,7 @@ class P2P_Model_BorrowInvestIncomeList extends P2P_Model_Public
                     throw new Zeed_Exception('更新还款记录资金失败');
                 }
                 //添加收益信息
-                if (!$this->insert(array('bil_id' => $bi_one['bil_id'], 'brl_id' => $br_one['brl_id'], 'corpus_money' => $insert_money,
+                if (!$this->insert(array('bil_id' => $bi_one['bil_id'], 'brl_id' => $br_one['brl_id'], 'corpus_money' => $insert_money, 'time_limit' => $br_one['time_limit'],
                     'income_money' => $income_money, 'interest_limit_num' => $br_one['interest_limit_num'], 'is_last' => $br_one['is_last'],
                     'expect_payment_time' => $br_one['expect_payment_time'], 'add_time' => NOW_TIME))) {
                     throw new Zeed_Exception('生成收益记录失败');
@@ -92,7 +92,7 @@ class P2P_Model_BorrowInvestIncomeList extends P2P_Model_Public
                 throw new Zeed_Exception('满标投资扣款失败2');
             }
             //借款人满标增资
-            if (!$crl_model->addMoney($borrow['borrow_user_id'], $bi_one['order_no'], $bi_one['invest_money'],11)) {
+            if (!$crl_model->addMoney($borrow['borrow_user_id'], $bi_one['order_no'], $bi_one['invest_money'], 11)) {
                 throw new Zeed_Exception('满标增资失败3');
             }
             $this->commit();
