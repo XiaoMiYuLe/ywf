@@ -23,8 +23,8 @@ define('ZEED_PATH_CONF', ZEED_ROOT . 'config/');
 define('ZEED_PATH_VIEW', ZEED_ROOT . 'view/');
 define('ZEED_PATH_DATA', ZEED_ROOT . 'data/');
 define('ZEED_PATH_UPLOAD', ZEED_ROOT . 'upload/');
-define('NOW_TIME', date('Y-m-d H:i:s'));
-
+//define('NOW_TIME', date('Y-m-d H:i:s'));
+    
 //die;
 //var_dump('P'.date('YmdH'). substr(microtime(),2,7));
 //die;

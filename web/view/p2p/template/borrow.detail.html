@@ -1,0 +1,34 @@
+{$wrapper_prefix_front|default}
+
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/gotop.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/product_detail.js"></script>
+<!--分页插件-->
+<link type="text/css" rel="stylesheet" href="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination.css"/>
+<script type="text/javascript" src="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination-1.2.7.min.js"></script>
+<link type="text/css" rel="stylesheet" href="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination.css"/>
+<!-- 弹框 js-->
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/cas/myAlert.js"></script>
+
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/goods/goods.detail.js"></script>
+{literal}
+<script>
+    $(document).ready(function () {
+        var goods_name = $('.goods_name').attr('goods_name');
+        $("head>title").html(goods_name);
+
+    });
+</script>
+{/literal}
+
+<div class="product_detail_content">
+    aaaaaaaaaa
+</div>
+
+
+<!--侧边导航-->
+<div class="sidebar_nav">
+    <a href="" class="gotop"><span>回顶部</span></a>
+    <a href="" class="kefu"><span>客服</span></a>
+    <a href="" class="app"><span>手机APP</span></a>
+</div>
+{$wrapper_suffix_front|default}

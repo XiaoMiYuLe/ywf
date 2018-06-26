@@ -70,12 +70,13 @@ class ListController extends Zeed_Controller_Action
         }
         $data['borrow'] = $borrow;
         $data['info'] = $borrow_info;
-        var_dump($data);die;
+        //var_dump($data);
         $this->setData('data', $data);
-        $this->addResult(self::RS_SUCCESS, 'php', 'index.index');
+        $this->addResult(self::RS_SUCCESS, 'php', 'borrow.detail');
 //        return parent::multipleResult(self::RS_SUCCESS);
 //        $this->addResult(self::RS_SUCCESS, 'php', 'sign.in.php');
         return parent::multipleResult(self::RS_SUCCESS);
+//return parent::addResult(self::RS_SUCCESS);
     }
 
     /* 投资状态,下单 */
