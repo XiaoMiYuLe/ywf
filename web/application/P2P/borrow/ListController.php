@@ -3,7 +3,7 @@
 /**
  * 标的表
  */
-class ListController extends Zeed_Controller_Action
+class ListController extends IndexAbstract
 {
     public $perpage = 15;
 
