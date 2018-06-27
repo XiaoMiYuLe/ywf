@@ -27,10 +27,10 @@ class ListController extends IndexAbstract
         /* 接收参数 */
         $pageIndex = $this->input->get('pageIndex', 0);
         $pageSize = $this->input->get('pageSize', 15);
-        $status = $this->input->get('status', "1,2,3");
+        $status = $this->input->get('status', "1,2,3,4,5");
 
         $offset = $pageIndex * $pageSize;
-        $where = " borrow_status in (" + $status + ") ";
+        $where = " borrow_status in (" . $status . ") ";
         $order = array('borrow_status asc', 'add_time desc');
 
         $field = array('borrow_id', 'borrow_name', 'total_money', 'raise_money', 'interest_rate', 'interest_type',
@@ -58,19 +58,20 @@ class ListController extends IndexAbstract
         $this->addResult(self::RS_SUCCESS, 'json');
         /* 接收参数 */
         $bid = $this->input->get('bid', 0);
-        $b_list = P2P_Model_Borrow::instance()->fetchByWhere('borrow_id = '.$bid);
+        $b_list = P2P_Model_Borrow::instance()->fetchByWhere('borrow_id = ' . $bid);
         $borrow = null;
-        if($b_list){
+        if ($b_list) {
             $borrow = $b_list[0];
         }
-        $bi_list = P2P_Model_BorrowInfo::instance()->fetchByWhere('borrow_id = '.$bid);
+        $bi_list = P2P_Model_BorrowInfo::instance()->fetchByWhere('borrow_id = ' . $bid);
         $borrow_info = null;
-        if($bi_list){
+        if ($bi_list) {
             $borrow_info = $bi_list[0];
         }
         $data['borrow'] = $borrow;
         $data['info'] = $borrow_info;
-        var_dump($data);die;
+        var_dump($data);
+        die;
         $this->setData('data', $data);
         $this->addResult(self::RS_SUCCESS, 'php', 'index.index');
 //        return parent::multipleResult(self::RS_SUCCESS);
@@ -111,7 +112,7 @@ class ListController extends IndexAbstract
         //这个是测试时候获取的用户ID
         $userid = $this->input->get('uid');
 
-        return P2P_Model_Borrow::instance()->invest($borrow_id,$userid,$buy_money);
+        return P2P_Model_Borrow::instance()->invest($borrow_id, $userid, $buy_money);
     }
 
     /* 投资状态,下单 */
