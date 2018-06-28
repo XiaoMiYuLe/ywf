@@ -58,7 +58,6 @@ function twig_var_dump(Twig_Environment $env, $context)
                 $vars[$key] = $value;
             }
         }
-
         var_dump($vars);
     } else {
         for ($i = 2; $i < $count; $i++) {

@@ -38,8 +38,6 @@ class P2P_Model_BorrowInvestIncomeList extends P2P_Model_Public
             $this->beginTransaction();
             $brl_model = P2P_Model_BorrowRepaymentList::instance();
             $br_list = $brl_model->fetchByWhere("borrow_id = " . $borrow['borrow_id']);
-            //预期收益总额
-            $expect_income = 0;
             //投资金额
             $invest_money = $bi_one['invest_money'];
             //收益率
@@ -77,23 +75,22 @@ class P2P_Model_BorrowInvestIncomeList extends P2P_Model_Public
                     'expect_payment_time' => $br_one['expect_payment_time'], 'add_time' => NOW_TIME))) {
                     throw new Zeed_Exception('生成收益记录失败');
                 }
-                $expect_income += $income_money;
             }
-            if (!P2P_Model_BorrowInvestList::instance()->update(array('expect_income' => $expect_income, 'invest_status' => 2), 'bil_id = ' . $bi_one['bil_id'])) {
+            if (!P2P_Model_BorrowInvestList::instance()->update(array('invest_status' => 2), 'bil_id = ' . $bi_one['bil_id'])) {
                 throw new Zeed_Exception('更新投资预期收益记录失败');
             }
             $crl_model = Cas_Model_Record_Log::instance();
             //投资人资金解冻
             if (!$crl_model->unFreezeMoney($bi_one['invest_user_id'], $bi_one['order_no'], $bi_one['invest_money'])) {
-                throw new Zeed_Exception('资金解冻失败1');
+                throw new Zeed_Exception('资金解冻失败');
             }
             //投资人满标投资扣款
             if (!$crl_model->reduceMoney($bi_one['invest_user_id'], $bi_one['order_no'], $bi_one['invest_money'], 3)) {
-                throw new Zeed_Exception('满标投资扣款失败2');
+                throw new Zeed_Exception('满标投资扣款失败');
             }
             //借款人满标增资
             if (!$crl_model->addMoney($borrow['borrow_user_id'], $bi_one['order_no'], $bi_one['invest_money'], 11)) {
-                throw new Zeed_Exception('满标增资失败3');
+                throw new Zeed_Exception('满标增资失败');
             }
             $this->commit();
         } catch (Exception $e) {

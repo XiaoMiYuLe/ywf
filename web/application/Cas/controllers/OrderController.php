@@ -13,10 +13,13 @@ class OrderController extends CasAbstract {
      */
     public function index() {
         $this->addResult(self::RS_SUCCESS, 'json');
-
-        $this->setData('data', $data);
+        $this->setData('data', array());
         $this->addResult(self::RS_SUCCESS, 'php', 'order.index');
         return parent::multipleResult(self::RS_SUCCESS);
+    }
+
+    public function p2p(){
+
     }
 
     /**

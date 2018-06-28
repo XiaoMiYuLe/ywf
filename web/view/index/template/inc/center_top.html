@@ -79,6 +79,9 @@
                 <li onclick="location.href = '/cas/order/index'">
                     <span id="mymoney">我的理财</span>
                 </li>
+                <li onclick="location.href = '/cas/borrow/index'">
+                    <span id="borrow_money">P2P理财</span>
+                </li>
 
                 {if {$loggedInUser['is_ecoman']} == 1}
                 <li onclick="location.href = '/cas/user/broker'">
@@ -166,6 +169,10 @@
                 case '/cas/order/index':
                     $("<span style='height:18px;width:4px;background-color:#00aaee;position:absolute;top:22px;left:48px' class='span_add'></span>").prependTo("#mymoney");
                     $("#mymoney").addClass('span_blue');
+                    break;
+                case '/cas/borrow/index':
+                    $("<span style='height:18px;width:4px;background-color:#00aaee;position:absolute;top:22px;left:48px' class='span_add'></span>").prependTo("#borrow_money");
+                    $("#borrow_money").addClass('span_blue');
                     break;
                 case '/cas/user/broker':
                     $("<span style='height:18px;width:4px;background-color:#00aaee;position:absolute;top:22px;left:48px' class='span_add'></span>").prependTo("#mybroker");
