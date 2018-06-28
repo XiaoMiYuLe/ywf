@@ -62,16 +62,32 @@ $(document).ready(function () {
 
     if (borrow_status == 1) {
         $(".product_btn").click(function () {           
-            var g = $('#g').val();
+            var borrow_id = $('#borrowID').val();
             var buy_money = $('#buy_money').val();
-            var transfer_order_id = $('#order_id').val();
-            var goods_pattern = $('#goods_pattern').val();
 
-            $.post("/goods/goods/Investment", {
-                'g': g,
-                'buy_money': buy_money,
-                'order_id': transfer_order_id
+            $.post("/borrow/list/invest", {
+                'bid': borrow_id,
+                'money': buy_money
             }, function (data) {
+                console.log(data);
+                console.log(data.error_msg);
+                if (data.status == 1) {
+                    showAlert({
+                        alertTitle: "温馨提示",
+                        alertContent: data.error_msg,
+                        alertType: 1,
+                        singleBtnText: "确定"
+                    });
+                }
+                if (data.status == 0) {
+                    if (transfer_order_id) {
+                        order_no = data.data.order_no
+                        window.location.href = "/bts/order/shortcutpay?order_no=" + order_no + "&type=zr";
+                    } else {
+                        order_no = data.data.order_no
+                        window.location.href = "/bts/order/shortcutpay?order_no=" + order_no;
+                    }
+                }
                 //未登入跳登入页
                 if (data.status == 2) {
                     window.location.href = "/cas/sign/in";
@@ -103,7 +119,7 @@ $(document).ready(function () {
                 if (data.status == 5) {
                     showAlert({
                         alertTitle: "温馨提示",
-                        alertContent: data.error,
+                        alertContent: data.error_msg,
                         alertType: 1,
                         singleBtnText: "确定"
                     });
@@ -119,25 +135,6 @@ $(document).ready(function () {
                     window.location.href = "/cas/user/index";
                 }
 
-                if (data.status == 1) {
-                    showAlert({
-                        alertTitle: "温馨提示",
-                        alertContent: data.error,
-                        alertType: 1,
-                        singleBtnText: "确定"
-                    });
-                }
-
-                if (data.status == 0) {
-                    if (transfer_order_id) {
-                        order_no = data.data.order_no
-                        window.location.href = "/bts/order/shortcutpay?order_no=" + order_no + "&type=zr";
-                    } else {
-                        order_no = data.data.order_no
-                        window.location.href = "/bts/order/shortcutpay?order_no=" + order_no;
-                    }
-
-                }
 
             }, 'json');
             return false;

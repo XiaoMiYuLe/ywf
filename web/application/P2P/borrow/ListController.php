@@ -75,10 +75,6 @@ class ListController extends IndexAbstract
         $data['borrow'] = $borrow;
         $data['info'] = $borrow_info;
         var_dump($data);
-<<<<<<< HEAD
-=======
-        die;
->>>>>>> 8506baaf0fa27610e85bea5255d4197b1241ecd9
         $this->setData('data', $data);
         $this->addResult(self::RS_SUCCESS, 'php', 'borrow.detail');
         return parent::multipleResult(self::RS_SUCCESS);
@@ -128,9 +124,8 @@ class ListController extends IndexAbstract
 //                return $this->dataFormat("", 4, "您尚未设定交易密码，请先设定！");
 //            }
 //        }
-
-        $borrow_id = $this->input->get('bid');
-        $buy_money = $this->input->get('money');
+        $borrow_id = $this->input->query('bid', 0);
+        $buy_money = $this->input->query('money', 0);
         //这个是测试时候获取的用户ID
         //$userid = $this->input->get('uid');
 
