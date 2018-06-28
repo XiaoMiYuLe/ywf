@@ -75,10 +75,10 @@ class P2P_Model_Borrow extends P2P_Model_Public
         if (($borrow['total_money'] - $borrow['raise_money']) < $buy_money) {
             return $this->dataFormat('', 1, '标的剩余额度已不足');
         }
-        if ($borrow['increasing_amount'] > 0) {
-            $q = ($buy_money - (int)$borrow['low_pay']) / (int)$borrow['increasing_amount'];
+        if ($borrow['increasing_amount'] > 0) {  
+            $q = ((int)$buy_money - (int)$borrow['low_pay']) / (int)$borrow['increasing_amount'];
             if (!is_int($q)) {
-                return $this->dataFormat('', 1, "请按递增" . (int)$borrow['increasing_amount'] . "元填写投资金额");
+                return $this->dataFormat('', 1, "请按递增" . (int)$borrow['increasing_amount'] . "元填写投资金额" . $q);
             }
         }
 

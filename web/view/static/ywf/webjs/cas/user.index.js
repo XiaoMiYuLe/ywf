@@ -172,6 +172,18 @@ function getApi(start_time,end_time) {
                         case 8:
                             content.type = '转让结算';
                             break;
+                        case 9:
+                            content.type = '冻结操作';
+                            break;
+                        case 10:
+                            content.type = '解冻操作';
+                            break;
+                        case 11:
+                            content.type = '满标增资';
+                            break;
+                        case 12:
+                            content.type = '还款减资';
+                            break;
                     }
 
                     html += '<tr>' +
@@ -253,6 +265,18 @@ function getApi1(start_time,end_time) {
                             break;
                         case 8:
                             content.type = '转让结算';
+                            break;
+                        case 9:
+                            content.type = '冻结操作';
+                            break;
+                        case 10:
+                            content.type = '解冻操作';
+                            break;
+                        case 11:
+                            content.type = '满标增资';
+                            break;
+                        case 12:
+                            content.type = '还款减资';
                             break;
                     }
 
@@ -336,6 +360,18 @@ function getApi2(start_time,end_time) {
                         case 8:
                             content.type = '转让结算';
                             break;
+                        case 9:
+                            content.type = '冻结操作';
+                            break;
+                        case 10:
+                            content.type = '解冻操作';
+                            break;
+                        case 11:
+                            content.type = '满标增资';
+                            break;
+                        case 12:
+                            content.type = '还款减资';
+                            break;
                     }
 
                     html += '<tr>' +
@@ -418,6 +454,18 @@ function getApi3(start_time,end_time) {
                         case 8:
                             content.type = '转让结算';
                             break;
+                        case 9:
+                            content.type = '冻结操作';
+                            break;
+                        case 10:
+                            content.type = '解冻操作';
+                            break;
+                        case 11:
+                            content.type = '满标增资';
+                            break;
+                        case 12:
+                            content.type = '还款减资';
+                            break;
                     }
 
                     html += '<tr>' +
@@ -499,8 +547,19 @@ function getApi4(start_time,end_time) {
                         case 8:
                             content.type = '转让结算';
                             break;
+                        case 9:
+                            content.type = '冻结操作';
+                            break;
+                        case 10:
+                            content.type = '解冻操作';
+                            break;
+                        case 11:
+                            content.type = '满标增资';
+                            break;
+                        case 12:
+                            content.type = '还款减资';
+                            break;
                     }
-
                     html += '<tr>' +
                             '<td>' + content.ctime + '</td>' +
                             '<td>' + content.type + '</td>' +
@@ -579,6 +638,18 @@ function getApi5(start_time,end_time) {
                             break;
                         case 8:
                             content.type = '转让结算';
+                            break;
+                        case 9:
+                            content.type = '冻结操作';
+                            break;
+                        case 10:
+                            content.type = '解冻操作';
+                            break;
+                        case 11:
+                            content.type = '满标增资';
+                            break;
+                        case 12:
+                            content.type = '还款减资';
                             break;
                     }
 

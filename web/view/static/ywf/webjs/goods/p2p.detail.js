@@ -80,62 +80,15 @@ $(document).ready(function () {
                     });
                 }
                 if (data.status == 0) {
-                    if (transfer_order_id) {
-                        order_no = data.data.order_no
-                        window.location.href = "/bts/order/shortcutpay?order_no=" + order_no + "&type=zr";
-                    } else {
-                        order_no = data.data.order_no
-                        window.location.href = "/bts/order/shortcutpay?order_no=" + order_no;
-                    }
-                }
-                //未登入跳登入页
-                if (data.status == 2) {
-                    window.location.href = "/cas/sign/in";
-                    return false;
-                }
-                //未绑卡
-                if (data.status == 3) {
-                    showAlert({
-                        alertTitle: "温馨提示",
-                        alertContent: "您尚未绑定银行卡",
-                        alertType: 2,
-                        doubleBtnText1: "取消",
-                        doubleBtnText2: "去绑卡",
-                        goUrl: "/cas/bank/addbank"
-                    });
-                }
-
-                if (data.status == 4) {
-                    showAlert({
-                        alertTitle: "温馨提示",
-                        alertContent: "您尚未设置交易密码",
-                        alertType: 2,
-                        doubleBtnText1: "取消",
-                        doubleBtnText2: "去设置",
-                        goUrl: "/cas/setting/tradepwd"
-                    });
-                }
-
-                if (data.status == 5) {
                     showAlert({
                         alertTitle: "温馨提示",
                         alertContent: data.error_msg,
-                        alertType: 1,
-                        singleBtnText: "确定"
+                        alertType: 2,
+                        doubleBtnText1: "确定",
+                        doubleBtnText2: "查看记录",
+                        goUrl: "/cas/borrow/index"
                     });
                 }
-
-                if (data.status == 6) {
-                    showAlert({
-                        alertTitle: "温馨提示",
-                        alertContent: '预约成功',
-                        alertType: 1,
-                        singleBtnText: "确定"
-                    });
-                    window.location.href = "/cas/user/index";
-                }
-
-
             }, 'json');
             return false;
         });
