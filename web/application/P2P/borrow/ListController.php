@@ -27,10 +27,10 @@ class ListController extends IndexAbstract
         /* 接收参数 */
         $pageIndex = $this->input->get('pageIndex', 0);
         $pageSize = $this->input->get('pageSize', 15);
-        $status = $this->input->get('status', "1,2,3");
+        $status = $this->input->get('status', "1,2,3,4,5");
 
         $offset = $pageIndex * $pageSize;
-        $where = " borrow_status in (" + $status + ") ";
+        $where = " borrow_status in (" . $status . ") ";
         $order = array('borrow_status asc', 'add_time desc');
 
         $field = array('borrow_id', 'borrow_name', 'total_money', 'raise_money', 'interest_rate', 'interest_type',
@@ -58,23 +58,27 @@ class ListController extends IndexAbstract
         $this->addResult(self::RS_SUCCESS, 'json');
         /* 接收参数 */
         $bid = $this->input->get('bid', 0);
-        $b_list = P2P_Model_Borrow::instance()->fetchByWhere('borrow_id = '.$bid);
+        $b_list = P2P_Model_Borrow::instance()->fetchByWhere('borrow_id = ' . $bid);
         $borrow = null;
-        if($b_list){
+        if ($b_list) {
             $borrow = $b_list[0];
             $borrow['remainder_money'] = $borrow['total_money'] - $borrow['raise_money'];
             $borrow['progress_bar'] = ($borrow['raise_money'] / $borrow['total_money']) * 100;
             //募集结束时间
             $borrow['raise_time'] = date("Y-m-d H:i:s", strtotime("+5 day", strtotime($borrow['show_time'])));
         }
-        $bi_list = P2P_Model_BorrowInfo::instance()->fetchByWhere('borrow_id = '.$bid);
+        $bi_list = P2P_Model_BorrowInfo::instance()->fetchByWhere('borrow_id = ' . $bid);
         $borrow_info = null;
-        if($bi_list){
+        if ($bi_list) {
             $borrow_info = $bi_list[0];
         }
         $data['borrow'] = $borrow;
         $data['info'] = $borrow_info;
         var_dump($data);
+<<<<<<< HEAD
+=======
+        die;
+>>>>>>> 8506baaf0fa27610e85bea5255d4197b1241ecd9
         $this->setData('data', $data);
         $this->addResult(self::RS_SUCCESS, 'php', 'borrow.detail');
         return parent::multipleResult(self::RS_SUCCESS);
@@ -110,18 +114,10 @@ class ListController extends IndexAbstract
     {
         $this->addResult(self::RS_SUCCESS, 'json');
 
-//        if (!Cas_Authorization::getLoggedInUserid()) {
-//            //未登录
-//            return $this->dataFormat("", 2, "您还没有登录！");
-//        }
-
-        //params
-//        $params = array(
-//            'userid' => $_SESSION['userid'],
-//        );
-//
-//        //request
-//        $result = Api_Goods_ConfirmInvestment::run($params);
+        if (!Cas_Authorization::getLoggedInUserid()) {
+            //未登录
+            return $this->dataFormat("", 2, "您还没有登录！");
+        }
 //
 //        if ($result . status == 0) {
 //            if ($result['data']['is_tiecard'] == 0) {
@@ -136,9 +132,10 @@ class ListController extends IndexAbstract
         $borrow_id = $this->input->get('bid');
         $buy_money = $this->input->get('money');
         //这个是测试时候获取的用户ID
-        $userid = $this->input->get('uid');
+        //$userid = $this->input->get('uid');
 
-        return P2P_Model_Borrow::instance()->invest($borrow_id,$userid,$buy_money);
+        $userid = $_SESSION['userid'];
+        return P2P_Model_Borrow::instance()->invest($borrow_id, $userid, $buy_money);
     }
 
     /* 投资状态,下单 */

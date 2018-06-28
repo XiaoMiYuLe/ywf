@@ -16,11 +16,38 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="Abstract.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Abstract.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/library/Zend/Db/Adapter/Abstract.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="754" column="43" lean-forward="true" selection-start-line="754" selection-start-column="43" selection-end-line="754" selection-end-column="43" />
+            <state relative-caret-position="16170">
+              <caret line="754" column="43" selection-start-line="754" selection-start-column="43" selection-end-line="754" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Action.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/library/Zend/Controller/Action.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3652">
+              <caret line="184" selection-start-line="184" selection-end-line="184" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="View.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/library/Zend/View.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="653">
+              <caret line="67" selection-start-line="67" selection-end-line="67" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Debug.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/library/Zend/Debug.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -29,7 +56,7 @@
         <entry file="file://$PROJECT_DIR$/library/Zend/Db/Table/Abstract.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="25674">
-              <caret line="1186" column="6" lean-forward="true" selection-start-line="1186" selection-start-column="6" selection-end-line="1186" selection-end-column="6" />
+              <caret line="1186" column="6" selection-start-line="1186" selection-start-column="6" selection-end-line="1186" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -46,13 +73,18 @@
       <find>update</find>
       <find>query</find>
       <find>fetch</find>
-      <find>fetch</find>
+      <find>Zend_Controller_Action</find>
+      <find>index.index</find>
+      <find>useStreamWrapper</find>
+      <find>Zend_View</find>
+      <find>var_d</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/library/Zend/Db/Adapter/Abstract.php" />
+        <option value="$PROJECT_DIR$/library/Zend/View.php" />
       </list>
     </option>
   </component>
@@ -65,9 +97,9 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="260" />
-    <option name="y" value="20" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="88" />
+    <option name="y" value="93" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -76,6 +108,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -93,11 +126,23 @@
               <item name="ZendFramework-1.11.3" type="462c0819:PsiDirectoryNode" />
               <item name="library" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ZendFramework-1.11.3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ZendFramework-1.11.3" type="462c0819:PsiDirectoryNode" />
+              <item name="library" type="462c0819:PsiDirectoryNode" />
+              <item name="Zend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ZendFramework-1.11.3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ZendFramework-1.11.3" type="462c0819:PsiDirectoryNode" />
+              <item name="library" type="462c0819:PsiDirectoryNode" />
+              <item name="Zend" type="462c0819:PsiDirectoryNode" />
+              <item name="View" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -134,28 +179,30 @@
       <workItem from="1527820855478" duration="1554000" />
       <workItem from="1528076116114" duration="4153000" />
       <workItem from="1528254995061" duration="599000" />
-      <workItem from="1528684737634" duration="2872000" />
+      <workItem from="1528684737634" duration="4211000" />
+      <workItem from="1530081702874" duration="610000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13364000" />
+    <option name="totallyTimeSpent" value="15313000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11770833" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="调试" order="7" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32911393" />
-      <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11770833" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -164,7 +211,6 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,6 +220,37 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/bin/zf.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/Zend/Db/Adapter/Abstract.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16170">
+          <caret line="754" column="43" lean-forward="true" selection-start-line="754" selection-start-column="43" selection-end-line="754" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/Zend/Controller/Action.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3652">
+          <caret line="184" lean-forward="true" selection-start-line="184" selection-end-line="184" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/Zend/Db/Table/Abstract.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25674">
+          <caret line="1186" column="6" lean-forward="true" selection-start-line="1186" selection-start-column="6" selection-end-line="1186" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/Zend/View.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1078">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bin/zf.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -261,14 +338,50 @@
     <entry file="file://$PROJECT_DIR$/library/Zend/Db/Table/Abstract.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25674">
-          <caret line="1186" column="6" lean-forward="true" selection-start-line="1186" selection-start-column="6" selection-end-line="1186" selection-end-column="6" />
+          <caret line="1186" column="6" selection-start-line="1186" selection-start-column="6" selection-end-line="1186" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/library/Zend/Db/Adapter/Abstract.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="754" column="43" lean-forward="true" selection-start-line="754" selection-start-column="43" selection-end-line="754" selection-end-column="43" />
+        <state relative-caret-position="16170">
+          <caret line="754" column="43" selection-start-line="754" selection-start-column="43" selection-end-line="754" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/Zend/View/Interface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1855" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/Zend/Controller/Action.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3652">
+          <caret line="184" selection-start-line="184" selection-end-line="184" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/Zend/Validate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4158" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/Zend/View/Stream.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2867" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/Zend/View.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="653">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/Zend/Debug.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
         </state>
       </provider>
     </entry>

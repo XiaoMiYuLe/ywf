@@ -56,20 +56,20 @@ class Api_Cas_Login
                 
             //新添加代码,过等保
             //判断是否已经登录，只判断18015013131账户
-            if($res['data']['phone'] == '18015013131'){
-                if( $userExists[0]['islogin'] == 1){
-                    $arrs = array(
-                            'islogin' => 0
-                    );       
-                    Cas_Model_User::instance()->update($arrs, "userid = {$userExists[0]['userid']}");
-                    throw new Zeed_Exception('此账户已在其他客户端登录，请退出后重进');
-                }
-                //变更登录状态
-                $arrs = array(
-                        'islogin' => 1
-                );       
-                Cas_Model_User::instance()->update($arrs, "userid = {$userExists[0]['userid']}");                
-            }            
+//            if($res['data']['phone'] == '18015013131'){
+//                if( $userExists[0]['islogin'] == 1){
+//                    $arrs = array(
+//                            'islogin' => 0
+//                    );
+//                    Cas_Model_User::instance()->update($arrs, "userid = {$userExists[0]['userid']}");
+//                    throw new Zeed_Exception('此账户已在其他客户端登录，请退出后重进');
+//                }
+//                //变更登录状态
+//                $arrs = array(
+//                        'islogin' => 1
+//                );
+//                Cas_Model_User::instance()->update($arrs, "userid = {$userExists[0]['userid']}");
+//            }
 	        
 	        /* 密码正确，返回用户基本信息 */
 	        $res['data'] = $userExists;

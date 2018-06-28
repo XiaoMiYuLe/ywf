@@ -1,0 +1,120 @@
+{$wrapper_prefix_center|default}
+<!--回到顶部-->
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/tab.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/go_top.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/js/alert.js"></script>
+<!--分页插件-->
+<link type="text/css" rel="stylesheet" href="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination.css"/>
+<script type="text/javascript" src="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination-1.2.7.min.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/cas/borrow.index.js"></script>
+
+<script>$("head>title").html("我的理财");</script>
+
+<style type="text/css">
+    #showIncome
+    {
+        display:none;
+        border:0;
+        height:580px;
+        width:800px;
+        position:absolute;/*让节点脱离文档流,我的理解就是,从页面上浮出来,不再按照文档其它内容布局*/
+        margin-left: -400px;
+        margin-top: -400px;
+        top:50%;/*节点脱离了文档流,如果设置位置需要用top和left,right,bottom定位*/
+        left:50%;
+        z-index:2;/*个人理解为层级关系,由于这个节点要在顶部显示,所以这个值比其余节点的都大*/
+        background: white;
+    }
+    .income_tb th{
+        text-align: center;
+    }
+    .income_tb td{
+        text-align: center;
+    }
+    #over
+    {
+        width: 100%;
+        height: 100%;
+        opacity:0.8;/*设置背景色透明度,1为完全不透明,IE需要使用filter:alpha(opacity=80);*/
+        filter:alpha(opacity=80);
+        display: none;
+        position:absolute;
+        top:0;
+        left:0;
+        z-index:1;
+        background: silver;
+    }
+</style>
+<!--中间：内容-->
+<div class="container_content">
+    <!--我的账户-->
+    <div class="top" style="min-height: 495px;">
+        <div class="one">
+            <div class="blue-line"></div>
+            <span class="title">我的理财</span>
+        </div>
+        <div class="two_money">
+            <div class="tab">
+                <label>订单状态：</label>
+                <button class="tab-btn" id="jixizhong">在投中</button>
+                <button id="yiduifu">已完成</button>
+            </div>
+        </div>
+        <div class="three" id="three">
+            <table style="white-space: nowrap;">
+                <thead>
+                <tr>
+                    <th>产品名称</th>
+                    <th>投资金额</th>
+                    <th>年化益率</th>
+                    <th>投资时间</th>
+                    <th>兑付时间</th>
+                    <th>投资期限</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+
+                <tbody id="t_data">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--分页-->
+    <div class="page_count"></div>
+    <div id="paging"></div>
+    <div id="page"></div>
+</div>
+</div>
+<div id="showIncome">
+    <div style="padding: 10px 15px 10px 15px;border-bottom: 1px solid #ddd;background-color: #eee;">收益详情<a style="float: right;" href="javascript:hide()">X</a>&nbsp;</div>
+    <div style="margin: 10px 15px 10px 15px;">
+    <table class="income_tb" style="line-height: 38px;width: 100%;">
+        <thead>
+        <tr style="text-align: center;">
+            <th>收益金额</th>
+            <th>计息天数</th>
+            <th>所属期数</th>
+            <th>兑付时间</th>
+            <th>兑付状态</th>
+        </tr>
+        </thead>
+
+        <tbody id="bil_data">
+
+        </tbody>
+    </table>
+    </div>
+</div>
+<div id="over" onclick="hide()"></div>
+
+<!--回到顶部开始-->
+<div class="sidebar_nav">
+    <a href="" class="gotop"><span>回顶部</span></a>
+    <a href="" class="kefu"><span>客服</span></a>
+    <a href="" class="app"><span>手机APP</span></a>
+</div>
+
+<!--回到顶部结束-->
+{$wrapper_suffix_center|default}

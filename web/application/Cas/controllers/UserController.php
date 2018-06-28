@@ -50,6 +50,7 @@ class UserController extends CasAbstract {
 
             $arr_merage = array_merge($arr1, $arr2) ? array_merge($arr1, $arr2) : array();
         }
+        var_dump($arr_merage);
       
         $data['username'] = $username ? $username : '';
         $data['invitaiton'] = $user['data']['is_invitaiton'] ? $user['data']['is_invitaiton'] : array();
