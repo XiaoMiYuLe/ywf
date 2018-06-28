@@ -14,17 +14,17 @@ $(document).ready(function () {
             infoFormat: '共{total}条', 
 
             remote: {
-                url: '/borrow/list/record', //请求地址
+                url: '/borrow/list/getInvestList', //请求地址
                 params: {
-                    borrow_id: borrow_id
+                    bid: borrow_id
                 }, //自定义请求参数
                 success: function (result, pageIndex) {
                     var html = '';
-                    $.each(result.content, function (index, content) {
+                    $.each(result.list, function (index, content) {
                         html += '<tr>' +
                             '<td>' + content.phone + '</td>' +
-                            '<td>' + content.buy_money + '</td>' +
-                            '<td>' + content.ctime + '</td>' +
+                            '<td>' + content.invest_money + '</td>' +
+                            '<td>' + content.invest_time + '</td>' +
                             '<td>' + '成功' + '</td>' +
                             '</tr>';
                     });
@@ -39,7 +39,7 @@ $(document).ready(function () {
                 },
                 pageIndexName: 'pageIndex', //请求参数，当前页数，索引从0开始
                 pageSizeName: 'pageSize', //请求参数，每页数量
-                totalName: 'totalnum', //指定返回数据的总数据量的字段名
+                totalName: 'count', //指定返回数据的总数据量的字段名
             }
         });
         // click other remove

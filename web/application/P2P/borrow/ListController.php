@@ -128,9 +128,9 @@ class ListController extends IndexAbstract
     {
         $this->addResult(self::RS_SUCCESS, 'json');
         //获取标的ID
-        $bid = $this->input->get('bid');
-        $pageIndex = $this->input->get('pageIndex', 0);
-        $pageSize = $this->input->get('pageSize', 15);
+        $bid = $this->input->query('bid');
+        $pageIndex = $this->input->query('pageIndex', 0);
+        $pageSize = $this->input->query('pageSize', 15);
         if(!$bid){
             return $this->dataFormat("",1,"请输入标的号");
         }
@@ -150,6 +150,8 @@ class ListController extends IndexAbstract
         }
         $data['status'] = 0;
         $data['error'] = "";
+        $data['pageIndex'] = $pageIndex;
+        $data['pageSize'] = $pageSize;
         $data['list'] = $list;
         $data['count'] = P2P_Model_BorrowInvestList::instance()->getCount($where);
         return $data;
