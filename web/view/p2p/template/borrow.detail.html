@@ -9,8 +9,8 @@
 <!-- 弹框 js-->
 <script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/cas/myAlert.js"></script>
 
-<!-- <script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/goods/goods.detail.js"></script> -->
 <script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/goods/p2p.detail.js"></script>
+
 {literal}
 <script>
     $(document).ready(function () {
@@ -19,6 +19,9 @@
 
     });
 </script>
+<style>
+    .product_third p {margin-bottom: 5px; line-height: 25px; letter-spacing: 2px;}
+</style>
 {/literal}
 
 <div class="product_detail_content">
@@ -140,15 +143,15 @@
         </li>
     </ul>
     <div class="product_third " id="product_third1">
-        {if $borrow.borrow_detail}
-        {$borrow['borrow_detail']}
+        {if $info.borrow_detail}
+        {$info['borrow_detail']}
         {else}
         <img src="/static/ywf/img/pic/zanwu.png" style="display: block;margin: 50px auto;width:30%;">
         {/if}
     </div>
     <div class="product_third " id="product_third2" style="display:none;">
-        {if $borrow.debtor_name}
-        {$borrow['debtor_name']}{$borrow['debtor_card']}
+        {if $info.debtor_name}
+        {$info['borrow_safety']}
         {else}
         <img src="/static/ywf/img/pic/zanwu.png" style="display: block;margin: 50px auto;width:30%;">
         {/if}
@@ -174,7 +177,16 @@
         </div>           
     </div>
     <div class="product_third " id="product_third4" style="display:none;">
-        这里是常见问题
+        <p>1、产品预期收益率：是指平台预期的在产品存续期内对投资本金计算理财收益时适用的收益率，以年收益率表示，该收益率仅为预期的收益率，并非平台向客户保证或者承诺支付的收益率。 </p>
+        <p>2、产品收益：是指根据双方约定及实际投资收益情况而最终确定的客户实际投资收益；平台并不能确保客户最终收益的有无及多少，该收益亦有可能低于按照产品预期收益率计算所得的产品预期收益；客户最终的实际收益将依照理财产品到期时的实际市场情况及双方的约定确定。 </p>
+        <p>3、产品收益起算日：是指根据《产品说明书》中约定的计算产品收益的起始日期。 </p>
+        <p>4、产品到期日：是指根本《产品说明书》中约定的产品到期日，如平台行使提前终止权提前终止产品的，该提前终止日也将被视为到期日；如产品被展期的，到期日则指展期后的产品到期日或平台提前终止日。 </p>
+        <p>5、产品存续期：是指根据产品收益起算日至产品到期日之间的期间。</p>
+        <p>6、支付日：是指根据《产品说明书》的约定平台应当向客户支付产品资金即投资本金（若有）或收益（若有）之日。若支付日为相关货币非银行工作日，则顺延至非银行工作日结束后的第一个银行营业日支付《产品说明书》，另有约定除外。资金到账时间在支付日24点前，不保证在支付日银行日间营业时间内资金到账。</p>
+        <p>7、募集期：是指《产品说明书》中约定的平台发行产品的期间，即产品销售起始日至终止日（不包括产品收益日算日）。客户理财交易卡中用于认购产品的投资本金在募集期内以及募集期结束至产品收益起算日前将被冻结，不计付利息，除《产品说明书》另有约定外，客户不得提前支取。</p>
+        <p>案例：P2P产品4月10日开始募集，满标时间4月12日产品周期为180天。</p>
+        <p>投资人：收益计息日期起始日期为4月13日(若4月13日为非工作日则顺延至工作日)，5月31号获得第一笔收益计息时间为4月13日至5月31日共计48天利息；第二笔收益计息时间为6月1日至6月30日共计30天利息；以此类推，10月10日计息结束，10月11日最后一期利息及本金需到账投资者账户。</p>
+        <p> 计息规则实例：满标时间以2018/4/12为例。</p>
     </div>
 
     <div class="page_count"></div>

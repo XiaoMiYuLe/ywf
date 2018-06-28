@@ -74,7 +74,7 @@ class ListController extends IndexAbstract
         }
         $data['borrow'] = $borrow;
         $data['info'] = $borrow_info;
-        var_dump($data);
+        
         $this->setData('data', $data);
         $this->addResult(self::RS_SUCCESS, 'php', 'borrow.detail');
         return parent::multipleResult(self::RS_SUCCESS);

@@ -245,35 +245,35 @@ function getShouyi(){
     });   
 }
 
-// function getRaise_time() {
-//     //获取发布时间  
-//     var show_time = $("#showTime").val();
-//     var nowDate = new Date(show_time);  
-//     var now = nowDate.getTime();
+function getRaise_time() {
+    //获取发布时间  
+    var show_time = $("#showTime").val();
+    var nowDate = new Date(show_time);  
+    var now = nowDate.getTime();
 
-//     //设置截止时间  
-//     var raise_time = $("#raiseTime").val();
-//     var endDate = new Date(raise_time); 
-//     var end = endDate.getTime();  
+    //设置截止时间  
+    var raise_time = $("#raiseTime").val();
+    var endDate = new Date(raise_time); 
+    var end = endDate.getTime();  
 
-//     //时间差  
-//     var leftTime = end-now; 
-//     //递归每秒调用getRaise_time方法，显示动态时间效果  
-//     setTimeout("go()", 1000); 
-//     function go(){
-//         //定义变量 d,h,m,s保存倒计时的时间  
-//         var d,h,m,s;  
-//         if (leftTime >= 0) {  
-//             d = Math.floor(leftTime / 1000 / 60 / 60/ 24);  
-//             h = Math.floor(leftTime / 1000 / 60/ 60 % 24);  
-//             m = Math.floor(leftTime / 1000 / 60 % 60);  
-//             s = Math.floor(leftTime / 1000 % 60);                     
-//         }  
-//         alert(s)
-//         //将倒计时赋值到div中  
-//         $("#djs").html("剩余" + d + "天" + h + "时" + m + "分" + s + "秒");
-//     }    
-// }
+    //时间差  
+    var leftTime = end-now; 
+    //递归每秒调用getRaise_time方法，显示动态时间效果  
+    setTimeout(go(), 1000); 
+    function go(){
+        //定义变量 d,h,m,s保存倒计时的时间  
+        var d,h,m,s;  
+        if (leftTime >= 0) {  
+            d = Math.floor(leftTime / 1000 / 60 / 60/ 24);  
+            h = Math.floor(leftTime / 1000 / 60/ 60 % 24);  
+            m = Math.floor(leftTime / 1000 / 60 % 60);  
+            s = Math.floor(leftTime / 1000 % 60);                     
+        }  
+        //将倒计时赋值到div中  
+        $("#timer").html("剩余" + d + "天" + h + "时" + m + "分" + s + "秒");
+        setTimeout(go(), 1000); 
+    }    
+}
 
 // function getRaise_time(){
 //     var showTime = $("#showTime").val();
