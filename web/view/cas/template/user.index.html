@@ -6,7 +6,7 @@
 <!--分页插件-->
 <link type="text/css" rel="stylesheet" href="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination.css"/>
 <script type="text/javascript" src="{$_STATIC_CDN}/scripts/jquery-pagination/jquery.pagination-1.2.7.min.js"></script>
-<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/cas/user.index.js"></script>
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/cas/user.index.js?v=3"></script>
 
 <!-- datepicker -->
 <link href="/static/scripts/datepicker/css/datepicker3.css" type="text/css" rel="stylesheet" />
@@ -35,26 +35,24 @@
         </div>
         <div class="two">
             <p class="left">
-                <span>总资产</span>
+                <span>总资产：</span>
                 <em>{$money['all_asset']}元</em>
             </p>
             <div style="width:2px;height:40px;background-color:#e8e8e8;float:left;margin-top:22px"></div>
             <p class="right">
-                <span>昨日收益</span>
-                <em>{$money['last_income']}元</em>
+                <span>累计收益：</span>
+                <em>{$money['count_income']}元</em>
             </p>
         </div>
         <div class="three" style="height: 166px;">
             <p>
-                <span>累计收益</span>
-                <em>{$money['count_income']}元</em>
-                <!--<a href="javascript:;" onclick="location.href = '/cas/user/income'">收益记录</a>-->
+                <span>待收收益</span>
+                <em>{$money['receivable_income']}元</em>
             </p>
             <div style="width:2px;height:90px;background-color:#f4f4f4;float:left;margin-top:42px"></div>
             <p>
                 <span>待收本金</span>
                 <em>{$money['principal_all']}元</em>
-                <!--<a href="javascript:;" onclick="location.href = '/cas/order/index'">投资记录</a>-->
             </p>
             <div style="width:2px;height:90px;background-color:#f4f4f4;float:left;margin-top:42px"></div>
             <p>

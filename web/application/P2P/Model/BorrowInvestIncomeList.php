@@ -38,7 +38,9 @@ class P2P_Model_BorrowInvestIncomeList extends P2P_Model_Public
             $this->beginTransaction();
             $brl_model = P2P_Model_BorrowRepaymentList::instance();
             $br_list = $brl_model->fetchByWhere("borrow_id = " . $borrow['borrow_id']);
-            //投资金额
+            //合计收益（待收收益）
+            $sum_income_money = 0;
+            //投资金额（待收本金）
             $invest_money = $bi_one['invest_money'];
             //收益率
             $yield_rate = $bi_one['yield_rate'];
@@ -63,6 +65,7 @@ class P2P_Model_BorrowInvestIncomeList extends P2P_Model_Public
                 } else {
                     $invest_money -= $avg_money;
                 }
+                $sum_income_money += $income_money;
                 //更新还款资金信息
                 $br_money = $income_money + $insert_money;
                 if (!$brl_model->update(array("expect_interest_money" => ($br_one['expect_interest_money'] + $br_money)),
@@ -71,7 +74,7 @@ class P2P_Model_BorrowInvestIncomeList extends P2P_Model_Public
                 }
                 //添加收益信息
                 if (!$this->insert(array('bil_id' => $bi_one['bil_id'], 'brl_id' => $br_one['brl_id'], 'corpus_money' => $insert_money, 'time_limit' => $br_one['time_limit'],
-                    'income_money' => $income_money, 'interest_limit_num' => $br_one['interest_limit_num'], 'is_last' => $br_one['is_last'],
+                    'invest_user_id' => $bi_one['invest_user_id'], 'income_money' => $income_money, 'interest_limit_num' => $br_one['interest_limit_num'], 'is_last' => $br_one['is_last'],
                     'expect_payment_time' => $br_one['expect_payment_time'], 'add_time' => NOW_TIME))) {
                     throw new Zeed_Exception('生成收益记录失败');
                 }
@@ -91,6 +94,13 @@ class P2P_Model_BorrowInvestIncomeList extends P2P_Model_Public
             //借款人满标增资
             if (!$crl_model->addMoney($borrow['borrow_user_id'], $bi_one['order_no'], $bi_one['invest_money'], 11)) {
                 throw new Zeed_Exception('满标增资失败');
+            }
+            //获取投资人用户信息
+            $user = Cas_Model_User::instance()->getUserByUserid($bi_one['invest_user_id']);
+            //更新投资用户待收本金和待收收益
+            if (!Cas_Model_User::instance()->update(array('receivable_money' => ($user['receivable_money'] + $invest_money), 'receivable_income' => ($user['receivable_income'] + $sum_income_money)),
+                array('userid' => $bi_one['invest_user_id']))) {
+                throw new Zeed_Exception('更新用户资金失败');
             }
             $this->commit();
         } catch (Exception $e) {

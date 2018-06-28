@@ -15,20 +15,20 @@
  * @since 2010-12-6
  * @version SVN: $Id$
  */
-class UserController extends CasAbstract {
+class UserController extends CasAbstract
+{
 
     /**
      * 用户中心
      * @return type
      */
-    public function index() {
+    public function index()
+    {
         $this->addResult(self::RS_SUCCESS, 'json');
-
         //参数
         $params = array(
             'userid' => $_SESSION['userid'],
         );
-
         $userInfo = Cas_Model_User::instance()->fetchByWhere("userid = {$_SESSION['userid']}", array('parent_id'));
         $parent_id = $userInfo[0]['parent_id'];
         if ($parent_id) {
@@ -47,11 +47,9 @@ class UserController extends CasAbstract {
         if ($money && $money1) {
             $arr1 = $money['data'] ? $money['data'] : array();
             $arr2 = $money1['data'] ? $money1['data'] : array();
-
             $arr_merage = array_merge($arr1, $arr2) ? array_merge($arr1, $arr2) : array();
         }
-        var_dump($arr_merage);
-      
+
         $data['username'] = $username ? $username : '';
         $data['invitaiton'] = $user['data']['is_invitaiton'] ? $user['data']['is_invitaiton'] : array();
         $data['is_ecoman'] = $user['data']['is_ecoman'] ? $user['data']['is_ecoman'] : array();
@@ -66,7 +64,8 @@ class UserController extends CasAbstract {
      * 用户收益记录
      */
 
-    public function income() {
+    public function income()
+    {
         $this->addResult(self::RS_SUCCESS, 'json');
 
         $this->setData('data', $data);
@@ -76,7 +75,8 @@ class UserController extends CasAbstract {
 
     /* 获取用户收益 */
 
-    public function getincome() {
+    public function getincome()
+    {
         $this->addResult(self::RS_SUCCESS, 'json');
 
         //params
@@ -97,12 +97,13 @@ class UserController extends CasAbstract {
     }
 
     /* 获取用户资金流水详情 */
-    public function getRecordLog() {
+    public function getRecordLog()
+    {
         $this->addResult(self::RS_SUCCESS, 'json');
 
         //参数
         $params = array(
-            'status' => (int) $this->input->query('status',3),      //状态 记录类型：1：充值 2：提现 3：购买理财产品4：理财产品收益 5：佣金
+            'status' => (int)$this->input->query('status', 3),      //状态 记录类型：1：充值 2：提现 3：购买理财产品4：理财产品收益 5：佣金
             'start_time' => $this->input->query('start_time'),//开始时间
             'end_time' => $this->input->query('end_time'),    //结束时间
             'p' => ($this->input->query('pageIndex')) + 1,  //当前第几页
@@ -112,7 +113,7 @@ class UserController extends CasAbstract {
 
         //请求参数
         $result = Api_Cas_GetRecordLog::run($params);
-        
+
         return $result['data'];
         return self::RS_SUCCESS;
     }
@@ -120,7 +121,8 @@ class UserController extends CasAbstract {
     /**
      * broker 经纪人中心
      */
-    public function broker() {
+    public function broker()
+    {
         $this->addResult(self::RS_SUCCESS, 'json');
 
         //Api_Cas_GetAgentInfo cas_user cas_user_brokerage
@@ -138,7 +140,8 @@ class UserController extends CasAbstract {
     /**
      * 客户交易
      */
-    public function customRecord() {
+    public function customRecord()
+    {
         $this->addResult(self::RS_SUCCESS, 'json');
 
         //Api_Cas_GetAgentInfo cas_user cas_user_brokerage
@@ -156,7 +159,8 @@ class UserController extends CasAbstract {
     /**
      * 我的客户
      */
-    public function myClient() {
+    public function myClient()
+    {
         $this->addResult(self::RS_SUCCESS, 'json');
 
         //Api_Cas_GetAgentInfo cas_user cas_user_brokerage
@@ -174,7 +178,8 @@ class UserController extends CasAbstract {
     /**
      * 我的佣金列表
      */
-    public function brokerList() {
+    public function brokerList()
+    {
         $this->addResult(self::RS_SUCCESS, 'json');
 
         // params
@@ -199,7 +204,8 @@ class UserController extends CasAbstract {
     /**
      * 客户交易
      */
-    public function getCustomRecord() {
+    public function getCustomRecord()
+    {
         $this->addResult(self::RS_SUCCESS, 'json');
 
         //$params
@@ -225,7 +231,8 @@ class UserController extends CasAbstract {
     /**
      * 客户列表
      */
-    public function getClientList() {
+    public function getClientList()
+    {
         $this->addResult(self::RS_SUCCESS, 'json');
 
         //$params
@@ -251,7 +258,8 @@ class UserController extends CasAbstract {
     /**
      * 邀请
      */
-    public function invitation() {
+    public function invitation()
+    {
         $this->addResult(self::RS_SUCCESS, 'json');
 
         //$params
@@ -274,7 +282,8 @@ class UserController extends CasAbstract {
     /**
      * 优惠券
      */
-    public function coupon() {
+    public function coupon()
+    {
         $this->addResult(self::RS_SUCCESS, 'json');
 
 
@@ -284,7 +293,8 @@ class UserController extends CasAbstract {
 
     /* 获取代金券列表 */
 
-    public function couponList() {
+    public function couponList()
+    {
         $this->addResult(self::RS_SUCCESS, 'json');
 
         //$params
@@ -311,7 +321,8 @@ class UserController extends CasAbstract {
     /**
      * 经理体验金使用
      */
-    public function managerUse() {
+    public function managerUse()
+    {
         $this->addResult(self::RS_SUCCESS, 'json');
 
         //params
@@ -331,7 +342,8 @@ class UserController extends CasAbstract {
     /**
      * 获取推广金产品信息
      */
-    public function getTuiInfo() {
+    public function getTuiInfo()
+    {
         $this->addResult(self::RS_SUCCESS, 'json');
 
         //request
