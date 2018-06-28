@@ -9,21 +9,187 @@
 <!-- 弹框 js-->
 <script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/cas/myAlert.js"></script>
 
-<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/goods/goods.detail.js"></script>
+<!-- <script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/goods/goods.detail.js"></script> -->
+<script type="text/javascript" src="{$_STATIC_CDN}/ywf/webjs/goods/p2p.detail.js"></script>
 {literal}
 <script>
     $(document).ready(function () {
-        var goods_name = $('.goods_name').attr('goods_name');
-        $("head>title").html(goods_name);
+        var borrow_name = $('.borrow_name').attr('borrow_name');
+        $("head>title").html(borrow_name);
 
     });
 </script>
 {/literal}
 
 <div class="product_detail_content">
-    aaaaaaaaaa
-</div>
+    <div class="product_first">
+        <div class="product_first_l fl">
+            <h2 class="borrow_name" borrow_name="{$borrow.borrow_name}">
+                {$borrow.borrow_name}
+            </h2>
+            <ul>
+                <li>
+                    <div class="title title1">
+                        <span  class="shuzi">{$borrow.yield_rate}</span>
+                        <span>%</span>
+                    </div>
+                    <p>预期年化收益</p>
+                </li>
+                <li class="sep">
+                    <div class="title title2">
+                        <span class="shuzi">{$borrow.borrow_time_limit}</span>
+                        <span>天</span>
+                    </div>
+                    <p>期限</p>
+                </li>
+                <li>
+                    <div class="title title3">
+                        <span class="shuzi">{$borrow.low_pay}</span><span>元</span>
+                    </div>
+                    <p>起投金额</p>
+                </li>
+            </ul>
+            <div class="product_text1">
+                <div class="product_tex">
+                    <span>起息日期:</span>
+                    {if $borrow.interest_type == 1}
+                    <p>N+1(满标次日计息)</p>
+                    {else}
+                    <p>T+1(满标次工作日计息)</p>
+                    {/if}
+                </div>
+                <div class="product_tex">
+                    <span>发布日期:</span>
+                    <p>{$borrow.show_time}</p>
+                </div>
+                <div class="product_tex">
+                    <span>投资时间:</span>
+                    <p id="timer"></p>
+                </div>
+                <div class="product_tex">
+                    <span>定价转让:</span>
+                    <p>不可转让</p>
+                </div>
+                <div class="product_tex">
+                    <span>兑付方式:</span>
+                    {if ({$borrow['interest_rate']} == 1)}
+                    <p>到期还本付息</p>
+                    {elseif ({$borrow['interest_rate']} == 2)}
+                    <p>分期付息，到期还本</p>
+                    {else}
+                    <p>等额本息</p>
+                    {/if}
+                </div>
+            </div>
+        </div>
+        <div class="product_first_r fr">
+            <h2>
+                投资金额
+                <span>剩余可投：<strong>{$borrow.remainder_money}元</strong></span>
+            </h2>
 
+            <div class="product_first_down">
+                <div class="pro_bar">
+                    <span class="progress"></span>
+                    <em class="progress_num">{$borrow.progress_bar}%</em>
+                </div>
+
+                <div class="product_inputs">
+                    <a href="javascript:;" class="reduce_btn"></a>
+                    <input type="text" class="text_box" id="buy_money" value="{$borrow.low_pay}" style="height: 36px">
+                    <span style="right: 500px;">元</span>
+                    <a href="javascript:;" class="plus_btn"></a>	  	  
+                </div> 
+                <p>预期到期收益：<strong id="yq"></strong></p>
+                <div class="txt">
+                    <span class="fl">起投金额：<em>{$borrow.low_pay}元</em></span>
+                    <span class="fr">递增金额：<em>{$borrow.increasing_amount}元</em></span>
+                </div> 
+                {if ({$borrow['borrow_status']} == 1)}
+                <a href="javascript:;" class="product_btn">立即投资</a>
+                {elseif ({$borrow['borrow_status']} == 2)}
+                <a href="javascript:;" class="product_btn" style="background:#cccccc">已满标</a>
+                {elseif ({$borrow['borrow_status']} == 3)}
+                <a href="javascript:;" class="product_btn" style="background:#cccccc">还款中</a>
+                {elseif ({$borrow['borrow_status']} == 4)}
+                <a href="javascript:;" class="product_btn" style="background:#cccccc">已兑付</a>
+                {elseif ({$borrow['borrow_status']} == 5)}
+                <a href="javascript:;" class="product_btn" style="background:#cccccc">流标</a>
+                {/if}
+
+            </div>
+        </div>
+    </div>
+    <ul class="product_second">
+        <li id="detail" class="current">
+            产品详情
+            <span></span>
+        </li>
+        <li id="safe">
+            借款方详情
+            <span></span>
+        </li>
+        <li id="record">
+            投资记录
+            <span></span>
+            <i style="font-size: 14px;">(<em style="color: #ff7003;">{$borrow['buy_num']}</em>)</i>
+        </li>
+        <li id="question">
+            常见问题
+            <span></span>
+        </li>
+    </ul>
+    <div class="product_third " id="product_third1">
+        {if $borrow.borrow_detail}
+        {$borrow['borrow_detail']}
+        {else}
+        <img src="/static/ywf/img/pic/zanwu.png" style="display: block;margin: 50px auto;width:30%;">
+        {/if}
+    </div>
+    <div class="product_third " id="product_third2" style="display:none;">
+        {if $borrow.debtor_name}
+        {$borrow['debtor_name']}{$borrow['debtor_card']}
+        {else}
+        <img src="/static/ywf/img/pic/zanwu.png" style="display: block;margin: 50px auto;width:30%;">
+        {/if}
+    </div>
+    <div class="product_third product_third3 " id="product_third3" style="display:none;">
+        <div class="low"> 
+            <div class="three three_ytab" id="three">
+                <table class="" id=""  style="white-space: nowrap;" >
+                    <thead>
+                        <tr>
+                            <th>会员</th>
+                            <th>投资金额</th>
+                            <th>投资日期</th>
+                            <th>投资状态</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>           
+    </div>
+    <div class="product_third " id="product_third4" style="display:none;">
+        这里是常见问题
+    </div>
+
+    <div class="page_count"></div>
+    <div id="paging" class="m-pagination"></div>
+</div>	
+
+<input type="hidden" value="{$borrow.borrow_id}" id="borrowID" />
+<input type="hidden" value="{$borrow.low_pay}" id="lowPay" />
+<input type="hidden" value="{$borrow.increasing_amount}" id="increasingAmount" />
+<input type="hidden" value="{$borrow.remainder_money}" id="remainderMoney" />
+<input type="hidden" value="{$borrow.yield_rate}" id="yieldRate"/>
+<input type="hidden" value="{$borrow.borrow_time_limit}" id="qx"/>
+<input type="hidden" value="{$borrow['borrow_status']}" id="borrowStatus" />
+<input type="hidden" value="{$borrow['show_time']}" id="showTime" />
+<input type="hidden" value="{$borrow['raise_time']}" id="raiseTime" />
 
 <!--侧边导航-->
 <div class="sidebar_nav">

@@ -62,6 +62,10 @@ class ListController extends IndexAbstract
         $borrow = null;
         if($b_list){
             $borrow = $b_list[0];
+            $borrow['remainder_money'] = $borrow['total_money'] - $borrow['raise_money'];
+            $borrow['progress_bar'] = ($borrow['raise_money'] / $borrow['total_money']) * 100;
+            //募集结束时间
+            $borrow['raise_time'] = date("Y-m-d H:i:s", strtotime("+5 day", strtotime($borrow['show_time'])));
         }
         $bi_list = P2P_Model_BorrowInfo::instance()->fetchByWhere('borrow_id = '.$bid);
         $borrow_info = null;
@@ -70,13 +74,35 @@ class ListController extends IndexAbstract
         }
         $data['borrow'] = $borrow;
         $data['info'] = $borrow_info;
-        //var_dump($data);
+        var_dump($data);
         $this->setData('data', $data);
         $this->addResult(self::RS_SUCCESS, 'php', 'borrow.detail');
-//        return parent::multipleResult(self::RS_SUCCESS);
-//        $this->addResult(self::RS_SUCCESS, 'php', 'sign.in.php');
         return parent::multipleResult(self::RS_SUCCESS);
-//return parent::addResult(self::RS_SUCCESS);
+    }
+
+    /* 投资记录 */
+    public function record() {
+        $this->addResult(self::RS_SUCCESS, 'json');
+        /* 接收参数 */
+        $borrow_id = $this->input->query('borrow_id');
+        //params
+        $params = array(
+            'goods_id' => $goods_id,
+            'p' => ($this->input->query('pageIndex')) + 1,
+            'psize' => $this->input->query('pageSize'),
+        );
+
+        //request
+        $result = Api_Goods_BuyRecordReal::run($params);
+
+        if (!empty($result['data']['content'])) {
+            foreach ($result['data']['content'] as $k => &$v) {
+                $v['phone'] = substr_replace($v['phone'], '****', 3, 4);
+            }
+        }
+
+        return $result['data'];
+        return self::RS_SUCCESS;
     }
 
     /* 投资状态,下单 */
