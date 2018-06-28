@@ -84,18 +84,10 @@ class ListController extends IndexAbstract
     {
         $this->addResult(self::RS_SUCCESS, 'json');
 
-//        if (!Cas_Authorization::getLoggedInUserid()) {
-//            //未登录
-//            return $this->dataFormat("", 2, "您还没有登录！");
-//        }
-
-        //params
-//        $params = array(
-//            'userid' => $_SESSION['userid'],
-//        );
-//
-//        //request
-//        $result = Api_Goods_ConfirmInvestment::run($params);
+        if (!Cas_Authorization::getLoggedInUserid()) {
+            //未登录
+            return $this->dataFormat("", 2, "您还没有登录！");
+        }
 //
 //        if ($result . status == 0) {
 //            if ($result['data']['is_tiecard'] == 0) {
@@ -110,8 +102,9 @@ class ListController extends IndexAbstract
         $borrow_id = $this->input->get('bid');
         $buy_money = $this->input->get('money');
         //这个是测试时候获取的用户ID
-        $userid = $this->input->get('uid');
+        //$userid = $this->input->get('uid');
 
+        $userid = $_SESSION['userid'];
         return P2P_Model_Borrow::instance()->invest($borrow_id, $userid, $buy_money);
     }
 
