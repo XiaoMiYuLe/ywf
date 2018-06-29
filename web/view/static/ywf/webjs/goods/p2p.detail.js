@@ -63,16 +63,14 @@ $(document).ready(function () {
     var borrow_status = parseInt($("#borrowStatus").val());
 
     if (borrow_status == 1) {
-        $(".product_btn").click(function () {           
+        $("#product_btn").click(function () {     
             var borrow_id = $('#borrowID').val();
             var buy_money = $('#buy_money').val();
-
             $.post("/borrow/list/invest", {
                 'bid': borrow_id,
                 'money': buy_money
             }, function (data) {
                 console.log(data);
-                console.log(data.error_msg);
                 if (data.status == 1) {
                     showAlert({
                         alertTitle: "温馨提示",
@@ -81,13 +79,25 @@ $(document).ready(function () {
                         singleBtnText: "确定"
                     });
                 }
+                //未登入跳登入页
+                if (data.status == 2) {
+                    showAlert({
+                        alertTitle: "温馨提示",
+                        alertContent: data.error_msg,
+                        alertType: 1,
+                        singleBtnText: "前去登录",
+                        goUrl: "/cas/sign/in"
+                    });
+                    //window.location.href = "/cas/sign/in";
+                    return false;
+                }
                 if (data.status == 0) {
                     showAlert({
                         alertTitle: "温馨提示",
                         alertContent: data.error_msg,
-                        alertType: 2,
-                        doubleBtnText1: "确定",
-                        doubleBtnText2: "查看记录",
+                        alertType: 6,
+                        doubleBtnText1: "继续投资",
+                        doubleBtnText2: "查看投资记录",
                         goUrl: "/cas/borrow/index"
                     });
                 }
