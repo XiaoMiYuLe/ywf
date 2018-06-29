@@ -53,36 +53,32 @@
                 </li>
             </ul>
             <div class="product_text1">
-                <div class="product_tex">
-                    <span>起息日期:</span>
+                <div class="product_tex" style="width: 321px;">
+                    <span>起息日期：</span>
                     {if $borrow.interest_type == 1}
-                    <p>N+1(满标次日计息)</p>
+                    <p>N+1（满标次日计息）</p>
                     {else}
-                    <p>T+1(满标次工作日计息)</p>
+                    <p>T+1（满标次工作日计息）</p>
                     {/if}
                 </div>
-                <div class="product_tex">
-                    <span>发布日期:</span>
+                <div class="product_tex" style="width: 321px;">
+                    <span>发布日期：</span>
                     <p>{$borrow.show_time}</p>
                 </div>
-                <div class="product_tex">
-                    <span>投资时间:</span>
-                    <p id="timer"></p>
-                </div>
-                <div class="product_tex">
-                    <span>定价转让:</span>
-                    <p>不可转让</p>
-                </div>
-                <div class="product_tex">
-                    <span>兑付方式:</span>
-                    {if ({$borrow['interest_rate']} == 1)}
-                    <p>到期还本付息</p>
-                    {elseif ({$borrow['interest_rate']} == 2)}
-                    <p>分期付息，到期还本</p>
-                    {else}
-                    <p>等额本息</p>
-                    {/if}
-                </div>
+                <div class="product_tex" style="width: 321px;">
+                        <span>兑付方式：</span>
+                        {if ({$borrow['interest_rate']} == 1)}
+                        <p>到期还本付息</p>
+                        {elseif ({$borrow['interest_rate']} == 2)}
+                        <p>分期付息，到期还本</p>
+                        {else}
+                        <p>等额本息</p>
+                        {/if}
+                    </div>
+                <div class="product_tex" style="width: 321px;">
+                    <span>募集时间：</span>
+                    <p id="timer"></p>{$borrow.raise_time}
+                </div>               
             </div>
         </div>
         <div class="product_first_r fr">
@@ -117,7 +113,9 @@
                 {elseif ({$borrow['borrow_status']} == 4)}
                 <a href="javascript:;" class="product_btn" style="background:#cccccc">已兑付</a>
                 {elseif ({$borrow['borrow_status']} == 5)}
-                <a href="javascript:;" class="product_btn" style="background:#cccccc">流标</a>
+                <a href="javascript:;" class="product_btn" style="background:#cccccc">已流标</a>
+                {elseif ({$borrow['borrow_status']} == 6)}
+                <a href="javascript:;" class="product_btn" style="background:#cccccc">即将开放</a>
                 {/if}
 
             </div>

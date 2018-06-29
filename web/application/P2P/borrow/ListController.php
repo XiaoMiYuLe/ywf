@@ -31,23 +31,26 @@ class ListController extends IndexAbstract
 
         $offset = $pageIndex * $pageSize;
         $where = " borrow_status in (" . $status . ") ";
-        $order = array('borrow_status asc', 'add_time desc');
+        $order = array('borrow_status asc', 'show_time desc', 'borrow_id desc');
 
-        $field = array('borrow_id', 'borrow_name', 'total_money', 'raise_money', 'interest_rate', 'interest_type',
-            'yield_rate', 'raise_day', 'borrow_status', 'borrow_time_limit', 'interest_limit', 'add_time');
-        $list = P2P_Model_Borrow::instance()->fetchByWhere($where, $order, $pageSize, $offset, $field);
+        $list = P2P_Model_Borrow::instance()->fetchByWhere($where, $order, $pageSize, $offset);
+        if(!empty($list)){
+            foreach($list as $k => &$v){
+                $list[$k]['remainder_money'] = $v['total_money'] - $v['raise_money'];
+                $list[$k]['progress_bar'] = ($v['raise_money'] / $v['total_money']) * 100;
+                $list[$k]['low_pay'] = (int)$v['low_pay'];
+                $list[$k]['raise_money'] = (int)$v['raise_money'];
+                if(strtotime($v['show_time']) > time()){
+                    $list[$k]['borrow_status'] = 6;
+                }
+            }
+        }
         $data['status'] = 0;
         $data['error'] = "";
         $data['list'] = $list ? $list : array();
         $data['count'] = P2P_Model_Borrow::instance()->getCount($where);
 
         return $data;
-//        var_dump($data);
-//        $this->setData('data', $data);
-//        $this->addResult(self::RS_SUCCESS, 'php', 'index.index');
-//        return parent::multipleResult(self::RS_SUCCESS);
-//        $this->addResult(self::RS_SUCCESS, 'php', 'sign.in.php');
-//        return self::RS_SUCCESS;
     }
 
     /**
@@ -65,7 +68,10 @@ class ListController extends IndexAbstract
             $borrow['remainder_money'] = $borrow['total_money'] - $borrow['raise_money'];
             $borrow['progress_bar'] = ($borrow['raise_money'] / $borrow['total_money']) * 100;
             //募集结束时间
-            $borrow['raise_time'] = date("Y-m-d H:i:s", strtotime("+5 day", strtotime($borrow['show_time'])));
+            $borrow['raise_time'] = strtotime($borrow['show_time']) + $borrow['raise_day'] * 24 * 3600 - time();
+            if(strtotime($borrow['show_time']) > time()){
+                $borrow['borrow_status'] = 6;
+            }
         }
         $bi_list = P2P_Model_BorrowInfo::instance()->fetchByWhere('borrow_id = ' . $bid);
         $borrow_info = null;

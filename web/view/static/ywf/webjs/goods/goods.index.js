@@ -2,7 +2,7 @@ $(document).ready(function () {
     //$("#licai").click(function(){
     //请求格式： .../GetPageData?query=test&pageIndex=0&pageSize=10
     //返回数据： {"data":[1,2,3,4,5,6,7,8,9,10],"total":800}
-    getApi();
+    getApi1();
 
     $("#licai").click(function () {
         getApi();
@@ -14,7 +14,7 @@ $(document).ready(function () {
         $("#page2").page('remote');
     });
 
-    $("#zhuanrang").click(function () {
+    $("#p2p").click(function () {
         getApi1();
         $("#page1").page('remote');
     });
@@ -124,7 +124,7 @@ function getApi() {
     });
 }
 
-//转让
+//定期理财
 function getApi1() {
     $("#page1").page({
         pageSize: 5,
@@ -135,26 +135,45 @@ function getApi1() {
         showInfo: true,
         showJump: true,
         jumpBtnText: '跳转',
-//        showPageSizes: true,
-//{start} ~ {end}条，
         infoFormat: '共{total}条',
         remote: {
-            url: '/goods/goods/GetTransferList', //请求地址
+            url: '/borrow/list/index', //请求地址
             params: {}, //自定义请求参数
             success: function (result, pageIndex) {
+                console.log(result);
                 var html = '';
-                $.each(result.info, function (index, content) {
+                $.each(result.list, function (index, content) {
                     html += '<div class="goods_list goods_list12">';
                     html += '<div class="goods_list_l">';
-                    html += '<h3><a href="/goods/goods/trdetail?order_id=' + content.order_id + '">' + content.goods_name + '</a>';
+                    html += '<h3><a href="/borrow/list/detail?bid=' + content.borrow_id + '">' + content.borrow_name + '</a>';
                     html += '</h3>';
-                    html += '<div class="goods_title"><span>' + content.comment + '</span></div>';
-                    html += '<ul><li><div class="title title1"><span  class="shuzi">' + content.yield + '</span> <span>%</span> </div> <p>预期年化收益</p></li>';
-                    html += '<li class="sep"><div class="title title2"> <span class="shuzi">' + content.distance_days + '</span><span>天</span></div><p>期限</p> </li>';
-                    html += '<li><div class="title title3"><span class="shuzi">' + content.buy_money + '</span> <span>元</span></div> <p>起投金额</p></li></ul></div>';
+                    html += '<div class="goods_title"></div>';
+                    html += '<ul><li><div class="title title1"><span  class="shuzi">' + content.yield_rate + '</span> <span>%</span> </div> <p>预期年化收益</p></li>';
+                    html += '<li class="sep"><div class="title title2"> <span class="shuzi">' + content.borrow_time_limit + '</span><span>天</span></div><p>期限</p> </li>';
+                    html += '<li><div class="title title3"><span class="shuzi">' + content.low_pay + '</span> <span>元</span></div> <p>起投金额</p></li></ul></div>';
                     html += '<div class="goods_list_r">';
-                    html += '<p>折让：' + content.price_difference + '</p>';
-                    html += '<a href="/goods/goods/trdetail?order_id=' + content.order_id + '" class="btn">立即投资</a>';
+                    if(content.borrow_status == 1){
+                        html += '<p>剩余金额：' + content.remainder_money + '元</p> <div class="pro_bar"><span class="progress" style="width:' + content.progress_bar + '%"></span><em class="progress_num">' + content.progress_bar + '%</em></div>';
+                    }else if(content.borrow_status == 6){
+                        html += '';
+                    }else{
+                        html += '<p>累计投资：' + content.raise_money + '元</p>';
+                    }
+
+                    if (content.borrow_status == 1) {
+                        html += '<a href="/borrow/list/detail?bid=' + content.borrow_id + '" class="btn">立即投资</a>';
+                    } else if (content.borrow_status == 2) {
+                        html += '<a href="/borrow/list/detail?bid=' + content.borrow_id + '" class="btn" style="background:#cccccc">已满标</a>';
+                    } else if (content.borrow_status == 3) {
+                        html += '<a href="/borrow/list/detail?bid=' + content.borrow_id + '" class="btn" style="background:#cccccc">还款中</a>';
+                    } else if (content.borrow_status == 4) {
+                        html += '<a href="/borrow/list/detail?bid=' + content.borrow_id + '" class="btn" style="background:#cccccc">已兑付</a>';
+                    } else if (content.borrow_status == 5) {
+                        html += '<a href="/borrow/list/detail?bid=' + content.borrow_id + '" class="btn" style="background:#cccccc">已流标</a>';
+                    } else if (content.borrow_status == 6) {
+                        html += '<a href="javascript:void(0);" class="btn" style="background:#cccccc">即将开放</a>';
+                    }
+                    
                     html += '</div></div>';
                 });
 
@@ -162,15 +181,15 @@ function getApi1() {
                     html += '<img src="/static/ywf/img/pic/zanwu.png" style="display: block;margin: 50px auto;width:30%;">'
                 }
 
-                $('#zhuanrang_content').empty();
-                $('#zhuanrang_content').html(html);
+                $('#p2p_content').empty();
+                $('#p2p_content').html(html);
 
                 //回调函数
                 //result 为 请求返回的数据，呈现数据
             },
             pageIndexName: 'pageIndex', //请求参数，当前页数，索引从0开始
             pageSizeName: 'pageSize', //请求参数，每页数量
-            totalName: 'totalnum'              //指定返回数据的总数据量的字段名
+            totalName: 'count'              //指定返回数据的总数据量的字段名
         }
     });
 }
