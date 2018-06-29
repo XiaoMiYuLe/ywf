@@ -24,7 +24,11 @@ $(function() {
 		var inputHtml;
 		switch(options.alertType){
 			case 1:
-			btnHtml = '<a class="btnSubmit">'+ options.singleBtnText +'</a>';
+			if(options.goUrl){
+				btnHtml = '<a class="btnSubmit" href="'+ options.goUrl +'">'+ options.singleBtnText +'</a>';
+			}else{
+				btnHtml = '<a class="btnSubmit">'+ options.singleBtnText +'</a>';
+			}			
 			inputHtml ='';
 			break;
 			case 2:
@@ -43,9 +47,12 @@ $(function() {
 			btnHtml = '<a class="btnLeft">'+ options.doubleBtnText1 +'</a><a class="btnRight">'+ options.doubleBtnText2 +'</a>';
 			inputHtml = '<div class="passwordText"><input type="text" value="" placeholder="请输入转让价格" id="myPassword"><span>转让价格</span></div>';
 			break;
+			case 6:
+			btnHtml = '<a class="btnLeft" href="javascript:void(0)" onclick="location.reload()">'+ options.doubleBtnText1 +'</a><a class="btnRight">'+ options.doubleBtnText2 +'</a>';
+			inputHtml ='';
 		}
 		var alertHtml = '<div class="z-alert"><div class="in-alert"><h4>'
-			+options.alertTitle+'</h4><p class="z-content">'
+			+options.alertTitle+'</h4><p class="z-content" style="margin-bottom: 15px;">'
 			+options.alertContent+'</p>'+ inputHtml +'<div class="btngroup">'+ btnHtml +'</div></div></div>';
 
 		$('body').append(alertHtml);
