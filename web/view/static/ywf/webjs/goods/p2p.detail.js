@@ -250,15 +250,15 @@ function getShouyi(){
 
 var timerFunc = function(){
     if(surplusTime > 0){
-        var day = 24*60*60*1000
-        var hour = 60*60*1000
-        var mins = 60*1000
-        var scnd = 1000
-        var disD = "剩余" + Math.floor(surplusTime/day)+"日"
-        var disH = zero(Math.floor(surplusTime/hour%24),2)+"时"
-        var disM = zero(Math.floor(surplusTime/mins%60),2)+"分"
+        var day = 24*60*60;
+        var hour = 60*60;
+        var mins = 60;
+        var scnd = 1;
+        var disD = "剩余 " + Math.floor(surplusTime/day)+"天 "
+        var disH = zero(Math.floor(surplusTime/hour%24),2)+"时 "
+        var disM = zero(Math.floor(surplusTime/mins%60),2)+"分 "
         var disS = zero(Math.floor(surplusTime/scnd%60),2)+"秒"
-        surplusTime = surplusTime - 1000
+        surplusTime = surplusTime - 1
         document.querySelector("#timer").textContent = disD + disH + disM + disS
     }else{
         clearInterval(timer)

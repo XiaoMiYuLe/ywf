@@ -23,8 +23,20 @@
       <file leaf-file-name="ListController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/P2P/borrow/ListController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="638">
-              <caret line="110" column="32" lean-forward="true" selection-start-line="110" selection-start-column="32" selection-end-line="110" selection-end-column="32" />
+            <state relative-caret-position="374">
+              <caret line="70" column="102" selection-start-line="70" selection-start-column="102" selection-end-line="70" selection-end-column="102" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="p2p.detail.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/view/static/ywf/webjs/goods/p2p.detail.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="424">
+              <caret line="258" column="62" selection-start-line="258" selection-start-column="62" selection-end-line="258" selection-end-column="62" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -38,7 +50,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="goods.index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="goods.index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/goods/template/goods.index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="44">
@@ -85,7 +97,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>DATETIME_FORMAT</find>
       <find>$limit_num</find>
       <find>$b_r_model</find>
       <find>P2P_Model_Borrow</find>
@@ -115,6 +126,7 @@
       <find>账户购买</find>
       <find>record</find>
       <find>login</find>
+      <find>raise_time</find>
     </findStrings>
     <replaceStrings>
       <replace>$borrow</replace>
@@ -126,7 +138,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/P2P/admin/BorrowListAdminAbstract.php" />
         <option value="$PROJECT_DIR$/application/P2P/borrow_list/IndexController.php" />
         <option value="$PROJECT_DIR$/config/bootstrap.php" />
         <option value="$PROJECT_DIR$/application/P2P/borrow/BorrowListAdminAbstract.php" />
@@ -175,8 +186,9 @@
         <option value="$PROJECT_DIR$/view/static/ywf/webjs/cas/user.index.js" />
         <option value="$PROJECT_DIR$/library/Api/Cas/GetRecordLog.php" />
         <option value="$PROJECT_DIR$/view/cas/template/user.index.html" />
-        <option value="$PROJECT_DIR$/application/P2P/borrow/ListController.php" />
         <option value="$PROJECT_DIR$/view/goods/template/goods.index.html" />
+        <option value="$PROJECT_DIR$/application/P2P/borrow/ListController.php" />
+        <option value="$PROJECT_DIR$/view/static/ywf/webjs/goods/p2p.detail.js" />
       </list>
     </option>
   </component>
@@ -287,7 +299,7 @@
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="ywf" type="462c0819:PsiDirectoryNode" />
               <item name="webjs" type="462c0819:PsiDirectoryNode" />
-              <item name="cas" type="462c0819:PsiDirectoryNode" />
+              <item name="goods" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -349,12 +361,12 @@
       <workItem from="1527820854417" duration="599000" />
       <workItem from="1528076115372" duration="13554000" />
       <workItem from="1528254994319" duration="7841000" />
-      <workItem from="1528684736811" duration="168719000" />
+      <workItem from="1528684736811" duration="169548000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="254013000" />
+    <option name="totallyTimeSpent" value="254842000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -394,13 +406,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/Cas/Entity/Record/Log.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/Cas/Entity/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -737,13 +742,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/Cas/controllers/BorrowController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="96" column="25" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/bootstrap.dist.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-294" />
@@ -763,13 +761,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/P2P/borrow/ListController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="110" column="32" lean-forward="true" selection-start-line="110" selection-start-column="32" selection-end-line="110" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/view/goods/goods.index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -781,6 +772,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
           <caret line="2" column="70" selection-start-line="2" selection-start-column="70" selection-end-line="2" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Cas/controllers/BorrowController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="96" column="25" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/P2P/borrow/ListController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="70" column="102" selection-start-line="70" selection-start-column="102" selection-end-line="70" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/static/ywf/webjs/goods/p2p.detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="258" column="62" selection-start-line="258" selection-start-column="62" selection-end-line="258" selection-end-column="62" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

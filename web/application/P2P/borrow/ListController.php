@@ -88,31 +88,6 @@ class ListController extends IndexAbstract
         return parent::multipleResult(self::RS_SUCCESS);
     }
 
-    /* 投资记录 */
-    public function record() {
-        $this->addResult(self::RS_SUCCESS, 'json');
-        /* 接收参数 */
-        $borrow_id = $this->input->query('borrow_id');
-        //params
-        $params = array(
-            'goods_id' => $goods_id,
-            'p' => ($this->input->query('pageIndex')) + 1,
-            'psize' => $this->input->query('pageSize'),
-        );
-
-        //request
-        $result = Api_Goods_BuyRecordReal::run($params);
-
-        if (!empty($result['data']['content'])) {
-            foreach ($result['data']['content'] as $k => &$v) {
-                $v['phone'] = substr_replace($v['phone'], '****', 3, 4);
-            }
-        }
-
-        return $result['data'];
-        return self::RS_SUCCESS;
-    }
-
     /* 投资状态,下单 */
     public function invest()
     {
