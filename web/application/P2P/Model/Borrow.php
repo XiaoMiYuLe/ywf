@@ -52,6 +52,9 @@ class P2P_Model_Borrow extends P2P_Model_Public
             return $this->dataFormat('', 1, "该用户不存在或已被冻结");
         }
         $user = $userList[0];
+        if($user['is_borrow_user'] == 1){
+            return $this->dataFormat('', 1, "借款用户不可参与投资");
+        }
         if ($user['asset'] < $buy_money) {
             return $this->dataFormat('', 1, "用户可用资金不足");
         }
