@@ -77,7 +77,11 @@
                     </div>
                 <div class="product_tex" style="width: 321px;">
                     <span>募集时间：</span>
-                    <p id="timer"></p>{$borrow.raise_time}
+                    {if ({$borrow.raise_time} == 0) || ({$borrow.borrow_status} == 6)}
+                    <p>—— ——</p>
+                    {else}
+                    <p id="timer"></p>
+                    {/if}                    
                 </div>               
             </div>
         </div>
@@ -95,7 +99,7 @@
 
                 <div class="product_inputs">
                     <a href="javascript:;" class="reduce_btn"></a>
-                    <input type="text" class="text_box" id="buy_money" value="{$borrow.low_pay}" style="height: 36px">
+                    <input type="text" class="text_box" id="buy_money" value="{$borrow.low_pay}">
                     <span style="right: 500px;">元</span>
                     <a href="javascript:;" class="plus_btn"></a>	  	  
                 </div> 
@@ -197,9 +201,8 @@
 <input type="hidden" value="{$borrow.remainder_money}" id="remainderMoney" />
 <input type="hidden" value="{$borrow.yield_rate}" id="yieldRate"/>
 <input type="hidden" value="{$borrow.borrow_time_limit}" id="qx"/>
-<input type="hidden" value="{$borrow['borrow_status']}" id="borrowStatus" />
-<input type="hidden" value="{$borrow['show_time']}" id="showTime" />
-<input type="hidden" value="{$borrow['raise_time']}" id="raiseTime" />
+<input type="hidden" value="{$borrow.borrow_status}" id="borrowStatus" />
+<input type="hidden" value="{$borrow.raise_time}" id="raiseTime" />
 
 <!--侧边导航-->
 <div class="sidebar_nav">

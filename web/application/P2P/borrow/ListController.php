@@ -65,10 +65,12 @@ class ListController extends IndexAbstract
         $borrow = null;
         if ($b_list) {
             $borrow = $b_list[0];
-            $borrow['remainder_money'] = $borrow['total_money'] - $borrow['raise_money'];
-            $borrow['progress_bar'] = ($borrow['raise_money'] / $borrow['total_money']) * 100;
+            $borrow['remainder_money'] = $borrow['total_money'] - $borrow['raise_money']; //剩余可资金额
+            $borrow['progress_bar'] = ($borrow['raise_money'] / $borrow['total_money']) * 100; //进度条
             //募集结束时间
-            $borrow['raise_time'] = strtotime($borrow['show_time']) + $borrow['raise_day'] * 24 * 3600 - time();
+            $raise_time = strtotime($borrow['show_time']) + $borrow['raise_day'] * 24 * 3600 - time();
+            $borrow['raise_time'] = $raise_time > 0 ? $raise_time : 0;
+            //未开放标的状态
             if(strtotime($borrow['show_time']) > time()){
                 $borrow['borrow_status'] = 6;
             }
