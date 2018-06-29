@@ -29,18 +29,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="p2p.detail.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/view/static/ywf/webjs/goods/p2p.detail.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="258" column="62" selection-start-line="258" selection-start-column="62" selection-end-line="258" selection-end-column="62" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="goods.index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/goods/goods.index.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -84,11 +72,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BorrowInvestIncomeList.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BorrowInvestIncomeList.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/P2P/Model/BorrowInvestIncomeList.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="638">
-              <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+            <state relative-caret-position="572">
+              <caret line="101" column="28" selection-start-line="101" selection-start-column="28" selection-end-line="101" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -178,7 +166,6 @@
         <option value="$PROJECT_DIR$/application/Cas/controllers/BorrowController.php" />
         <option value="$PROJECT_DIR$/view/static/ywf/webjs/cas/borrow.index.js" />
         <option value="$PROJECT_DIR$/view/cas/template/borrow.index.html" />
-        <option value="$PROJECT_DIR$/application/P2P/Model/BorrowInvestIncomeList.php" />
         <option value="$PROJECT_DIR$/library/Api/Cas/GetUserMoneyDetail.php" />
         <option value="$PROJECT_DIR$/application/Interface/libraries/Api_back/Cas/GetMytotalassets.php" />
         <option value="$PROJECT_DIR$/library/Api/Cas/GetMytotalassets.php" />
@@ -189,6 +176,7 @@
         <option value="$PROJECT_DIR$/view/goods/template/goods.index.html" />
         <option value="$PROJECT_DIR$/application/P2P/borrow/ListController.php" />
         <option value="$PROJECT_DIR$/view/static/ywf/webjs/goods/p2p.detail.js" />
+        <option value="$PROJECT_DIR$/application/P2P/Model/BorrowInvestIncomeList.php" />
       </list>
     </option>
   </component>
@@ -361,12 +349,12 @@
       <workItem from="1527820854417" duration="599000" />
       <workItem from="1528076115372" duration="13554000" />
       <workItem from="1528254994319" duration="7841000" />
-      <workItem from="1528684736811" duration="169548000" />
+      <workItem from="1528684736811" duration="170973000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="254842000" />
+    <option name="totallyTimeSpent" value="256267000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -735,13 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/P2P/Model/BorrowInvestIncomeList.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/bootstrap.dist.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-294" />
@@ -782,6 +763,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/view/static/ywf/webjs/goods/p2p.detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1854">
+          <caret line="209" column="21" selection-start-line="209" selection-start-column="16" selection-end-line="209" selection-end-column="21" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/P2P/borrow/ListController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -789,13 +780,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/static/ywf/webjs/goods/p2p.detail.js">
+    <entry file="file://$PROJECT_DIR$/application/P2P/Model/BorrowInvestIncomeList.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="258" column="62" selection-start-line="258" selection-start-column="62" selection-end-line="258" selection-end-column="62" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="572">
+          <caret line="101" column="28" selection-start-line="101" selection-start-column="28" selection-end-line="101" selection-end-column="28" />
         </state>
       </provider>
     </entry>
