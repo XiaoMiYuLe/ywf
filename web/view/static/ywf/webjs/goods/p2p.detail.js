@@ -62,10 +62,10 @@ $(document).ready(function () {
     //投资
     var borrow_status = parseInt($("#borrowStatus").val());
     var borrow_name = $("#borrowName").val();
-    var buyMoney = $(".text_box").val();
-    buyMoney = parseInt(buyMoney);
     if (borrow_status == 1) {
         $("#product_btn").click(function () {
+            var buyMoney = $(".text_box").val();
+            buyMoney = parseInt(buyMoney);
             var conHtml = "投资金额 " + buyMoney + " 元，请确认！";
             showAlert({
                 alertTitle: "投资提示",
