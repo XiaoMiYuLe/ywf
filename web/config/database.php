@@ -28,12 +28,12 @@ defined('ZEED_DB_TABLEPREFIX') || define('ZEED_DB_TABLEPREFIX', '');
 return array(
         'default' => array(
                 'adapter' => 'PDO_MYSQL', 
-//                'host' => 'rdsbib620f206m7h9jox.mysql.rds.aliyuncs.com',
-                'host' => '192.168.1.195',
-//                'username' => 'ywf',
-//                'password' => 'ywf360sql',
-                'username' => 'root',
-                'password' => '1qaz)OKM',
+                'host' => 'rdsbib620f206m7h9jox.mysql.rds.aliyuncs.com',
+//                'host' => '192.168.1.195',
+                'username' => 'ywf',
+                'password' => 'ywf360sql',
+//                'username' => 'root',
+//                'password' => '1qaz)OKM',
                 'dbname' => 'zjcf', 
                 'prefix' => '', 
                 'charset' => 'utf8', 
