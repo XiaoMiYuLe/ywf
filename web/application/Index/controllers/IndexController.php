@@ -46,7 +46,7 @@ class IndexController extends IndexAbstract
         
          foreach ($goods as $k => &$v) {
             if ($v['yield']) {
-                $v['yield'] = round($v['yield'],0);
+//                $v['yield'] = round($v['yield'],0);
             } else {
                 $v['yield'] = 0;
             }
