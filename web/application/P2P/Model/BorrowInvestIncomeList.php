@@ -99,11 +99,12 @@ class P2P_Model_BorrowInvestIncomeList extends P2P_Model_Public
             $user = Cas_Model_User::instance()->getUserByUserid($bi_one['invest_user_id']);
             //更新投资用户待收本金和待收收益
             if (!Cas_Model_User::instance()->update(array('receivable_money' => ($user['receivable_money'] + $invest_money), 'receivable_income' => ($user['receivable_income'] + $sum_income_money)),
-                array('userid' => $bi_one['invest_user_id']))) {
+                'userid = ' . $bi_one['invest_user_id'])) {
                 throw new Zeed_Exception('更新用户资金失败');
             }
             $this->commit();
         } catch (Exception $e) {
+            var_dump($e->getMessage());
             $this->rollback();
             return false;
         }
